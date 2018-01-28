@@ -12,7 +12,20 @@ const store = configureStore();
 const renderApp = async ({ cookies, isServer, currentLocation } = {}) => {
   const configuration = await store.dispatch(
     configure(
-      { apiUrl: "http://localhost:3000" },
+      { apiUrl:                  'https://devise-token-auth.dev',
+        signOutPath:             '/auth/sign_out',
+        emailSignInPath:         '/auth/sign_in',
+        emailRegistrationPath:   '/auth',
+        accountUpdatePath:       '/auth',
+        accountDeletePath:       '/auth',
+        passwordResetPath:       '/auth/password',
+        passwordUpdatePath:      '/auth/password',
+        tokenValidationPath:     '/auth/validate_token',
+        authProviderPaths: {
+          facebook:  '/auth/facebook',
+          google:    '/auth/google_oauth2'
+        }
+      },
       { isServer: false, cookies, currentLocation, clientOnly: true }
     )
   );
@@ -32,7 +45,6 @@ const renderApp = async ({ cookies, isServer, currentLocation } = {}) => {
 const douzePoints = async () => {
   const appComponent = await renderApp();
   const root = window.document.getElementById("root");
-  debugger;
   ReactDOM.render(appComponent, root);
   registerServiceWorker();
 };
