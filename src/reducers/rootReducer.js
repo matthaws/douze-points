@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import { authStateReducer } from "redux-auth";
+import { reduxTokenAuthReducer } from 'redux-token-auth';
 
 export default combineReducers({
-  auth: authStateReducer
+  auth: reduxTokenAuthReducer
 });
