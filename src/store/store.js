@@ -9,7 +9,10 @@ auth: {
     isLoading: false,
     isSignedIn: false,
     attributes: {
-      firstName: null
+      username: null,
+      name: null,
+      imageUrl: null,
+      bio: null
     },
   },
 }

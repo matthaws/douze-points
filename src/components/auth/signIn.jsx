@@ -1,55 +1,38 @@
 import React from "react";
+import FacebookLogin from "react-facebook-login";
 import { connect } from "react-redux";
-import { signInUser } from "../../actions/reduxAuthActions";
-import { authUrl, omniauthURL } from "../../util/constants";
+import { authenticateUser } from "../../actions/auth_actions";
 
 class signIn extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { username: "", password: "" };
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.authCallback = this.authCallback.bind(this);
   }
 
-  handleSubmit() {
-    const user = this.state;
-    const { signInUser } = this.props;
-    signInUser(user);
-  }
-
-  popUpFacebook() {
-    window.open(
-      `http://localhost:3000/auth/facebook`,
-      "newwindow",
-      "toolbar=0,status=0,width=548,height=325,top=150,left=400"
-    );
-  }
-
-  popUpGoogle() {
-    window.open(
-      `http://localhost:3000/auth/google`,
-      "newwindow",
-      "toolbar=0,status=0,width=548,height=325,top=150,left=400"
-    );
+  authCallback(auth) {
+    window.FB.login((auth) => {
+      debugger
+      const socialToken = auth.authResponse.accessToken;
+      this.props.authenticateUser(socialToken)
+    })
   }
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Username
-            <input type="text" />
-          </label>
-          <label>
-            Password
-            <input type="password" />
-          </label>
-        </form>
-        <p onClick={this.popUpFacebook}>Log in with Facebook</p>
-        <p onClick={this.popUpGoogle}>Log in with Google</p>
-      </div>
-    );
+      <nav>
+        <FacebookLogin
+    appId="312658112474450"
+    autoLoad={true}
+    fields="name,email,picture"
+    callback={this.authCallback} />,
+      </nav>
+
+    )
   }
 }
 
-export default connect(null, { signInUser })(signIn);
+const mapDispatchToProps = dispatch => ({
+  authenticateUser: facebookData => dispatch(authenticateUser(facebookData))
+});
+
+export default connect(null, mapDispatchToProps)(signIn);

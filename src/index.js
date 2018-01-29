@@ -4,12 +4,10 @@ import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import App from "./components/app.jsx";
 import configureStore from "./store/store";
-import { verifyCredentials } from "./actions/reduxAuthActions";
 import registerServiceWorker from "./registerServiceWorker";
 
 const store = configureStore();
-verifyCredentials(store);
-
+window.store = store;
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
