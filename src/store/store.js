@@ -5,17 +5,8 @@ import RootReducer from '../reducers/rootReducer';
 
 const initialState = {
 auth: {
-  currentUser: {
-    isLoading: false,
-    isSignedIn: false,
-    attributes: {
-      username: null,
-      name: null,
-      imageUrl: null,
-      bio: null
-    },
-  },
-}
+  currentUser: null
+  }
 }
 // All your other state
 const configureStore = (preloadedState = initialState) => (

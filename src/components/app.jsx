@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch } from "react-router-dom";
+import { AuthRoute, ProtectedRoute } from "../util/route_util";
 import SignIn from "./auth/signIn.jsx";
+import Welcome from "./welcome/welcome";
 import "./App.css";
 
 class App extends Component {
@@ -9,7 +11,8 @@ class App extends Component {
       <main className="main">
         <h1>DOUZE POINTS</h1>
         <Switch>
-          <Route path="/signin" component={SignIn} />
+          <AuthRoute path="/signin" component={SignIn} />
+          <ProtectedRoute path="/" component={Welcome} />
         </Switch>
       </main>
     );

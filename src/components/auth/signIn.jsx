@@ -11,7 +11,6 @@ class signIn extends React.Component {
 
   authCallback(auth) {
     window.FB.login((auth) => {
-      debugger
       const socialToken = auth.authResponse.accessToken;
       this.props.authenticateUser(socialToken)
     })
