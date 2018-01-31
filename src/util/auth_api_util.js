@@ -1,6 +1,6 @@
 export const authenticate = async socialToken => {
   const response = await fetch(
-    `http://localhost:3000/omniauth/callback`, {
+    `http://localhost:3000/auth`, {
       method: 'POST',
       headers: {
         'Authorization': `${socialToken}`
