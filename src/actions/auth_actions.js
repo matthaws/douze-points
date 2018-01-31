@@ -1,4 +1,4 @@
-import * as AuthAPIUtil from "../util/auth_api_util" ;
+import * as AuthAPIUtil from "../util/auth_api_util";
 
 export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const SIGN_OUT_USER = "SIGN_OUT_USER";
@@ -10,9 +10,14 @@ export const receiveCurrentUser = payload => ({
 
 export const signOutUser = () => ({
   type: SIGN_OUT_USER
-})
+});
 
-export const authenticateUser = (socialToken) => async (dispatch) => {
+export const authenticateUser = socialToken => async dispatch => {
   const payload = await AuthAPIUtil.authenticate(socialToken);
   dispatch(receiveCurrentUser(payload));
-}
+};
+
+export const fetchCurrentUser = () => async dispatch => {
+  const payload = await AuthAPIUtil.fetchCurrentUser();
+  dispatch(receiveCurrentUser(payload));
+};
