@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import FacebookLogin from "react-facebook-login";
 import { connect } from "react-redux";
 import { authenticateUser } from "../../actions/auth_actions";
+import "./signin.css";
 
 class signIn extends React.Component {
   static propTypes = {
