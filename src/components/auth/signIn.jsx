@@ -28,6 +28,8 @@ class signIn extends React.Component {
     appId="312658112474450"
     autoLoad={true}
     fields="name,email,picture"
+    cssClass="facebook-button"
+    textButton="Login with le Facebook"
     callback={this.authCallback} />,
       </nav>
 
