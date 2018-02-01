@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Switch, BrowserRouter } from "react-router-dom";
 import { AuthRoute, ProtectedRoute } from "../util/route_util";
-import { authenticateUser } from "../actions/auth_actions";
+import { authenticateUser, fetchCurrentUser } from "../actions/auth_actions";
 import SignIn from "./auth/signIn.jsx";
 import Welcome from "./welcome/welcome";
 import "./App.css";
@@ -14,13 +14,8 @@ class App extends Component {
   };
 
   componentDidMount() {
-    if (window.FB) {
-      window.FB.getLoginStatus(response => {
-        if (response.status === "connected") {
-          const socialToken = response.authResponse.accessToken;
-          this.props.authenticateUser(socialToken);
-        }
-      });
+    if (localStorage.getItem('token')) {
+      this.props.fetchCurrentUser(localStorage.getItem(('token')))
     }
   }
 
@@ -40,7 +35,8 @@ class App extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  authenticateUser: socialToken => dispatch(authenticateUser(socialToken))
+  authenticateUser: socialToken => dispatch(authenticateUser(socialToken)),
+  fetchCurrentUser: token => dispatch(fetchCurrentUser(token))
 });
 
 export default connect(null, mapDispatchToProps)(App);

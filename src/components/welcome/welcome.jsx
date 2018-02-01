@@ -5,21 +5,33 @@ import { signOutUser } from "../../actions/auth_actions";
 
 const Welcome = ({ currentUser, signOutUser }) => {
   const signOut = () => {
-    window.FB.logout(response => {
       signOutUser();
-    });
   };
+
+  const username = currentUser ? currentUser.username : "friend!";
+  const pic = currentUser ? (
+    <img alt="profile-pic" src={currentUser.avatar_url} />
+  ) : (
+    ""
+  );
+
   return (
     <main>
-      <h1>Welcome, {currentUser.username}</h1>
-      <img alt="profile-pic" src={currentUser.avatar_url} />
+      <h1>Welcome, {username}</h1>
+      {pic}
       <button onClick={signOut}>Sign Out</button>
     </main>
   );
 };
 
 Welcome.propTypes = {
-  currentUser: PropTypes.object.isRequired
+  currentUser: PropTypes.object
+};
+
+Welcome.defaultProps = {
+  currentUser: {
+    username: "friend!"
+  }
 };
 
 const mapStateToProps = state => ({

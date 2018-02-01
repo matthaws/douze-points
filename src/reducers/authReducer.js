@@ -10,7 +10,9 @@ const authReducer = (state = defaultState, action) => {
   switch (action.type) {
     case RECEIVE_CURRENT_USER:
       newState.currentUser = action.payload.user;
-      localStorage.setItem("token", action.payload.auth_token);
+      if (action.payload.auth_token) {
+        localStorage.setItem("token", action.payload.auth_token);
+      }
       return newState;
     case SIGN_OUT_USER:
       localStorage.removeItem("token");

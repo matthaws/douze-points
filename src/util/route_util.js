@@ -23,7 +23,7 @@ const Protected = ({ component: Component, path, loggedIn }) => (
 );
 
 const mapStateToProps = state => {
-  return {loggedIn: Boolean(state.auth.currentUser)}
+  return {loggedIn: Boolean(localStorage.getItem('token'))}
 };
 
 export const AuthRoute = withRouter(connect(mapStateToProps, null)(Auth));

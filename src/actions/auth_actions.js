@@ -16,3 +16,8 @@ export const authenticateUser = socialToken => async dispatch => {
   const payload = await AuthAPIUtil.authenticate(socialToken);
   dispatch(receiveCurrentUser(payload));
 };
+
+export const fetchCurrentUser = token => async dispatch => {
+  const payload = await AuthAPIUtil.fetchCurrentUser(token);
+  dispatch(receiveCurrentUser(payload));
+};
