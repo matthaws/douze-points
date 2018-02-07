@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Switch, BrowserRouter } from "react-router-dom";
 import { AuthRoute, ProtectedRoute } from "../util/route_util";
-import { authenticateUser, fetchCurrentUser } from "../actions/auth_actions";
+import { authenticateUser, fetchCurrentUser } from "../actions/authActions";
 import SignIn from "./auth/signIn.jsx";
 import Welcome from "./welcome/welcome";
 import "./App.css";
