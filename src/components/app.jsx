@@ -7,6 +7,7 @@ import { authenticateUser, fetchCurrentUser } from "../actions/auth_actions";
 import SignIn from "./auth/signIn";
 import Welcome from "./welcome/welcome";
 import Splash from "./splash/splash";
+import ScoresheetsContainer from './scoresheets/scoresheets_container';
 import "./App.css";
 
 class App extends Component {
@@ -25,6 +26,7 @@ class App extends Component {
       <BrowserRouter>
         <main className="main">
           <AuthRoute exact path="/" component={ Splash } />
+          <Route exact path="/scoresheets" component={ ScoresheetsContainer} />
         </main>
       </BrowserRouter>
     );
