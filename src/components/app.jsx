@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Switch, BrowserRouter } from "react-router-dom";
+import { Switch, BrowserRouter, Route } from "react-router-dom";
 import { AuthRoute, ProtectedRoute } from "../util/route_util";
 import { authenticateUser, fetchCurrentUser } from "../actions/auth_actions";
 import SignIn from "./auth/signIn";
 import Welcome from "./welcome/welcome";
 import Splash from "./splash/splash";
-import ScoresheetsContainer from './scoresheets/scoresheets_container';
+import ScoresheetsContainer from './scoresheets/scoresheets';
 import "./App.css";
 
 class App extends Component {
@@ -25,8 +25,10 @@ class App extends Component {
     return (
       <BrowserRouter>
         <main className="main">
-          <AuthRoute exact path="/" component={ Splash } />
-          <Route exact path="/scoresheets" component={ ScoresheetsContainer} />
+          <Switch>
+            <Route exact path="/scoresheets" component={ ScoresheetsContainer} />
+            <AuthRoute exact path="/" component={ Splash } />
+          </Switch>
         </main>
       </BrowserRouter>
     );
