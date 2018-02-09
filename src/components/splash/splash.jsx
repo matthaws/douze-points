@@ -8,7 +8,7 @@ const Splash = () => {
     <section className="section--splash">
       <div className="div--splashnav">
         <nav className="nav--splashnav">
-          <h1 classname="h1--splashnav">DOUZE POINTS!</h1>
+          <h1 className="h1--splashnav">DOUZE POINTS!</h1>
           <SignIn />
         </nav>
       </div>
