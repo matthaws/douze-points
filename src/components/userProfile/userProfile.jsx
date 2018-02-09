@@ -14,7 +14,7 @@ class UserProfile extends React.Component {
 
   // defaultProps - when the component doesn't receive a "user" prop
   // then it uses what we've defined below. We never get an undefined error
-  // ever again! 
+  // ever again!
   static defaultProps = {
     user: {
       username: "LOADING...",
@@ -50,7 +50,6 @@ class UserProfile extends React.Component {
 // REDUX ------------------------------------
 
 const mapStateToProps = (state, ownProps) => {
-  debugger
   const userId = ownProps.match.params.id;
   return {
     user: state.users[ownProps.match.params.id],
