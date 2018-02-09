@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Switch, BrowserRouter } from "react-router-dom";
+import { Switch, BrowserRouter, Route } from "react-router-dom";
 import { AuthRoute, ProtectedRoute } from "../util/route_util";
 import { authenticateUser, fetchCurrentUser } from "../actions/authActions";
 import SignIn from "./auth/signIn.jsx";
 import Welcome from "./welcome/welcome";
+import UserProfile from "./userProfile/userProfile";
 import "./App.css";
 
 class App extends Component {
@@ -25,6 +26,7 @@ class App extends Component {
         <main className="main">
           <h1>DOUZE POINTS</h1>
           <Switch>
+            <Route path="/users/:id" component={UserProfile} />
             <ProtectedRoute exact path="/welcome" component={Welcome} />
             <AuthRoute exact path="/signin" component={SignIn} />
           </Switch>

@@ -7,6 +7,7 @@ export const receiveUser = ({ user }) => ({
 });
 
 export const fetchUser = userId => async dispatch => {
-  const payload = UserAPIUtil.fetchUser(userId);
+  const payload = await UserAPIUtil.fetchUser(userId);
+  debugger
   dispatch(receiveUser(payload));
 };
