@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -25,4 +25,32 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+} */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background: linear-gradient(to bottom right, #5FBEDE, #002659);
+  /*sample colors*/
+  height: 100vw;
+}
+
+.main {
+  height: 100vw;
+}
+
+h1, p, span, text, content, div, section {
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  color: white;
+  border-radius: 4px;
+  border: 2px solid #002659;
+  background: #5FBEDE;
+  height: 30px;
+  width: auto;
+  cursor: pointer;
 }

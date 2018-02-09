@@ -7,7 +7,7 @@ import "./signin.css";
 
 class signIn extends React.Component {
   static propTypes = {
-    authenticateUser: PropTypes.func.isRequired
+    authenticateUser: PropTypes.func.isRequired,
   }
 
   constructor(props) {
@@ -24,19 +24,19 @@ class signIn extends React.Component {
 
   render() {
     return (
-      <nav>
-        <FacebookLogin
-    appId="312658112474450"
-    autoLoad={true}
-    fields="name,email,picture"
-    cssClass="facebook-button"
-    textButton="Login with le Facebook"
-    callback={this.authCallback} />,
-      </nav>
-
+      <FacebookLogin
+        appId="312658112474450"
+        autoLoad={true}
+        fields="name,email,picture"
+        cssClass="facebook-button"
+        textButton="Login with Facebook"
+        callback={this.authCallback}
+      />
     )
   }
 }
+
+//=========================================================
 
 const mapDispatchToProps = dispatch => ({
   authenticateUser: facebookData => dispatch(authenticateUser(facebookData))

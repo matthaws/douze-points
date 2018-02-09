@@ -1,0 +1,58 @@
+.nav--splashnav {
+  color: white;
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  height: 80px;
+  padding: 10px;
+}
+
+.section--splash {
+  /* max-width: 1280px; */
+  width: 100%;
+  height: 100%;
+  background-image: url("../../assets/sobral-splash.jpg");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.nav--splashnav h1 {
+  font-size: 30px;
+}
+
+.nav--splashnav span {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.div--splashmsg {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+  width: 400px;
+  height: 400px;
+}
+
+.div--splashmsg p {
+  width: 100%;
+  height: 20px;
+  color: white;
+  margin: 0px;
+  padding: 10px;
+  font-family: 'Gill Sans', sans-serif;
+  text-align: center;
+}
+
+p.eurovision {
+  height: 80px;
+  font-size: 80px;
+}
+
+.songcontest {
+  font-size: 30px;
+}
