@@ -7,7 +7,7 @@ import "./userProfile.css";
 class UserProfile extends React.Component {
   // propTypes help us specify exactly what props this thing
   // should be expecting and what kind of thing they should be
-    static propTypes = {
+  static propTypes = {
     userId: PropTypes.string.isRequired,
     user: PropTypes.object
   }

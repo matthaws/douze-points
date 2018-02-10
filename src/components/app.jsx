@@ -10,7 +10,8 @@ import "./App.css";
 
 class App extends Component {
   static propTypes = {
-    authenticateUser: PropTypes.func.isRequired
+    authenticateUser: PropTypes.func.isRequired,
+    fetchCurrentUser: PropTypes.func.isRequired
   };
 
   componentDidMount() {
