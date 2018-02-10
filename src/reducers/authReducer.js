@@ -1,5 +1,5 @@
 import merge from "lodash/merge";
-import { RECEIVE_CURRENT_USER, SIGN_OUT_USER } from "../actions/auth_actions";
+import { RECEIVE_CURRENT_USER, SIGN_OUT_USER } from "../actions/authActions";
 
 const defaultState = {
   currentUser: null
