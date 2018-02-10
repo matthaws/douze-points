@@ -1,8 +1,9 @@
 import { combineReducers } from "redux";
 import auth from "./authReducer";
-import users from "./usersReducer";
+import scoresheets from './scoresheetReducer';
 
 export default combineReducers({
   auth,
   users,
+  scoresheets,
 });

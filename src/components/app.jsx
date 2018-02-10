@@ -5,6 +5,7 @@ import { Switch, BrowserRouter, Route } from "react-router-dom";
 import { AuthRoute, ProtectedRoute } from "../util/route_util";
 import { authenticateUser, fetchCurrentUser } from "../actions/authActions";
 import Splash from "./splash/splash";
+import ScoresheetsContainer from './scoresheets/scoresheets';
 import UserProfile from "./userProfile/userProfile";
 import "./App.css";
 
@@ -25,6 +26,7 @@ class App extends Component {
       <BrowserRouter>
         <main className="main">
           <Switch>
+            <Route exact path="/scoresheets" component={ ScoresheetsContainer} />
             <Route exact path="/users/:id" component={ UserProfile } />
             <AuthRoute exact path="/" component={ Splash } />
           </Switch>
