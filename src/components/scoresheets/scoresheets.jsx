@@ -7,7 +7,6 @@ import { fetchScoresheet, fetchScoresheets, removeScoresheet } from '../../actio
 // props / actions
 
 const mapStateToProps = (state) => {
-  debugger
   return {
     scoresheets: state.scoresheets,
     currentUser: state.auth.currentUser,
@@ -35,7 +34,6 @@ class Scoresheets extends React.Component {
 
   constructor(props) {
     super(props);
-    debugger
     this.state = {
       scoresheets: props.scoresheets,
       currentUser: props.currentUser,
@@ -43,8 +41,16 @@ class Scoresheets extends React.Component {
   }
 
   componentDidMount() {
-    debugger
-    // this.props.fetchScoresheets(this.state.currentUser.id);
+    if (this.state.currentUser) {
+      this.fetchScoresheets(this.state.currentUser.id);
+    }
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (!this.state.currentUser) {
+      this.setState({ currentUser: newProps.currentUser });
+      newProps.fetchScoresheets(newProps.currentUser.id);
+    }
   }
 
   render() {

@@ -11,7 +11,7 @@ export const fetchScoresheet = async scoresheetId => {
 
 export const fetchScoresheets = async userId => {
   const response = await fetch(
-    `${backendUrl}user/${userId}/scoresheets`,
+    `${backendUrl}users/${userId}/scoresheets`,
     { method: 'GET',
     }
   );
