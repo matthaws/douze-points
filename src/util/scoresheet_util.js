@@ -1,42 +1,61 @@
-import { backendUrl } from './constants';
+import { backendUrl, authHeaders } from './constants';
 
-const fetchScoresheet = (scoresheetId) => {
-  $.ajax({
-    method: 'GET',
-    url: `${backendUrl}scoresheets/${scoresheetId}`
-  });
+export const fetchScoresheet = async scoresheetId => {
+  const response = await fetch(
+    `${backendUrl}scoresheets/${scoresheetId}`,
+    { method: 'GET' }
+  );
+  const scoresheet = await response.json();
+  return scoresheet;
 };
 
-const fetchScoresheets = (userId) => {
-  $.ajax({
-    method: 'GET',
-    url: `${backendUrl}user/${userId}/scoresheets`
-  });
-};
-
-const createScoresheet = (scoresheet) => {
-  $.ajax({
-    method: 'POST',
-    url: `${backendUrl}/users/${scoresheet.user_id}/scoresheets`,
-    data: {
-      scoresheet
+export const fetchScoresheets = async userId => {
+  const response = await fetch(
+    `${backendUrl}user/${userId}/scoresheets`,
+    { method: 'GET',
     }
-  });
+  );
+  const scoresheets = await response.json();
+  return scoresheets;
 };
 
-const updateScoresheet = (scoresheet) => {
-  $.ajax({
-    method: 'PATCH',
-    url: `${backendUrl}scoresheets/${scoresheet.id}`,
-    data: {
-      scoresheet
+export const createScoresheet = async scoresheet => {
+  const response = await fetch(
+    `${backendUrl}/users/${scoresheet.user_id}/scoresheets`,
+    { method: 'POST',
+      headers: authHeaders(),
+      data: {
+        scoresheet
+      }
     }
-  });
+  );
+  const newScoresheet = await response.json();
+  return newScoresheet;
 };
 
-export const deleteScoresheet = (scoresheetId) => {
-  $.ajax({
-    method: 'DELETE',
-    url: `${backendUrl}scoresheets/${scoresheetId}`,
-  });
+export const updateScoresheet = async scoresheet => {
+  const response = await fetch(
+    `${backendUrl}scoresheets/${scoresheet.id}`,
+    {
+      method: 'PATCH',
+      headers: authHeaders(),
+      data: {
+        scoresheet
+      }
+    }
+  );
+  const updatedScoresheet = await response.json();
+  return updatedScoresheet;
+};
+
+export const deleteScoresheet = async scoresheetId => {
+  const response = await fetch (
+    `${backendUrl}scoresheets/${scoresheetId}`,
+    { method: 'DELETE',
+      headers: authHeaders(),
+    }
+  );
+  // not sure if below is necessary
+  const deletedScoresheet = await response.json();
+  return deletedScoresheet;
 };

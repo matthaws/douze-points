@@ -5,7 +5,7 @@ const defaultState = {
 
 };
 
-export const scoresheetReducer = (state = defaultState, action) => {
+const scoresheetReducer = (state = defaultState, action) => {
   let newState = merge({}, state);
   switch (action.type) {
     case RECEIVE_SCORESHEET:
@@ -20,3 +20,5 @@ export const scoresheetReducer = (state = defaultState, action) => {
       return newState;
   }
 };
+
+export default scoresheetReducer;

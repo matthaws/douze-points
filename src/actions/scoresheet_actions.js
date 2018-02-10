@@ -1,8 +1,8 @@
 import * as ScoresheetUtil from '../util/scoresheet_util';
 
-const RECEIVE_SCORESHEETS = "RECEIVE_SCORESHEETS";
-const RECEIVE_SCORESHEET = "RECEIVE_SCORESHEET";
-const REMOVE_SCORESHEET = "REMOVE_SCORESHEET";
+export const RECEIVE_SCORESHEETS = "RECEIVE_SCORESHEETS";
+export const RECEIVE_SCORESHEET = "RECEIVE_SCORESHEET";
+export const REMOVE_SCORESHEET = "REMOVE_SCORESHEET";
 
 export const receiveScoresheet = scoresheet => ({
   type: RECEIVE_SCORESHEET,
