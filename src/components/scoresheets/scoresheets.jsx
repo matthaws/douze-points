@@ -8,7 +8,7 @@ import { fetchScoresheet, fetchScoresheets, removeScoresheet } from '../../actio
 
 const mapStateToProps = (state) => {
   return {
-    scoresheets: state.scoresheets,
+    scoresheets: state.scoresheets.scoresheets,
     currentUser: state.auth.currentUser,
   }
 };
@@ -25,30 +25,23 @@ const mapDispatchToProps = (dispatch) => ({
 class Scoresheets extends React.Component {
 
   static propTypes = {
-
+    scoresheet: PropTypes.object.isRequired,
+    scoresheets: PropTypes.array.isRequired,
   }
 
   static defaultProps = {
-    scoresheet: { name: "LOADING..." }
-  }
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      scoresheets: props.scoresheets,
-      currentUser: props.currentUser,
-    }
+    scoresheet: { name: "LOADING..." },
+    scoresheets: []
   }
 
   componentDidMount() {
-    if (this.state.currentUser) {
+    if (this.props.currentUser) {
       this.fetchScoresheets(this.state.currentUser.id);
     }
   }
 
   componentWillReceiveProps(newProps) {
-    if (!this.state.currentUser) {
-      this.setState({ currentUser: newProps.currentUser });
+    if (!this.props.currentUser) {
       newProps.fetchScoresheets(newProps.currentUser.id);
     }
   }
@@ -59,8 +52,11 @@ class Scoresheets extends React.Component {
         <nav className="nav--scoresheets_nav">
         </nav>
         <h1>
-          Scoresheet goes here.
+          Scoresheets index
         </h1>
+        <section className="section--scoresheet_show">
+          Scoresheet view here
+        </section>
       </section>
     )
   }
