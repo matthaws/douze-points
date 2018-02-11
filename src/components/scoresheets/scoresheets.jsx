@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchScoresheet, fetchScoresheets, removeScoresheet } from '../../actions/scoresheet_actions';
+import Scoresheet from './scoresheet';
+import './scoresheets.css';
 
 //=========================================
 // props / actions
@@ -14,9 +16,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchScoresheet: (scoresheetId) => dispatch(fetchScoresheet(scoresheetId)),
   fetchScoresheets: (userId) => dispatch(fetchScoresheets(userId)),
-  removeScoresheet: (scoresheetId) => dispatch(removeScoresheet(scoresheetId)),
+  fetchScoresheet: (scoresheetId) => dispatch(fetchScoresheet(scoresheetId)),
 });
 
 //=========================================
@@ -61,7 +62,7 @@ class Scoresheets extends React.Component {
           { this.scoresheetHeaders() }
         </nav>
         <section className="section--scoresheet_show">
-          Scoresheet view here
+          <Scoresheet scoresheet={this.props.scoresheet} />
         </section>
       </section>
     )
