@@ -31,7 +31,7 @@ class Scoresheets extends React.Component {
 
   static defaultProps = {
     scoresheet: { name: "LOADING..." },
-    scoresheets: []
+    scoresheets: [ { name: "LOADING..." } ]
   }
 
   componentDidMount() {
@@ -41,19 +41,25 @@ class Scoresheets extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    if (!this.props.currentUser) {
+    if (!this.props.currentUser && newProps.currentUser) {
       newProps.fetchScoresheets(newProps.currentUser.id);
     }
+  }
+
+  scoresheetHeaders() {
+    return this.props.scoresheets.map( (scoresheet, idx) => {
+      return(
+        <span className={`span--scoresheet-nav-${idx}`} key={ idx }>{ scoresheet.name }</span>
+      )
+    });
   }
 
   render() {
     return(
       <section className="section--scoresheets_container">
         <nav className="nav--scoresheets_nav">
+          { this.scoresheetHeaders() }
         </nav>
-        <h1>
-          Scoresheets index
-        </h1>
         <section className="section--scoresheet_show">
           Scoresheet view here
         </section>
