@@ -10,7 +10,7 @@ import './scoresheet.css';
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    scoresheet: ownProps.scoresheet,
+    scoresheetId: ownProps.scoresheetId,
   };
 };
 
@@ -24,10 +24,14 @@ const mapDispatchToProps = (dispatch) => ({
 class Scoresheet extends React.Component {
 
   render () {
-    if (this.props.scoresheet.name === "LOADING...") {
+    if (this.props.scoresheetId === "LOADING...") {
       return <p>Loading...</p>;
     } else {
-
+      return(
+        <section>
+          { this.props.scoresheetId }
+        </section>
+      );
     }
   }
 

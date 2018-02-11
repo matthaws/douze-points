@@ -26,13 +26,11 @@ const mapDispatchToProps = (dispatch) => ({
 class Scoresheets extends React.Component {
 
   static propTypes = {
-    scoresheet: PropTypes.object.isRequired,
     scoresheets: PropTypes.array.isRequired,
   }
 
   static defaultProps = {
-    scoresheet: { name: "LOADING..." },
-    scoresheets: [ { name: "LOADING..." } ]
+    scoresheets: [ { 0: { id:"LOADING..." } } ]
   }
 
   componentDidMount() {
@@ -49,20 +47,22 @@ class Scoresheets extends React.Component {
 
   scoresheetHeaders() {
     return this.props.scoresheets.map( (scoresheet, idx) => {
+      let sheet = Object.values(scoresheet)[0];
       return(
-        <span className={`span--scoresheet-nav-${idx}`} key={ idx }>{ scoresheet.name }</span>
+        <span className={`span--scoresheet-nav-${idx}`} key={ idx }>{ sheet.name }</span>
       )
     });
   }
 
   render() {
+    let scoresheetId = Object.values(this.props.scoresheets[0])[0].id;
     return(
       <section className="section--scoresheets_container">
         <nav className="nav--scoresheets_nav">
           { this.scoresheetHeaders() }
         </nav>
         <section className="section--scoresheet_show">
-          <Scoresheet scoresheet={this.props.scoresheet} />
+          <Scoresheet scoresheetId={scoresheetId} />
         </section>
       </section>
     )
