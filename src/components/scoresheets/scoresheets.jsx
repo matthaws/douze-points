@@ -17,7 +17,6 @@ export default class Scoresheets extends React.Component {
 
   constructor(props) {
     super(props);
-    this.fetchScoresheet = props.fetchScoresheet.bind(this);
   }
 
   componentDidMount() {
@@ -30,24 +29,6 @@ export default class Scoresheets extends React.Component {
     if (!this.props.user && newProps.user) {
       newProps.fetchScoresheets(newProps.user.id);
     }
-    if (Object.keys(this.props.scoresheets > 0)) {
-      if (!this.isSameScoresheets(newProps.scoresheets)) {
-        Object.keys(newProps.scoresheets).forEach( (key) => this.fetchScoresheet(parseInt(key)));
-      }
-    }
-  }
-
-  isSameScoresheets(newScoresheets) {
-    let newSheets = Object.keys(newScoresheets).sort();
-    let returnVal;
-    Object.keys(this.props.scoresheets).sort().forEach( (key, idx) => {
-      if (newSheets[idx] !== key) {
-        returnVal = false;
-        return returnVal;
-      }
-      returnVal = true;
-    });
-    return returnVal;
   }
 
   scoresheetHeaders() {
@@ -67,7 +48,7 @@ export default class Scoresheets extends React.Component {
           { this.scoresheetHeaders() }
         </nav>
         <section className="section--scoresheet_show">
-          <Scoresheet />
+            <Scoresheet scoresheet={ Object.values(this.props.scoresheets)[0] }/>
         </section>
       </section>
     )

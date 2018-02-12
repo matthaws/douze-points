@@ -6,12 +6,11 @@ const mapStateToProps = (state) => {
   return {
     scoresheets: state.scoresheets,
     user: state.auth.currentUser,
-  }
+  };
 };
 
 const mapDispatchToProps = (dispatch) => ({
   fetchScoresheets: (userId) => dispatch(fetchScoresheets(userId)),
-  fetchScoresheet: (scoresheetId) => dispatch(fetchScoresheet(scoresheetId)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Scoresheets);

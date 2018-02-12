@@ -8,11 +8,16 @@ import './scoresheet.css';
 //=========================================
 // props / actions
 
-const mapStateToProps = (state, ownProps) => ({
-
-});
+const mapStateToProps = (state, ownProps) => {
+  const scoresheet = ownProps.scoresheet || { id: 'LOADING', entry_ids: [] };
+  const entries = scoresheet.entry_ids.map( (id) => {
+    return state.entries[id];
+  }) || [];
+  return { scoresheet, entries };
+};
 
 const mapDispatchToProps = (dispatch) => ({
+  fetchScoresheet: (scoresheetId) => dispatch(fetchScoresheet(scoresheetId)),
   removeScoresheet: (scoresheetId) => dispatch(removeScoresheet(scoresheetId)),
 });
 
@@ -21,14 +26,40 @@ const mapDispatchToProps = (dispatch) => ({
 
 class Scoresheet extends React.Component {
 
-  static defaultProps = {
+  componentWillReceiveProps(newProps) {
+    if (newProps.scoresheet.id !== this.props.scoresheet.id) {
+      this.props.fetchScoresheet(newProps.scoresheet.id);
+    }
+  }
 
+  createEntries() {
+    if (this.props.scoresheet.id !== "LOADING" && this.props.entries[0]) {
+      return this.props.entries.map( (entry) => {
+        return (
+          <tr className={`tr--entry-${entry.id}`}>
+            <td>{ entry.song_title }</td>
+            <td>{ entry.artist }</td>
+          </tr>
+        );
+      });
+    } else {
+      return <tr><td>Loading...</td></tr>;
+    }
   }
 
   render () {
+
     return(
       <section>
-        Scoresheet view here
+        <table>
+          <tbody>
+            <tr>
+              <th>Song Title</th>
+              <th>Song Artist</th>
+            </tr>
+            { this.createEntries() }
+          </tbody>
+        </table>
       </section>
     );
   }
