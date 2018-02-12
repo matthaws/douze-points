@@ -4,9 +4,6 @@ import Scoresheet from './scoresheet';
 import './scoresheets.css';
 
 //=========================================
-// props / actions
-
-//=========================================
 // component
 
 export default class Scoresheets extends React.Component {

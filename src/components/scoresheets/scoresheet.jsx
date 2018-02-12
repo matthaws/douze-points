@@ -8,11 +8,9 @@ import './scoresheet.css';
 //=========================================
 // props / actions
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    
-  }
-};
+const mapStateToProps = (state, ownProps) => ({
+
+});
 
 const mapDispatchToProps = (dispatch) => ({
   removeScoresheet: (scoresheetId) => dispatch(removeScoresheet(scoresheetId)),
