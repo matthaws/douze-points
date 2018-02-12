@@ -2,20 +2,16 @@ import merge from 'lodash/merge';
 import { RECEIVE_SCORESHEET, RECEIVE_SCORESHEETS, REMOVE_SCORESHEET } from '../actions/scoresheet_actions';
 
 const defaultState = {
-  currentScoresheet: {
-    id: null,
-    name: "",
-  }
 };
 
 const scoresheetReducer = (state = defaultState, action) => {
   let newState = merge({}, state);
   switch (action.type) {
     case RECEIVE_SCORESHEET:
-      newState.currentScoresheet = action.payload.scoresheet;
+      newState[action.payload.scoresheet.id] = action.payload.scoresheet;
       return newState;
     case RECEIVE_SCORESHEETS:
-      newState.scoresheets = action.payload.scoresheets;
+      newState = action.payload.scoresheets;
       return newState;
     case REMOVE_SCORESHEET:
       delete newState[action.scoresheetId];
