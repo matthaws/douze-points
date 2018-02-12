@@ -1,5 +1,4 @@
-import { APIUrl } from './constants'
-
+import { APIUrl } from "./constants";
 
 export const fetchContest = async year => {
   const response = await fetch(`${APIUrl}/contests/${year}`, {
@@ -7,4 +6,4 @@ export const fetchContest = async year => {
   });
   const payload = await response.json();
   return payload;
-}
+};

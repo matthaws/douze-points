@@ -5,9 +5,10 @@ import { Switch, BrowserRouter, Route } from "react-router-dom";
 import { AuthRoute, ProtectedRoute } from "../util/route_util";
 import { authenticateUser, fetchCurrentUser } from "../actions/authActions";
 import Splash from "./splash/splash";
-import ScoresheetsContainer from './scoresheets/scoresheets';
+import ScoresheetsContainer from "./scoresheets/scoresheets";
 import UserProfile from "./userProfile/userProfile";
 import "./App.css";
+import ContestShow from './contests/contestShow'
 
 class App extends Component {
   static propTypes = {
@@ -16,8 +17,8 @@ class App extends Component {
   };
 
   componentDidMount() {
-    if (localStorage.getItem('token')) {
-      this.props.fetchCurrentUser(localStorage.getItem(('token')))
+    if (localStorage.getItem("token")) {
+      this.props.fetchCurrentUser(localStorage.getItem("token"));
     }
   }
 
@@ -26,9 +27,10 @@ class App extends Component {
       <BrowserRouter>
         <main className="main">
           <Switch>
-            <Route exact path="/scoresheets" component={ ScoresheetsContainer} />
-            <Route exact path="/users/:id" component={ UserProfile } />
-            <AuthRoute exact path="/" component={ Splash } />
+            <Route exact path="/scoresheets" component={ScoresheetsContainer} />
+            <Route exact path="/users/:id" component={UserProfile} />
+            <Route exact path="/contests/:year" component={ContestShow} />
+            <AuthRoute exact path="/" component={Splash} />
           </Switch>
         </main>
       </BrowserRouter>

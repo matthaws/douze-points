@@ -15,6 +15,6 @@ ReactDOM.render(
   document.getElementById("root")
 );
 
-window.fetchContest = fetchContest
+
 
 registerServiceWorker();
