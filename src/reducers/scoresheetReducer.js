@@ -8,7 +8,7 @@ const scoresheetReducer = (state = defaultState, action) => {
   let newState = merge({}, state);
   switch (action.type) {
     case RECEIVE_SCORESHEET:
-      newState[action.payload.scoresheet.id] = action.payload.scoresheet;
+      newState = merge({}, state, action.payload.scoresheet);
       return newState;
     case RECEIVE_SCORESHEETS:
       newState = action.payload.scoresheets;

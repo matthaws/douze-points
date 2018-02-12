@@ -10,6 +10,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
   fetchScoresheets: (userId) => dispatch(fetchScoresheets(userId)),
+  fetchScoresheet: (scoresheetId) => dispatch(fetchScoresheet(scoresheetId)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Scoresheets);

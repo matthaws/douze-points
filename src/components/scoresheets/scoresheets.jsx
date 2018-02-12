@@ -15,6 +15,11 @@ export default class Scoresheets extends React.Component {
   static defaultProps = {
   }
 
+  constructor(props) {
+    super(props);
+    this.fetchScoresheet = props.fetchScoresheet.bind(this);
+  }
+
   componentDidMount() {
     if (this.props.user) {
       this.fetchScoresheets(this.state.user.id);
@@ -25,6 +30,24 @@ export default class Scoresheets extends React.Component {
     if (!this.props.user && newProps.user) {
       newProps.fetchScoresheets(newProps.user.id);
     }
+    if (Object.keys(this.props.scoresheets > 0)) {
+      if (!this.isSameScoresheets(newProps.scoresheets)) {
+        Object.keys(newProps.scoresheets).forEach( (key) => this.fetchScoresheet(parseInt(key)));
+      }
+    }
+  }
+
+  isSameScoresheets(newScoresheets) {
+    let newSheets = Object.keys(newScoresheets).sort();
+    let returnVal;
+    Object.keys(this.props.scoresheets).sort().forEach( (key, idx) => {
+      if (newSheets[idx] !== key) {
+        returnVal = false;
+        return returnVal;
+      }
+      returnVal = true;
+    });
+    return returnVal;
   }
 
   scoresheetHeaders() {
