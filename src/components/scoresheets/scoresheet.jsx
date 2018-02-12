@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { removeScoresheet } from '../../actions/scoresheet_actions';
+import { fetchScoresheet, removeScoresheet } from '../../actions/scoresheet_actions';
 
 import './scoresheet.css';
 
@@ -15,6 +15,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
+  fetchScoresheet: (scoresheetId) => dispatch(fetchScoresheet(scoresheetId)),
   removeScoresheet: (scoresheetId) => dispatch(removeScoresheet(scoresheetId)),
 });
 
@@ -23,13 +24,26 @@ const mapDispatchToProps = (dispatch) => ({
 
 class Scoresheet extends React.Component {
 
+  static defaultProps = {
+    scoresheet: {
+      id: 0,
+      name: "LOADING..."
+    }
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (newProps.scoresheetId !== this.props.scoresheetId) {
+      this.props.fetchScoresheet(newProps.scoresheetId)
+    }
+  }
+
   render () {
-    if (this.props.scoresheetId === "LOADING...") {
+    if (!this.props.scoresheetId) {
       return <p>Loading...</p>;
     } else {
       return(
         <section>
-          { this.props.scoresheetId }
+          {this.props.scoresheetId}
         </section>
       );
     }

@@ -17,7 +17,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
   fetchScoresheets: (userId) => dispatch(fetchScoresheets(userId)),
-  fetchScoresheet: (scoresheetId) => dispatch(fetchScoresheet(scoresheetId)),
 });
 
 //=========================================
@@ -26,7 +25,7 @@ const mapDispatchToProps = (dispatch) => ({
 class Scoresheets extends React.Component {
 
   static propTypes = {
-    scoresheets: PropTypes.array.isRequired,
+    // scoresheets: PropTypes.array.isRequired,
   }
 
   static defaultProps = {
@@ -55,7 +54,7 @@ class Scoresheets extends React.Component {
   }
 
   render() {
-    let scoresheetId = Object.values(this.props.scoresheets[0])[0].id;
+    let scoresheetId = parseInt(Object.keys(this.props.scoresheets[0])[0]);
     return(
       <section className="section--scoresheets_container">
         <nav className="nav--scoresheets_nav">
