@@ -12,10 +12,10 @@ const scoresheetReducer = (state = defaultState, action) => {
   let newState = merge({}, state);
   switch (action.type) {
     case RECEIVE_SCORESHEET:
-      newState.currentScoresheet = action.scoresheet;
+      newState.currentScoresheet = action.payload.scoresheet;
       return newState;
     case RECEIVE_SCORESHEETS:
-      newState.scoresheets = action.scoresheets.scoresheets;
+      newState.scoresheets = action.payload.scoresheets;
       return newState;
     case REMOVE_SCORESHEET:
       delete newState[action.scoresheetId];

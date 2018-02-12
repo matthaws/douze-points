@@ -29,7 +29,7 @@ class Scoresheets extends React.Component {
   }
 
   static defaultProps = {
-    scoresheets: [ { 0: { id:"LOADING..." } } ]
+    scoresheets: [ { "LOADING": { id:"LOADING..." } } ]
   }
 
   componentDidMount() {
@@ -54,7 +54,7 @@ class Scoresheets extends React.Component {
   }
 
   render() {
-    let scoresheetId = parseInt(Object.keys(this.props.scoresheets[0])[0]);
+    let scoresheetId = Object.keys(this.props.scoresheets[0])[0];
     return(
       <section className="section--scoresheets_container">
         <nav className="nav--scoresheets_nav">

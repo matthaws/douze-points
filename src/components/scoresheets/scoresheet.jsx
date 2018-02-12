@@ -9,9 +9,16 @@ import './scoresheet.css';
 // props / actions
 
 const mapStateToProps = (state, ownProps) => {
-  return {
-    scoresheetId: ownProps.scoresheetId,
-  };
+  if (ownProps.scoresheetId === "LOADING") {
+    return {
+      scoresheetId: ownProps.scoresheetId,
+    }
+  } else {
+    return {
+      scoresheetId: ownProps.scoresheetId,
+      scoresheet: state.scoresheets[ownProps.scoresheetId],
+    }
+  }
 };
 
 const mapDispatchToProps = (dispatch) => ({
@@ -38,9 +45,10 @@ class Scoresheet extends React.Component {
   }
 
   render () {
-    if (!this.props.scoresheetId) {
+    if (this.props.scoresheetId === "LOADING") {
       return <p>Loading...</p>;
     } else {
+      debugger
       return(
         <section>
           {this.props.scoresheetId}
