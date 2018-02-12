@@ -1,5 +1,5 @@
 import merge from "lodash/merge";
-import { RECEIVE_COUNTRIES } from "../actions/contest_actions";
+import { RECEIVE_COUNTRIES } from "../actions/countryActions";
 import { RECEIVE_CURRENT_USER } from "../actions/authActions";
 
 const countriesReducer = (state = {}, action) => {
