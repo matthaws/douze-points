@@ -13,9 +13,8 @@ class EntryShow extends React.Component {
   }
 
   render() {
-    
+
     const { entry, country, contest } = this.props;
-    debugger
     if (entry.song_title === "LOADING") {
       return <p>Spinner Goes Here</p>;
     } else {
@@ -44,7 +43,6 @@ EntryShow.propTypes = {
 const mapStateToProps = (state, ownProps) => {
   const entryId = ownProps.match.params.id;
   const entry = state.entries[entryId] || { song_title: "LOADING" };
-  debugger
   const contest = state.contests[entry.contest_id] || { year: "LOADING"}
   const country = state.countries[entry.country_id] || {
     name: "LOADING",

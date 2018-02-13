@@ -7,11 +7,10 @@ class YouTube extends React.Component {
     if (url.includes("http")) {
       url = url.split("v=")[1];
     }
-    debugger;
-    return (
+     return (
       <iframe
-        width="560"
-        height="315"
+        width={width}
+        height={height}
         src={`https://www.youtube.com/embed/${url}?rel=0&amp;showinfo=0`}
         frameborder="0"
         allow="autoplay; encrypted-media"
@@ -20,14 +19,6 @@ class YouTube extends React.Component {
     );
   }
 }
-// <iframe
-//   width={this.props.width}
-//   height={this.props.height}
-//   src={`https://www.youtube.com/embed/${this.props.url}?rel=0&amp;showinfo=0`}
-//   frameborder="0"
-//   allow="encrypted-media"
-//   allowFullScreen
-//   />
 
 YouTube.propTypes = {
   url: PropTypes.string,
