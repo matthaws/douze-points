@@ -40,12 +40,15 @@ class Scoresheet extends React.Component {
 
   createEntries() {
     if (this.props.scoresheet.id !== "LOADING") {
+
       this.props.scorings.forEach( (scoring) => {
         if (scoring) {
           this.props.entries[scoring.entry_id].scoring = scoring;
         }
       });
+
       let entryComponents = Object.values(this.props.entries);
+
       return entryComponents.map( (entry) => {
         if (entry) {
           return <ScoresheetEntry entry={entry} key={entry.id} country={this.props.countries[entry.country_id]} />;
@@ -53,6 +56,7 @@ class Scoresheet extends React.Component {
           return null;
         }
       });
+
     } else {
       return <tr><td>Loading...</td></tr>;
     }
