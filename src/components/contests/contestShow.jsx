@@ -15,14 +15,18 @@ class ContestShow extends React.Component {
   }
 
   render() {
-    const { contest, entries } = this.props;
+    const { contest, entries, countries } = this.props;
     return (
       <main>
         <div>EuroVision Song Contest {contest.year}</div>
         <ul>
           {entries.map(entry => {
+            const flag_url = countries[entry.country_id]
+              ? countries[entry.country_id].flag_url
+              : "";
             return (
               <li>
+                <img src={flag_url} />
                 {entry.song_title}, {entry.artist}
               </li>
             );
@@ -46,12 +50,13 @@ ContestShow.defaultProps = {
 };
 
 const mapStateToProps = (state, ownProps) => {
+  const { countries } = state;
   const year = ownProps.match.params.year;
   const contest = state.contests[year] || { year: "LOADING", entry_ids: [] };
   const entries = contest.entry_ids.map(id => {
     return state.entries[id];
   });
-  return { year, contest, entries };
+  return { year, contest, entries, countries };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
