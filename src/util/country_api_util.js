@@ -1,7 +1,7 @@
-import { APIUrl } from "./constants";
+import { backendUrl } from "./constants";
 
 export const fetchCountries = async () => {
-  const response = await fetch(`${APIUrl}/countries`, {
+  const response = await fetch(`${backendUrl}/countries`, {
     method: "GET"
   });
   const payload = await response.json();

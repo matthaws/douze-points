@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import './entry.css';
+import './scoresheet_entry.css';
 
 //=========================================
 // props / actions
@@ -14,14 +14,10 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => ({
-
-});
-
 //=========================================
 // component
 
-class Entry extends React.Component {
+class ScoresheetEntry extends React.Component {
   static defaultProps = {
     scoring: {
       bonus_comment: null,
@@ -68,4 +64,4 @@ class Entry extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Entry);
+export default connect(mapStateToProps, null)(ScoresheetEntry);

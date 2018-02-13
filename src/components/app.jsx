@@ -11,6 +11,7 @@ import MyScoresheetsContainer from "./scoresheets/my_scoresheets_container";
 import UserProfile from "./userProfile/userProfile";
 import "./App.css";
 import ContestShow from "./contests/contestShow";
+import EntryShow from "./entries/entryShow";
 
 class App extends Component {
   static propTypes = {
@@ -35,6 +36,7 @@ class App extends Component {
             <Route exact path="/scoresheets" component={MyScoresheetsContainer} />
             <Route exact path="/users/:id" component={UserProfile} />
             <Route exact path="/contests/:year" component={ContestShow} />
+            <Route exact path="/entries/:id" component={EntryShow} />
             <AuthRoute exact path="/" component={Splash} />
           </Switch>
         </main>

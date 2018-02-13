@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchScoresheet, removeScoresheet } from '../../actions/scoresheet_actions';
 import merge from "lodash/merge";
-import Entry from './entry.jsx';
+import ScoresheetEntry from './scoresheet_entry.jsx';
 import './scoresheet.css';
 
 //=========================================
@@ -48,7 +48,7 @@ class Scoresheet extends React.Component {
       let entryComponents = Object.values(this.props.entries);
       return entryComponents.map( (entry) => {
         if (entry) {
-          return <Entry entry={entry} key={entry.id} country={this.props.countries[entry.country_id]} />;
+          return <ScoresheetEntry entry={entry} key={entry.id} country={this.props.countries[entry.country_id]} />;
         } else {
           return null;
         }
