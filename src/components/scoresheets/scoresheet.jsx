@@ -9,11 +9,14 @@ import './scoresheet.css';
 // props / actions
 
 const mapStateToProps = (state, ownProps) => {
-  const scoresheet = ownProps.scoresheet || { id: 'LOADING', entry_ids: [] };
+  const scoresheet = ownProps.scoresheet || { id: 'LOADING', entry_ids: [], scoring_ids: [] };
   const entries = scoresheet.entry_ids.map( (id) => {
     return state.entries[id];
   }) || [];
-  return { scoresheet, entries };
+  const scorings = scoresheet.scoring_ids.map( (id) => {
+    return state.scorings[id];
+  }) || [];
+  return { scoresheet, entries, scorings };
 };
 
 const mapDispatchToProps = (dispatch) => ({
@@ -36,7 +39,7 @@ class Scoresheet extends React.Component {
     if (this.props.scoresheet.id !== "LOADING" && this.props.entries[0]) {
       return this.props.entries.map( (entry) => {
         return (
-          <tr className={`tr--entry-${entry.id}`}>
+          <tr className={`tr--entry-${entry.id}`} key={`${entry.id}`}>
             <td>{ entry.song_title }</td>
             <td>{ entry.artist }</td>
           </tr>
@@ -48,7 +51,6 @@ class Scoresheet extends React.Component {
   }
 
   render () {
-
     return(
       <section>
         <table>

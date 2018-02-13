@@ -5,7 +5,7 @@ import { RECEIVE_CURRENT_USER } from "../actions/authActions";
 const countriesReducer = (state = {}, action) => {
   switch (action.type) {
     case RECEIVE_COUNTRIES:
-      return action.countries;
+      return merge({}, state, action.countries);
     case RECEIVE_CURRENT_USER:
       if (action.payload.countries) {
         return action.payload.countries;
