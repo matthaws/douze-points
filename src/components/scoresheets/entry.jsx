@@ -38,24 +38,29 @@ class Entry extends React.Component {
       <tr>
         <td>{ this.props.entry.song_title}</td>
         <td>{ this.props.entry.artist}</td>
-        <table>
-          <tbody>
-            <tr>
-              <th>Song Score</th>
-              <th>Dance Score</th>
-              <th>Costume Score</th>
-              <th>Eurocheese Score</th>
-              <th>Bonus Points</th>
-            </tr>
-            <tr>
-              <td>{ this.props.scoring.song_score }</td>
-              <td>{ this.props.scoring.dance_score }</td>
-              <td>{ this.props.scoring.costume_score }</td>
-              <td>{ this.props.scoring.cheese_score }</td>
-              <td>{ this.props.scoring.bonus_points }</td>
-            </tr>
-          </tbody>
-        </table>
+        <td>
+          <button>Dropdown Button</button>
+          <section className={`section--entry_score-${this.props.entry.id}`}>
+            <table>
+              <tbody>
+                <tr>
+                  <th>Song Score</th>
+                  <th>Dance Score</th>
+                  <th>Costume Score</th>
+                  <th>Eurocheese Score</th>
+                  <th>Bonus Points</th>
+                </tr>
+                <tr>
+                  <td>{ this.props.scoring.song_score }</td>
+                  <td>{ this.props.scoring.dance_score }</td>
+                  <td>{ this.props.scoring.costume_score }</td>
+                  <td>{ this.props.scoring.cheese_score }</td>
+                  <td>{ this.props.scoring.bonus_points }</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+        </td>
       </tr>
     );
   }

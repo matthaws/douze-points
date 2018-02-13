@@ -39,11 +39,6 @@ class Scoresheet extends React.Component {
 
   createEntries() {
     if (this.props.scoresheet.id !== "LOADING") {
-      // Object.values(this.props.entries).forEach( (entry) => {
-      //   if (entry) {
-      //     entry.scoring = "default";
-      //   }
-      // });
       this.props.scorings.forEach( (scoring) => {
         if (scoring) {
           this.props.entries[scoring.entry_id].scoring = scoring;
