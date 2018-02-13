@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchScoresheet, removeScoresheet } from '../../actions/scoresheet_actions';
-
+import merge from "lodash/merge";
+import Entry from './entry.jsx';
 import './scoresheet.css';
 
 //=========================================
@@ -10,9 +11,10 @@ import './scoresheet.css';
 
 const mapStateToProps = (state, ownProps) => {
   const scoresheet = ownProps.scoresheet || { id: 'LOADING', entry_ids: [], scoring_ids: [] };
-  const entries = scoresheet.entry_ids.map( (id) => {
-    return state.entries[id];
-  }) || [];
+  const entries = {};
+  scoresheet.entry_ids.forEach( (id) => {
+    entries[id] = state.entries[id];
+  });
   const scorings = scoresheet.scoring_ids.map( (id) => {
     return state.scorings[id];
   }) || [];
@@ -36,14 +38,24 @@ class Scoresheet extends React.Component {
   }
 
   createEntries() {
-    if (this.props.scoresheet.id !== "LOADING" && this.props.entries[0]) {
-      return this.props.entries.map( (entry) => {
-        return (
-          <tr className={`tr--entry-${entry.id}`} key={`${entry.id}`}>
-            <td>{ entry.song_title }</td>
-            <td>{ entry.artist }</td>
-          </tr>
-        );
+    if (this.props.scoresheet.id !== "LOADING") {
+      // Object.values(this.props.entries).forEach( (entry) => {
+      //   if (entry) {
+      //     entry.scoring = "default";
+      //   }
+      // });
+      this.props.scorings.forEach( (scoring) => {
+        if (scoring) {
+          this.props.entries[scoring.entry_id].scoring = scoring;
+        }
+      });
+      let entryComponents = Object.values(this.props.entries);
+      return entryComponents.map( (entry) => {
+        if (entry) {
+          return <Entry entry={entry} key={entry.id} />;
+        } else {
+          return null;
+        }
       });
     } else {
       return <tr><td>Loading...</td></tr>;
