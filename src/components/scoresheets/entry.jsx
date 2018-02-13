@@ -10,6 +10,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     entry: ownProps.entry,
     scoring: ownProps.entry.scoring,
+    country: ownProps.country,
   };
 };
 
@@ -36,6 +37,7 @@ class Entry extends React.Component {
   render() {
     return (
       <tr>
+        <td>{ this.props.country.name }</td>
         <td>{ this.props.entry.song_title}</td>
         <td>{ this.props.entry.artist}</td>
         <td>

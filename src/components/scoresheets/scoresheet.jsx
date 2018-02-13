@@ -18,7 +18,8 @@ const mapStateToProps = (state, ownProps) => {
   const scorings = scoresheet.scoring_ids.map( (id) => {
     return state.scorings[id];
   }) || [];
-  return { scoresheet, entries, scorings };
+  const countries = state.countries;
+  return { scoresheet, entries, scorings, countries };
 };
 
 const mapDispatchToProps = (dispatch) => ({
@@ -47,7 +48,7 @@ class Scoresheet extends React.Component {
       let entryComponents = Object.values(this.props.entries);
       return entryComponents.map( (entry) => {
         if (entry) {
-          return <Entry entry={entry} key={entry.id} />;
+          return <Entry entry={entry} key={entry.id} country={this.props.countries[entry.country_id]} />;
         } else {
           return null;
         }
@@ -63,6 +64,7 @@ class Scoresheet extends React.Component {
         <table>
           <tbody>
             <tr>
+              <th>Country</th>
               <th>Song Title</th>
               <th>Song Artist</th>
             </tr>
