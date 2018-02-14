@@ -30,15 +30,26 @@ class ScoresheetEntry extends React.Component {
     }
   }
 
+  toggleScoreShow() {
+    let el = document.getElementById(`section--entry_score_${this.props.entry.id}`);
+    if (el.classList.contains("hidden")) {
+      el.classList.remove("hidden");
+    } else {
+      el.classList.add("hidden");
+    }
+  }
+
   render() {
     return (
-      <tr>
-        <td>{ this.props.country.name }</td>
-        <td>{ this.props.entry.song_title}</td>
-        <td>{ this.props.entry.artist}</td>
-        <td>
-          <button>Dropdown Button</button>
-          <section className={`section--entry_score-${this.props.entry.id}`}>
+      <ul>
+        <section className={`section--entry_parent_${this.props.entry.id}`}>
+          <li>{ this.props.country.name }</li>
+          <li>{ this.props.entry.song_title}</li>
+          <li>{ this.props.entry.artist}</li>
+          <li><button onClick={ () => { this.toggleScoreShow() } }>Hide/Show Scores</button></li>
+        </section>
+        <ul>
+          <section id={`section--entry_score_${this.props.entry.id}`} className="hidden">
             <table>
               <tbody>
                 <tr>
@@ -58,8 +69,8 @@ class ScoresheetEntry extends React.Component {
               </tbody>
             </table>
           </section>
-        </td>
-      </tr>
+        </ul>
+      </ul>
     );
   }
 }

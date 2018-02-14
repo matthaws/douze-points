@@ -1,0 +1,38 @@
+.hidden {
+  display: none;
+}
+
+section[class^='section--entry_parent_'] {
+  display: flex;
+}
+
+section[class^='section--entry_parent_'] li {
+  display: flex;
+  margin: 0 10px;
+  height: 40px;
+  align-items: center;
+}
+
+section[id^='section--entry_score_'] {
+  margin-left: 10px;
+  border: 1px solid red;
+}
+
+section[id^='section--entry_score_'] tr {
+  display: table-row;
+  text-align: center;
+  border: 1px solid red;
+}
+
+section[id^='section--entry_score_'] th {
+  display: table-cell;
+  text-align: center;
+  border: 1px solid red;
+}
+
+section[id^='section--entry_score_'] td {
+  display: table-cell;
+  text-align: center;
+  border: 1px solid red;
+
+}

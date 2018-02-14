@@ -51,30 +51,32 @@ class Scoresheet extends React.Component {
 
       return entryComponents.map( (entry) => {
         if (entry) {
-          return <ScoresheetEntry entry={entry} key={entry.id} country={this.props.countries[entry.country_id]} />;
+          return <li key={entry.id}><ScoresheetEntry entry={entry} country={this.props.countries[entry.country_id]} /></li>;
         } else {
           return null;
         }
       });
 
     } else {
-      return <tr><td>Loading...</td></tr>;
+      return <li>Loading...</li>;
     }
   }
 
   render () {
     return(
-      <section>
-        <table>
+      <section className="section--scoresheet-main">
+        <table className="table--scoresheet-headers">
           <tbody>
-            <tr>
+            <tr className="tr--scoresheet-header-row">
               <th>Country</th>
               <th>Song Title</th>
               <th>Song Artist</th>
             </tr>
-            { this.createEntries() }
           </tbody>
         </table>
+        <ul>
+          { this.createEntries() }
+        </ul>
       </section>
     );
   }
