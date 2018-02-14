@@ -9,7 +9,7 @@ import './scoresheets.css';
 export default class Scoresheets extends React.Component {
 
   static propTypes = {
-    scoresheets: PropTypes.object.isRequired,
+    scoresheets: PropTypes.array.isRequired,
   }
 
   static defaultProps = {
@@ -32,11 +32,15 @@ export default class Scoresheets extends React.Component {
   }
 
   scoresheetHeaders() {
-    if (Object.values(this.props.scoresheets).length > 0) {
-      return Object.values(this.props.scoresheets).map( (scoresheet, idx) => {
-        return(
-          <span className={`span--scoresheet-nav-${scoresheet.id}`} key={ scoresheet.id }>{ scoresheet.name }</span>
-        )
+    if (this.props.scoresheets.length > 0) {
+      return this.props.scoresheets.map( (scoresheet, idx) => {
+        if (scoresheet) {
+          return(
+            <span className={`span--scoresheet-nav-${scoresheet.id}`} key={ scoresheet.id }>{ scoresheet.name }</span>
+          )
+        } else {
+          return <span key={idx} >Loading...</span>
+        }
       });
     }
   }

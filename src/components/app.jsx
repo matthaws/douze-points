@@ -33,7 +33,7 @@ class App extends Component {
       <BrowserRouter>
         <main className="main">
           <Switch>
-            <Route exact path="/scoresheets" component={MyScoresheetsContainer} />
+            <ProtectedRoute exact path="/scoresheets" component={MyScoresheetsContainer} />
             <Route exact path="/users/:id" component={UserProfile} />
             <Route exact path="/contests/:year" component={ContestShow} />
             <Route exact path="/entries/:id" component={EntryShow} />
