@@ -4,14 +4,14 @@ export const RECEIVE_SCORESHEETS = "RECEIVE_SCORESHEETS";
 export const RECEIVE_SCORESHEET = "RECEIVE_SCORESHEET";
 export const REMOVE_SCORESHEET = "REMOVE_SCORESHEET";
 
-export const receiveScoresheet = scoresheet => ({
+export const receiveScoresheet = payload => ({
   type: RECEIVE_SCORESHEET,
-  scoresheet
+  payload
 });
 
-export const receiveScoresheets = scoresheets => ({
+export const receiveScoresheets = payload => ({
   type: RECEIVE_SCORESHEETS,
-  scoresheets
+  payload
 });
 
 export const removeScoresheet = scoresheetId => ({

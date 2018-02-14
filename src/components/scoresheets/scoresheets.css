@@ -1,0 +1,19 @@
+.section--scoresheets_container {
+  display: grid;
+  min-height: 600px;
+  margin: 30px;
+  padding: 10px;
+}
+
+.nav--scoresheets_nav {
+  margin: 10px;
+  margin-bottom: 0;
+  padding: 10px;
+}
+
+.section--scoresheet_show {
+  border: 1px solid black;
+  margin: 0;
+  min-height: 500px;
+  border-radius: 4px;
+}

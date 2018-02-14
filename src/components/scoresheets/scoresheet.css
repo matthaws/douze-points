@@ -1,0 +1,15 @@
+span[class^="span--scoresheet-nav"] {
+  border: 1px solid black;
+  border-bottom: 1px solid red;
+  padding: 10px 30px;
+  border-radius: 4px 4px 0px 0px;
+}
+
+table[class^="table--scoresheet-headers"] {
+  margin: 10px;
+}
+
+table[class^="table--scoresheet-headers"] th {
+  width: 215px;
+  text-align: left;
+}

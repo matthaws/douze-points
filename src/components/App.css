@@ -33,11 +33,11 @@ body {
   font-family: sans-serif;
   background: linear-gradient(to bottom right, #5FBEDE, #002659);
   /*sample colors*/
-  height: 100vw;
+  height: 100%;
 }
 
 .main {
-  height: 100vw;
+  height: 100%;
 }
 
 h1, p, span, text, content, div, section {
@@ -53,4 +53,12 @@ button {
   height: 30px;
   width: auto;
   cursor: pointer;
+}
+
+ul, li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  align-self: center;
+  justify-content: center;
 }

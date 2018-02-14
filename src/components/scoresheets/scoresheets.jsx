@@ -1,48 +1,47 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { fetchScoresheet, fetchScoresheets, removeScoresheet } from '../../actions/scoresheet_actions';
-
-//=========================================
-// props / actions
-
-const mapStateToProps = (state) => {
-  return {
-    scoresheets: state.scoresheets.scoresheets,
-    currentUser: state.auth.currentUser,
-  }
-};
-
-const mapDispatchToProps = (dispatch) => ({
-  fetchScoresheet: (scoresheetId) => dispatch(fetchScoresheet(scoresheetId)),
-  fetchScoresheets: (userId) => dispatch(fetchScoresheets(userId)),
-  removeScoresheet: (scoresheetId) => dispatch(removeScoresheet(scoresheetId)),
-});
+import Scoresheet from './scoresheet';
+import './scoresheets.css';
 
 //=========================================
 // component
 
-class Scoresheets extends React.Component {
+export default class Scoresheets extends React.Component {
 
   static propTypes = {
-    scoresheet: PropTypes.object.isRequired,
     scoresheets: PropTypes.array.isRequired,
   }
 
   static defaultProps = {
-    scoresheet: { name: "LOADING..." },
-    scoresheets: []
+  }
+
+  constructor(props) {
+    super(props);
   }
 
   componentDidMount() {
-    if (this.props.currentUser) {
-      this.fetchScoresheets(this.state.currentUser.id);
+    if (this.props.user) {
+      this.fetchScoresheets(this.state.user.id);
     }
   }
 
   componentWillReceiveProps(newProps) {
-    if (!this.props.currentUser) {
-      newProps.fetchScoresheets(newProps.currentUser.id);
+    if (!this.props.user && newProps.user) {
+      newProps.fetchScoresheets(newProps.user.id);
+    }
+  }
+
+  scoresheetHeaders() {
+    if (this.props.scoresheets.length > 0) {
+      return this.props.scoresheets.map( (scoresheet, idx) => {
+        if (scoresheet) {
+          return(
+            <span className={`span--scoresheet-nav-${scoresheet.id}`} key={ scoresheet.id }>{ scoresheet.name }</span>
+          )
+        } else {
+          return <span key={idx} >Loading...</span>
+        }
+      });
     }
   }
 
@@ -50,16 +49,12 @@ class Scoresheets extends React.Component {
     return(
       <section className="section--scoresheets_container">
         <nav className="nav--scoresheets_nav">
+          { this.scoresheetHeaders() }
         </nav>
-        <h1>
-          Scoresheets index
-        </h1>
         <section className="section--scoresheet_show">
-          Scoresheet view here
+            <Scoresheet scoresheet={ Object.values(this.props.scoresheets)[0] }/>
         </section>
       </section>
     )
   }
 }
-
-export default connect(mapStateToProps, mapDispatchToProps)(Scoresheets);
