@@ -50,7 +50,12 @@ class Scoresheet extends React.Component {
 
       return entryComponents.map( (entry) => {
         if (entry) {
-          return <li key={entry.id}><ScoresheetEntry entry={entry} country={this.props.countries[entry.country_id]} /></li>;
+          return (
+            <li key={entry.id}><ScoresheetEntry entry={entry}
+                country={this.props.countries[entry.country_id]}
+                scoresheetId={this.props.scoresheet.id}/>
+            </li>
+          );
         } else {
           return null;
         }
