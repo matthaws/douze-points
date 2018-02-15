@@ -43,7 +43,7 @@ class ScoresheetEntry extends React.Component {
     return (
       <ul>
         <section className={`section--entry_parent_${this.props.entry.id}`}>
-          <li>{ this.props.country.name }</li>
+          <li id={`li--entry_country`}><img src={ this.props.country.flag_url }/><p>{ this.props.country.name }</p></li>
           <li>{ this.props.entry.song_title}</li>
           <li>{ this.props.entry.artist}</li>
           <li><button onClick={ () => { this.toggleScoreShow() } }>Hide/Show Scores</button></li>
