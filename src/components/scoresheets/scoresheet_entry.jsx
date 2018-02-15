@@ -21,6 +21,7 @@ const mapStateToProps = (state, ownProps) => {
 class ScoresheetEntry extends React.Component {
   static defaultProps = {
     scoring: {
+      id: null,
       bonus_comment: "",
       bonus_points: "",
       cheese_score: "",
