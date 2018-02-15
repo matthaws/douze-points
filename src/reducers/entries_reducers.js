@@ -10,9 +10,7 @@ const entriesReducer = (state = {}, action) => {
       newState = merge({}, state, action.payload.entries);
       return newState;
     case RECEIVE_SCORESHEET:
-      Object.keys(action.payload.entries).forEach(entryId => {
-        newState[entryId] = action.payload.entries[entryId];
-      });
+      newState = merge({}, state, action.payload.entries);
       return newState;
     case RECEIVE_ENTRY:
       const { entry } = action.payload;
