@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import YouTube from '../video/YouTube';
 import './scoresheet_entry.css';
 
 //=========================================
@@ -30,12 +31,29 @@ class ScoresheetEntry extends React.Component {
     }
   }
 
+  constructor(props) {
+    super(props);
+    this.state = { renderVideo: false };
+  }
+
   toggleScoreShow() {
     let el = document.getElementById(`section--entry_score_${this.props.entry.id}`);
     if (el.classList.contains("hidden")) {
       el.classList.remove("hidden");
+      this.setState( { renderVideo: true } );
     } else {
       el.classList.add("hidden");
+      this.setState( { renderVideo: false } );
+    }
+  }
+
+  renderVideo() {
+    if (this.state.renderVideo === true) {
+        return(
+          <YouTube url={this.props.entry.video_url} />
+        );
+    } else {
+      return null;
     }
   }
 
@@ -50,6 +68,9 @@ class ScoresheetEntry extends React.Component {
         </section>
         <ul>
           <section id={`section--entry_score_${this.props.entry.id}`} className="hidden">
+            <section id={`section--entry_video_${this.props.entry.id}`}>
+              { this.renderVideo() }
+            </section>
             <table>
               <tbody>
                 <tr>
