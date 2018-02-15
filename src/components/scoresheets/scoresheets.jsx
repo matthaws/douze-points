@@ -13,10 +13,14 @@ export default class Scoresheets extends React.Component {
   }
 
   static defaultProps = {
+    scoresheets: []
   }
 
   constructor(props) {
     super(props);
+    this.state = {
+      scoresheet: props.scoresheets[0],
+    }
   }
 
   componentDidMount() {
@@ -29,6 +33,11 @@ export default class Scoresheets extends React.Component {
     if (!this.props.user && newProps.user) {
       newProps.fetchScoresheets(newProps.user.id);
     }
+    if (newProps.scoresheets !== this.props.scoresheets) {
+      if (!this.state.scoresheet && newProps.scoresheets[0]) {
+        this.setState({ scoresheet: newProps.scoresheets[0]});
+      }
+    }
   }
 
   scoresheetHeaders() {
@@ -36,7 +45,12 @@ export default class Scoresheets extends React.Component {
       return this.props.scoresheets.map( (scoresheet, idx) => {
         if (scoresheet) {
           return(
-            <span className={`span--scoresheet-nav-${scoresheet.id}`} key={ scoresheet.id }>{ scoresheet.name }</span>
+            <span
+              className={`span--scoresheet-nav-${scoresheet.id}`}
+              key={ scoresheet.id }
+              onClick={ () => { this.setState({ scoresheet: scoresheet}) } }>
+              { scoresheet.name }
+            </span>
           )
         } else {
           return <span key={idx} >Loading...</span>
@@ -52,7 +66,7 @@ export default class Scoresheets extends React.Component {
           { this.scoresheetHeaders() }
         </nav>
         <section className="section--scoresheet_show">
-            <Scoresheet scoresheet={ Object.values(this.props.scoresheets)[0] }/>
+            <Scoresheet scoresheet={ this.state.scoresheet }/>
         </section>
       </section>
     )

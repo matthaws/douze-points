@@ -15,6 +15,7 @@ const mapStateToProps = (state, ownProps) => {
   scoresheet.entry_ids.forEach( (id) => {
     entries[id] = state.entries[id];
   });
+  debugger
   const scorings = scoresheet.scoring_ids.map( (id) => {
     return state.scorings[id];
   }) || [];
@@ -40,7 +41,6 @@ class Scoresheet extends React.Component {
 
   createEntries() {
     if (this.props.scoresheet.id !== "LOADING") {
-
       this.props.scorings.forEach( (scoring) => {
         if (scoring) {
           this.props.entries[scoring.entry_id].scoring = scoring;
@@ -65,6 +65,7 @@ class Scoresheet extends React.Component {
   render () {
     return(
       <section className="section--scoresheet-main">
+        <p>{ this.props.scoresheet.name }</p>
         <table className="table--scoresheet-headers">
           <tbody>
             <tr className="tr--scoresheet-header-row">
