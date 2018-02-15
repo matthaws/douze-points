@@ -12,9 +12,9 @@ class YouTube extends React.Component {
         width={width}
         height={height}
         src={`https://www.youtube.com/embed/${url}?rel=0&amp;showinfo=0`}
-        frameborder="0"
+        frameBorder="0"
         allow="autoplay; encrypted-media"
-        allowfullscreen
+        allowFullScreen
       />
     );
   }
