@@ -1,26 +1,25 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Scoresheet from './scoresheet';
-import './scoresheets.css';
+import React from "react";
+import PropTypes from "prop-types";
+import Scoresheet from "./scoresheet";
+import "./scoresheets.css";
 
 //=========================================
 // component
 
 export default class Scoresheets extends React.Component {
-
   static propTypes = {
-    scoresheets: PropTypes.array.isRequired,
-  }
+    scoresheets: PropTypes.array.isRequired
+  };
 
   static defaultProps = {
     scoresheets: []
-  }
+  };
 
   constructor(props) {
     super(props);
     this.state = {
-      scoresheet: props.scoresheets[0],
-    }
+      scoresheet: props.scoresheets[0]
+    };
   }
 
   componentDidMount() {
@@ -35,40 +34,41 @@ export default class Scoresheets extends React.Component {
     }
     if (newProps.scoresheets !== this.props.scoresheets) {
       if (!this.state.scoresheet && newProps.scoresheets[0]) {
-        this.setState({ scoresheet: newProps.scoresheets[0]});
+        this.setState({ scoresheet: newProps.scoresheets[0] });
       }
     }
   }
 
   scoresheetHeaders() {
     if (this.props.scoresheets.length > 0) {
-      return this.props.scoresheets.map( (scoresheet, idx) => {
+      return this.props.scoresheets.map((scoresheet, idx) => {
         if (scoresheet) {
-          return(
+          return (
             <span
               className={`span--scoresheet-nav-${scoresheet.id}`}
-              key={ scoresheet.id }
-              onClick={ () => { this.setState({ scoresheet: scoresheet}) } }>
-              { scoresheet.name }
+              key={scoresheet.id}
+              onClick={() => {
+                this.setState({ scoresheet: scoresheet });
+              }}
+            >
+              {scoresheet.name}
             </span>
-          )
+          );
         } else {
-          return <span key={idx} >Loading...</span>
+          return <span key={idx}>Loading...</span>;
         }
       });
     }
   }
 
   render() {
-    return(
+    return (
       <section className="section--scoresheets_container">
-        <nav className="nav--scoresheets_nav">
-          { this.scoresheetHeaders() }
-        </nav>
+        <nav className="nav--scoresheets_nav">{this.scoresheetHeaders()}</nav>
         <section className="section--scoresheet_show">
-            <Scoresheet scoresheet={ this.state.scoresheet }/>
+          <Scoresheet scoresheet={this.state.scoresheet} />
         </section>
       </section>
-    )
+    );
   }
 }
