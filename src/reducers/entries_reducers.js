@@ -10,7 +10,7 @@ const entriesReducer = (state = {}, action) => {
       newState = merge({}, state, action.payload.entries);
       return newState;
     case RECEIVE_SCORESHEET:
-      newState = merge({}, state, action.payload.entries);
+      newState = merge({}, action.payload.entries);
       return newState;
     case RECEIVE_ENTRY:
       const { entry } = action.payload;

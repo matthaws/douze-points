@@ -15,7 +15,6 @@ const mapStateToProps = (state, ownProps) => {
   scoresheet.entry_ids.forEach( (id) => {
     entries[id] = state.entries[id];
   });
-  debugger
   const scorings = scoresheet.scoring_ids.map( (id) => {
     return state.scorings[id];
   }) || [];
