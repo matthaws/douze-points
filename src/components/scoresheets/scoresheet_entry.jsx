@@ -1,12 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { createScoring, updateScoring } from '../../actions/scoringActions';
 import YouTube from "../video/YouTube";
 import "./scoresheet_entry.css";
 
+//=========================================
+// mapDispatchToProps
 
 const mapDispatchToProps = (dispatch) => ({
-  
+  createScoring: scoring => dispatch(createScoring(scoring)),
+  updateScoring: scoring => dispatch(updateScoring(scoring)),
 });
 
 //=========================================
@@ -61,7 +65,11 @@ class ScoresheetEntry extends React.Component {
         score[key] = null;
       }
     });
-    debugger
+    if (score.id) {
+      this.props.updateScoring(score);
+    } else {
+      this.props.createScoring(score);
+    }
   }
 
   render() {
