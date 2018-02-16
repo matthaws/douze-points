@@ -4,6 +4,11 @@ import { connect } from "react-redux";
 import YouTube from "../video/YouTube";
 import "./scoresheet_entry.css";
 
+
+const mapDispatchToProps = (dispatch) => ({
+  
+});
+
 //=========================================
 // component
 
@@ -27,6 +32,9 @@ class ScoresheetEntry extends React.Component {
   constructor(props) {
     super(props);
     this.state = { renderScoreSection: false, scoring: this.props.scoring };
+    this.state.scoring.entry_id = this.props.entry.id;
+    this.state.scoring.user_id = this.props.userId
+    this.submitScore = this.submitScore.bind(this);
   }
 
   toggleScoreShow() {
@@ -44,6 +52,16 @@ class ScoresheetEntry extends React.Component {
       }
       this.setState({ scoring: newScore });
     };
+  }
+
+  submitScore() {
+    let score = this.state.scoring;
+    Object.keys(score).forEach( key => {
+      if (score[key] === "") {
+        score[key] = null;
+      }
+    });
+    debugger
   }
 
   render() {
@@ -123,7 +141,7 @@ class ScoresheetEntry extends React.Component {
             </tr>
           </tbody>
         </table>
-        <button>Submit Score</button>
+        <button onClick={ this.submitScore }>Submit Score</button>
       </section>
     ) : (
       ""
@@ -154,4 +172,4 @@ class ScoresheetEntry extends React.Component {
   }
 }
 
-export default ScoresheetEntry;
+export default connect(null, mapDispatchToProps)(ScoresheetEntry);

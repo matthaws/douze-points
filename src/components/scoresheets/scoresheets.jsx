@@ -12,7 +12,7 @@ export default class Scoresheets extends React.Component {
   };
 
   static defaultProps = {
-    scoresheets: []
+    scoresheets: [],
   };
 
   constructor(props) {
@@ -66,7 +66,7 @@ export default class Scoresheets extends React.Component {
       <section className="section--scoresheets_container">
         <nav className="nav--scoresheets_nav">{this.scoresheetHeaders()}</nav>
         <section className="section--scoresheet_show">
-          <Scoresheet scoresheet={this.state.scoresheet} />
+          <Scoresheet scoresheet={this.state.scoresheet} userId={this.props.user ? this.props.user.id : null} />
         </section>
       </section>
     );
