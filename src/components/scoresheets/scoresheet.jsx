@@ -61,7 +61,6 @@ class Scoresheet extends React.Component {
               <ScoresheetEntry
                 entry={entry}
                 scoring={scoring}
-                userId={this.props.userId}
                 country={this.props.countries[entry.country_id]}
                 scoresheetId={this.props.scoresheet.id}
               />

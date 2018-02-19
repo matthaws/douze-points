@@ -37,7 +37,7 @@ class ScoresheetEntry extends React.Component {
     super(props);
     this.state = { renderScoreSection: false, scoring: this.props.scoring };
     this.state.scoring.entry_id = this.props.entry.id;
-    this.state.scoring.user_id = this.props.userId
+    this.state.scoring.scoresheet_id = this.props.scoresheetId;
     this.submitScore = this.submitScore.bind(this);
   }
 
