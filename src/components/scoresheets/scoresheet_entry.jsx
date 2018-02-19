@@ -6,7 +6,7 @@ import YouTube from "../video/YouTube";
 import "./scoresheet_entry.css";
 
 //=========================================
-// mapDispatchToProps
+// mapXToProps
 
 const mapDispatchToProps = dispatch => ({
     createScoring: scoring => dispatch(createScoring(scoring)),
@@ -44,13 +44,25 @@ class ScoresheetEntry extends React.Component {
     }
 
     componentWillReceiveProps(newProps) {
-        if (newProps.scoring) {
+        if (newProps.scoring && (newProps.scoring !== this.state.scoring)) {
             let newScoring = newProps.scoring;
             newScoring.entry_id = newProps.entry.id;
             newScoring.scoresheet_id = this.props.scoresheetId;
             this.setState({ scoring: newScoring });
         } else {
-            this.setState({ scoring: this.defaultScoring });
+            this.setState({ scoring: {
+                id: null,
+                bonus_comment: "",
+                bonus_points: "",
+                cheese_score: "",
+                costume_score: "",
+                dance_score: "",
+                score_note: "",
+                song_score: "",
+                entry_id: this.props.entry.id,
+                scoresheet_id: this.props.scoresheetId
+            }
+          });
         }
     }
 
