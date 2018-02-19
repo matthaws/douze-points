@@ -11,7 +11,7 @@ class Navbar extends React.Component {
   render () {
     return (
       <main className='main--navbar'>
-        <img className='img--logo' src={Logo} />
+        <Link className='Link--logo' to='/home' >{'{12} Douze Points!'}</Link>
         <Link className='Link--scoresheets' to='/scoresheets'>Scorsheets</Link>
         <Link className='Link--contests' to='/contests'>Contests</Link>
         <Link className='Link--home' to='/'>Home</Link>
@@ -23,3 +23,4 @@ class Navbar extends React.Component {
 }
 
 export default Navbar;
+// <img className='img--logo' src={Logo} />
