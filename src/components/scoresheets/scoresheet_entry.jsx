@@ -17,11 +17,10 @@ const mapDispatchToProps = (dispatch) => ({
 // component
 
 class ScoresheetEntry extends React.Component {
-  static defaultProps = {
-    entry: {
-      id: null
-    },
-    scoring: {
+
+  constructor(props) {
+    super(props);
+    const scoring = this.props.scoring || {
       id: null,
       bonus_comment: "",
       bonus_points: "",
@@ -29,21 +28,27 @@ class ScoresheetEntry extends React.Component {
       costume_score: "",
       dance_score: "",
       score_note: "",
-      song_score: ""
-    }
-  };
+      song_score: "",
+      entry_id: this.props.entry.id,
+      scoresheet_id: this.props.scoresheetId
+    };
 
-  constructor(props) {
-    super(props);
-    this.state = { renderScoreSection: false, scoring: this.props.scoring };
-    this.state.scoring.entry_id = this.props.entry.id;
-    this.state.scoring.scoresheet_id = this.props.scoresheetId;
+    this.state = { renderScoreSection: false, scoring };
     this.submitScore = this.submitScore.bind(this);
   }
 
   toggleScoreShow() {
     const newValue = this.state.renderScoreSection ? false : true;
     this.setState({ renderScoreSection: newValue });
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (newProps.scoring) {
+      let newScoring = newProps.scoring;
+      newScoring.entry_id = newProps.entry.id;
+      newScoring.scoresheet_id = this.props.scoresheetId;
+      this.setState({ scoring: newScoring });
+    }
   }
 
   handleChange(field) {
@@ -75,7 +80,6 @@ class ScoresheetEntry extends React.Component {
   render() {
     const { entry, country } = this.props;
     const { scoring } = this.state;
-
     const scoreSection = this.state.renderScoreSection ? (
       <section id={`section--entry_score_${entry.id}`}>
         <section id={`section--entry_video_${entry.id}`}>
