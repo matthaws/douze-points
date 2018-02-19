@@ -6,6 +6,19 @@ section[class^='section--entry_parent_'] {
   display: flex;
 }
 
+section[class^='section--entry_parent_'] img {
+  height: 20px;
+  width: auto;
+}
+
+#li--entry_country {
+  display: flex;
+  box-sizing: border-box;
+  width: 200px;
+  justify-content: space-between;
+  padding-right: 60px;
+}
+
 section[class^='section--entry_parent_'] li {
   display: flex;
   margin: 0 10px;

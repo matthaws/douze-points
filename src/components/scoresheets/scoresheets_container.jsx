@@ -1,15 +1,19 @@
-import { connect } from 'react-redux';
-import Scoresheets from './scoresheets';
-import { fetchScoresheet, fetchScoresheets, removeScoresheet } from '../../actions/scoresheet_actions';
+import { connect } from "react-redux";
+import Scoresheets from "./scoresheets";
+import {
+  fetchScoresheet,
+  fetchScoresheets,
+  removeScoresheet
+} from "../../actions/scoresheet_actions";
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
-    scoresheets: state.scoresheets,
-  }
+    scoresheets: state.scoresheets
+  };
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  fetchScoresheets: (userId) => dispatch(fetchScoresheets(userId)),
+const mapDispatchToProps = dispatch => ({
+  fetchScoresheets: userId => dispatch(fetchScoresheets(userId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Scoresheets);
