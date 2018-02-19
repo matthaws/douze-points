@@ -1,0 +1,72 @@
+.main--navbar {
+  height: 100px;
+  width: 100vw;
+  border-bottom: 3px solid black;
+  display: grid;
+  grid-template-columns: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%;
+  grid-template-rows: 1fr;
+}
+
+.Link--logo {
+  /* height: 80px; */
+  font-size: 40px;
+  width: auto;
+  grid-column: 1 / 3;
+  align-self: center;
+  text-decoration: none;
+  margin-left: 30px;
+  color: black
+}
+
+/* .main--navbar Link {
+  font-size: 20px;
+  text-decoration: none;
+  color: black;
+} */
+
+.Link--scoresheets {
+  grid-column: 5 / 6;
+  align-self: center;
+  justify-self: center;
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
+}
+
+.Link--contests {
+  font-size: 20px;
+  text-decoration: none;
+  grid-column: 6 / 7;
+  align-self: center;
+  justify-self: center;
+  color: black;
+}
+
+.Link--home {
+  font-size: 20px;
+  text-decoration: none;
+  grid-column: 7 / 8;
+  align-self: center;
+  justify-self: center;
+  color: black;
+
+}
+
+.Link--logout {
+  font-size: 25px;
+  text-decoration: none;
+  grid-column: 8 / 9;
+  align-self: center;
+  justify-self: center;
+  border: 1px solid black;
+  border-radius: 12px;
+  color: white;
+  background-color:black;
+  padding: 7px 15px;
+}
+
+.Link--logout:hover {
+  color: black;
+  background-color:white;
+
+}

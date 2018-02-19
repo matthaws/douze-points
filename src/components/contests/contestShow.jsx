@@ -3,6 +3,9 @@ import { connect } from "react-redux";
 import { fetchContest } from "../../actions/contest_actions";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
+import "./contestShow.css";
+import Navbar from '../navbar/navbar'
+import '../navbar/navbar.css'
 
 class ContestShow extends React.Component {
   componentDidMount() {
@@ -17,16 +20,17 @@ class ContestShow extends React.Component {
   render() {
     const { contest, entries, countries } = this.props;
     return (
-      <main>
-        <div>EuroVision Song Contest {contest.year}</div>
-        <ul>
+      <main className='main--contestShowPage'>
+        <Navbar />
+        <div className='div--contest-title'>EuroVision Song Contest {contest.year}</div>
+        <ul className='ul--entries'>
           {entries.map(entry => {
             const flag_url = countries[entry.country_id]
               ? countries[entry.country_id].flag_url
               : "";
             return (
-              <li>
-                <img src={flag_url} />
+              <li className='li--entry'>
+                <img src={flag_url} className='img--flag'/>
                 {entry.song_title}, {entry.artist}
               </li>
             );
