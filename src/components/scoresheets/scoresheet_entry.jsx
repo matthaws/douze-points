@@ -66,6 +66,7 @@ class ScoresheetEntry extends React.Component {
         }
     }
 
+<<<<<<< HEAD
     handleChange(field) {
         return e => {
             let newScore = this.state.scoring;
@@ -91,6 +92,88 @@ class ScoresheetEntry extends React.Component {
             this.props.createScoring(score);
         }
     }
+=======
+    const { entry, country } = this.props;
+    debugger
+    const scoreSection = this.state.renderScoreSection ? (
+      <section id={`section--entry_score_${entry.id}`}>
+        <section id={`section--entry_video_${entry.id}`}>
+          <YouTube url={entry.video_url} />
+        </section>
+        <table>
+          <tbody>
+            <tr>
+              <th>Song Score</th>
+              <th>Dance Score</th>
+              <th>Costume Score</th>
+              <th>Eurocheese Score</th>
+              <th>Bonus Points</th>
+              <th>Bonus Points Comment</th>
+            </tr>
+            <tr>
+              <td>
+                <input
+                  type="number"
+                  min="0"
+                  max="12"
+                  name="song_score"
+                  onChange={this.handleChange("song_score")}
+                  value={this.state.scoring.song_score || ""}
+                />
+              </td>
+              <td>
+                <input
+                  type="number"
+                  min="0"
+                  max="12"
+                  name="dance_score"
+                  onChange={this.handleChange("dance_score")}
+                  value={this.state.scoring.dance_score || ""}
+                />
+              </td>
+              <td>
+                <input
+                  type="number"
+                  min="0"
+                  max="12"
+                  name="costume_score"
+                  onChange={this.handleChange("costume_score")}
+                  value={this.state.scoring.costume_score || ""}
+                />
+              </td>
+              <td>
+                <input
+                  type="number"
+                  min="0"
+                  max="12"
+                  name="cheese_score"
+                  onChange={this.handleChange("cheese_score")}
+                  value={this.state.scoring.cheese_score || ""}
+                />
+              </td>
+              <td>
+                <input
+                  type="number"
+                  name="bonus_points"
+                  onChange={this.handleChange("bonus_points")}
+                  value={this.state.scoring.bonus_points || ""}
+                />
+              </td>
+              <td>
+                <textarea
+                  onChange={this.handleChange("bonus_comment")}
+                  value={this.state.scoring.bonus_comment || ""}
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <button onClick={ this.submitScore }>Submit Score</button>
+      </section>
+    ) : (
+      ""
+    );
+>>>>>>> d38d0384ab5d66d8862ef79e22503ccc86f8068a
 
     render() {
         const { entry, country } = this.props;

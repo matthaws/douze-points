@@ -11,7 +11,7 @@ const scoresheetReducer = (state = defaultState, action) => {
       newState = merge({}, state, action.payload.scoresheet);
       return newState;
     case RECEIVE_SCORESHEETS:
-      newState = action.payload.scoresheets;
+      newState = action.payload.scoresheets || {};
       return newState;
     case REMOVE_SCORESHEET:
       delete newState[action.scoresheetId];
