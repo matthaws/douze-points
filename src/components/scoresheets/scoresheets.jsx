@@ -12,7 +12,7 @@ export default class Scoresheets extends React.Component {
   };
 
   static defaultProps = {
-    scoresheets: []
+    scoresheets: [],
   };
 
   constructor(props) {

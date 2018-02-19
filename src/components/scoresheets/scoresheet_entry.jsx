@@ -1,18 +1,26 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { createScoring, updateScoring } from '../../actions/scoringActions';
 import YouTube from "../video/YouTube";
 import "./scoresheet_entry.css";
+
+//=========================================
+// mapDispatchToProps
+
+const mapDispatchToProps = (dispatch) => ({
+  createScoring: scoring => dispatch(createScoring(scoring)),
+  updateScoring: scoring => dispatch(updateScoring(scoring)),
+});
 
 //=========================================
 // component
 
 class ScoresheetEntry extends React.Component {
-  static defaultProps = {
-    entry: {
-      id: null
-    },
-    scoring: {
+
+  constructor(props) {
+    super(props);
+    this.defaultScoring = {
       id: null,
       bonus_comment: "",
       bonus_points: "",
@@ -20,18 +28,31 @@ class ScoresheetEntry extends React.Component {
       costume_score: "",
       dance_score: "",
       score_note: "",
-      song_score: ""
-    }
-  };
+      song_score: "",
+      entry_id: this.props.entry.id,
+      scoresheet_id: this.props.scoresheetId
+    };
 
-  constructor(props) {
-    super(props);
-    this.state = { renderScoreSection: false, scoring: this.props.scoring };
+    const scoring = this.props.scoring || this.defaultScoring;
+
+    this.state = { renderScoreSection: false, scoring };
+    this.submitScore = this.submitScore.bind(this);
   }
 
   toggleScoreShow() {
     const newValue = this.state.renderScoreSection ? false : true;
     this.setState({ renderScoreSection: newValue });
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (newProps.scoring) {
+      let newScoring = newProps.scoring;
+      newScoring.entry_id = newProps.entry.id;
+      newScoring.scoresheet_id = this.props.scoresheetId;
+      this.setState({ scoring: newScoring });
+    } else {
+      this.setState({ scoring: this.defaultScoring });
+    }
   }
 
   handleChange(field) {
@@ -46,7 +67,22 @@ class ScoresheetEntry extends React.Component {
     };
   }
 
+  submitScore() {
+    let score = this.state.scoring;
+    Object.keys(score).forEach( key => {
+      if (score[key] === "") {
+        score[key] = null;
+      }
+    });
+    if (score.id) {
+      this.props.updateScoring(score);
+    } else {
+      this.props.createScoring(score);
+    }
+  }
+
   render() {
+
     const { entry, country } = this.props;
     const { scoring } = this.state;
 
@@ -123,7 +159,7 @@ class ScoresheetEntry extends React.Component {
             </tr>
           </tbody>
         </table>
-        <button>Submit Score</button>
+        <button onClick={ this.submitScore }>Submit Score</button>
       </section>
     ) : (
       ""
@@ -154,4 +190,4 @@ class ScoresheetEntry extends React.Component {
   }
 }
 
-export default ScoresheetEntry;
+export default connect(null, mapDispatchToProps)(ScoresheetEntry);

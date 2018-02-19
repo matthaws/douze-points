@@ -1,9 +1,12 @@
 import { backendUrl, authHeaders } from "./constants";
 
 export const fetchScoresheet = async scoresheetId => {
-    const response = await fetch(`${backendUrl}scoresheets/${scoresheetId}`, {
+    const response = await fetch(
+      `${backendUrl}scoresheets/${scoresheetId}`,
+      {
         method: "GET"
-    });
+      }
+    );
     const payload = await response.json();
     return payload;
 };
@@ -22,9 +25,7 @@ export const createScoresheet = async scoresheet => {
         {
             method: "POST",
             headers: authHeaders(),
-            data: {
-                scoresheet
-            }
+            body: JSON.stringify({scoresheet})
         }
     );
     const newScoresheet = await response.json();
@@ -35,9 +36,7 @@ export const updateScoresheet = async scoresheet => {
     const response = await fetch(`${backendUrl}scoresheets/${scoresheet.id}`, {
         method: "PATCH",
         headers: authHeaders(),
-        data: {
-            scoresheet
-        }
+        body: JSON.stringify({scoresheet})
     });
     const updatedScoresheet = await response.json();
     return updatedScoresheet;
@@ -49,6 +48,6 @@ export const deleteScoresheet = async scoresheetId => {
         headers: authHeaders()
     });
     // not sure if below is necessary
-    const deletedScoresheet = await response.json();
-    return deletedScoresheet;
+    const responseJSON = await response.json();
+    return responseJSON;
 };
