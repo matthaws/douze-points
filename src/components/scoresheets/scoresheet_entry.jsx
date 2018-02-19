@@ -84,8 +84,7 @@ class ScoresheetEntry extends React.Component {
   render() {
 
     const { entry, country } = this.props;
-    const { scoring } = this.state;
-
+    debugger
     const scoreSection = this.state.renderScoreSection ? (
       <section id={`section--entry_score_${entry.id}`}>
         <section id={`section--entry_video_${entry.id}`}>
@@ -109,7 +108,7 @@ class ScoresheetEntry extends React.Component {
                   max="12"
                   name="song_score"
                   onChange={this.handleChange("song_score")}
-                  value={scoring.song_score || ""}
+                  value={this.state.scoring.song_score || ""}
                 />
               </td>
               <td>
@@ -119,7 +118,7 @@ class ScoresheetEntry extends React.Component {
                   max="12"
                   name="dance_score"
                   onChange={this.handleChange("dance_score")}
-                  value={scoring.dance_score || ""}
+                  value={this.state.scoring.dance_score || ""}
                 />
               </td>
               <td>
@@ -129,7 +128,7 @@ class ScoresheetEntry extends React.Component {
                   max="12"
                   name="costume_score"
                   onChange={this.handleChange("costume_score")}
-                  value={scoring.costume_score || ""}
+                  value={this.state.scoring.costume_score || ""}
                 />
               </td>
               <td>
@@ -139,7 +138,7 @@ class ScoresheetEntry extends React.Component {
                   max="12"
                   name="cheese_score"
                   onChange={this.handleChange("cheese_score")}
-                  value={scoring.cheese_score || ""}
+                  value={this.state.scoring.cheese_score || ""}
                 />
               </td>
               <td>
@@ -147,13 +146,13 @@ class ScoresheetEntry extends React.Component {
                   type="number"
                   name="bonus_points"
                   onChange={this.handleChange("bonus_points")}
-                  value={scoring.bonus_points || ""}
+                  value={this.state.scoring.bonus_points || ""}
                 />
               </td>
               <td>
                 <textarea
                   onChange={this.handleChange("bonus_comment")}
-                  value={scoring.bonus_comment || ""}
+                  value={this.state.scoring.bonus_comment || ""}
                 />
               </td>
             </tr>
