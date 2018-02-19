@@ -20,7 +20,7 @@ class ScoresheetEntry extends React.Component {
 
   constructor(props) {
     super(props);
-    const scoring = this.props.scoring || {
+    this.defaultScoring = {
       id: null,
       bonus_comment: "",
       bonus_points: "",
@@ -32,6 +32,8 @@ class ScoresheetEntry extends React.Component {
       entry_id: this.props.entry.id,
       scoresheet_id: this.props.scoresheetId
     };
+
+    const scoring = this.props.scoring || this.defaultScoring;
 
     this.state = { renderScoreSection: false, scoring };
     this.submitScore = this.submitScore.bind(this);
@@ -48,6 +50,8 @@ class ScoresheetEntry extends React.Component {
       newScoring.entry_id = newProps.entry.id;
       newScoring.scoresheet_id = this.props.scoresheetId;
       this.setState({ scoring: newScoring });
+    } else {
+      this.setState({ scoring: this.defaultScoring });
     }
   }
 
@@ -78,8 +82,10 @@ class ScoresheetEntry extends React.Component {
   }
 
   render() {
+
     const { entry, country } = this.props;
     const { scoring } = this.state;
+
     const scoreSection = this.state.renderScoreSection ? (
       <section id={`section--entry_score_${entry.id}`}>
         <section id={`section--entry_video_${entry.id}`}>
