@@ -52,6 +52,7 @@ class Scoresheet extends React.Component {
   createEntries() {
     if (this.props.scoresheet.id !== "LOADING") {
       let entryComponents = Object.values(this.props.entries);
+
       return entryComponents.map(entry => {
         if (entry) {
           const scoring = this.props.scorings[entry.id];
