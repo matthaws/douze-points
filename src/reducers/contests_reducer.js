@@ -6,7 +6,7 @@ const contestsReducer = (state = {}, action) => {
   let newState = merge({}, state);
   switch (action.type) {
     case RECEIVE_CONTESTS:
-      newState = merge({}, action.payload);
+      newState = merge({}, action.payload.contests);
       return newState;
     case RECEIVE_CONTEST:
       newState = merge({}, newState, {

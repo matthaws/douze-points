@@ -14,8 +14,8 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  createScoresheet: scoresheet => createScoresheet(scoresheet),
-  fetchContests: () => fetchContests(),
+  createScoresheet: scoresheet => dispatch(createScoresheet(scoresheet)),
+  fetchContests: () => dispatch(fetchContests()),
 });
 
 //=========================================
@@ -67,9 +67,9 @@ class NewScoresheetForm extends React.Component {
           <br/>
         <label>Contest Year
           <select name="contest_id" onChange={ (e) => this.handleSelect(e) }>
-            { Object.values(this.props.contests).map( (contest) => {
+            { Object.values(this.props.contests).map( (contest, idx) => {
               return (
-                <option value={contest.id}>{contest.year}</option>
+                <option value={contest.id} key={idx}>{contest.year}</option>
               )
             }) }
           </select>

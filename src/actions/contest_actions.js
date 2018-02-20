@@ -12,12 +12,12 @@ export const receiveContests = (payload) => ({
   payload
 });
 
-export const fetchContest = year => async dispatch => {
-  const payload = await ContestAPIUtil.fetchContest(year);
-  dispatch(receiveContest(payload));
-};
-
 export const fetchContests = () => async dispatch => {
   const payload = await ContestAPIUtil.fetchContests();
   dispatch(receiveContests(payload));
+};
+
+export const fetchContest = year => async dispatch => {
+  const payload = await ContestAPIUtil.fetchContest(year);
+  dispatch(receiveContest(payload));
 };
