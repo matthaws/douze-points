@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Scoresheet from "./scoresheet";
+import NewScoresheetForm from './new_scoresheet';
 import "./scoresheets.css";
 
 //=========================================
@@ -86,7 +87,7 @@ export default class Scoresheets extends React.Component {
       <section className="section--scoresheets_container">
         <nav className="nav--scoresheets_nav">{this.scoresheetHeaders()}{this.newScoresheetHeader()}</nav>
         <section className="section--scoresheet_show">
-          { this.state.scoresheet === "new" ? "new scoresheet form" : <Scoresheet scoresheet={this.state.scoresheet} /> }
+          { this.state.scoresheet === "new" ? <NewScoresheetForm /> : <Scoresheet scoresheet={this.state.scoresheet} /> }
         </section>
       </section>
     );
