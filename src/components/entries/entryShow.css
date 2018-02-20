@@ -1,0 +1,45 @@
+.section--entryShow {
+  background-color: white;
+  display: grid;
+  grid-template-columns: 100px 1fr 1fr 1fr 1fr 1fr 1fr 100px;
+  grid-template-rows: 1fr 3fr;
+  margin-top: 50px;
+}
+
+.article--countryName {
+  grid-column: 3 / 6;
+  font-size: 50px;
+  padding: 100px;
+  font-family: "Averia Sans Libre";
+  position: relative;
+}
+
+.Link--backArrow {
+  grid-row-start: 2;
+}
+
+.Link--nextArrow {
+  grid-column: 8;
+  grid-row-start: 2;
+}
+
+.figure--YouTube {
+  grid-column: 2 / 5;
+}
+
+.p--songDetails {
+  font-size: 30px;
+}
+
+.aside--details {
+  grid-column: 5 / 8;
+  grid-row-start: 2;
+  font-size: 30px;
+}
+
+.article--countryName > img {
+  width: auto;
+  height: 175px;
+  position: absolute;
+  left: -175px;
+}
