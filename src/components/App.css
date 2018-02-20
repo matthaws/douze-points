@@ -31,14 +31,20 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  background: linear-gradient(to bottom right, #5FBEDE, #002659);
+  /* background: linear-gradient(to bottom right, #5FBEDE, #002659); */
   /*sample colors*/
-  min-height: 100vw;
+    background: linear-gradient(to bottom right, #ffffe8, #b5c9f2);
+  min-height: 100vh;
   height: 100%;
+  font-family: 'Caveat', cursive;
+
+
 }
 
 .main {
   height: 100%;
+  min-height: 100vh;
+  position: relative;
 }
 
 h1, p, span, text, content, div, section {

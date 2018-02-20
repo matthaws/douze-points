@@ -5,7 +5,10 @@ import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import "./contestShow.css";
 import Navbar from '../navbar/navbar'
-import '../navbar/navbar.css'
+import Gold from '../../assets/gold.png'
+import Silver from '../../assets/silver.png'
+import Bronze from '../../assets/bronze.png'
+// import '../navbar/navbar.css'
 
 class ContestShow extends React.Component {
   componentDidMount() {
@@ -21,19 +24,55 @@ class ContestShow extends React.Component {
     const { contest, entries, countries } = this.props;
     return (
       <main className='main--contestShowPage'>
-        <Navbar />
         <div className='div--contest-title'>EuroVision Song Contest {contest.year}</div>
         <ul className='ul--entries'>
           {entries.map(entry => {
             const flag_url = countries[entry.country_id]
               ? countries[entry.country_id].flag_url
               : "";
-            return (
-              <li className='li--entry'>
-                <img src={flag_url} className='img--flag'/>
-                {entry.song_title}, {entry.artist}
-              </li>
-            );
+
+              if (entry.final_ranking === 1) {
+                return (
+
+                <li className='li--entry'>
+                  <img src={flag_url} className='img--flag'/>
+                  <span className='span--entry'>{entry.song_title}, {entry.artist}</span>
+                  <img src={Gold} className='img--medal'/>
+                  <span className='span--rank'>#{entry.final_ranking}</span>
+                </li>
+
+                )
+
+              } else if (entry.final_ranking === 2) {
+                return (
+                <li className='li--entry'>
+                  <img src={flag_url} className='img--flag'/>
+                  <span className='span--entry'>{entry.song_title}, {entry.artist}</span>
+                  <img src={Silver} className='img--medal'/>
+                    <span className='span--rank'>#{entry.final_ranking}</span>
+                  </li>
+                )
+
+              } else if (entry.final_ranking === 3) {
+                return (
+                <li className='li--entry'>
+                  <img src={flag_url} className='img--flag'/>
+                  <span className='span--entry'>{entry.song_title}, {entry.artist}</span>
+                  <img src={Bronze} className='img--medal'/>
+                    <span className='span--rank'>#{entry.final_ranking}</span>
+                  </li>
+                )
+
+              } else {
+                return (
+                <li className='li--entry'>
+                  <img src={flag_url} className='img--flag'/>
+                  <span className='span--entry'>{entry.song_title}, {entry.artist}</span>
+                    <span className='span--rank'>#{entry.final_ranking}</span>
+                  </li>
+                )
+              }
+
           })}
         </ul>
       </main>

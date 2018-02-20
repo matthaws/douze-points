@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Logo from '../../assets/douzepointlogo.png';
+import './navbar.css'
 
 
 class Navbar extends React.Component {

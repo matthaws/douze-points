@@ -1,0 +1,31 @@
+.main--footer {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  flex-direction: row;
+  border-top: 1px solid black;
+  box-shadow: -2px -2px 10px lightblue;
+  margin-top: 1em;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  /* background: none */
+  /* background-color: white */
+  /* top:0; */
+
+}
+
+.div--credits {
+  font-family: 'Averia Sans Libre', cursive;
+  grid-column: 1 / 2;
+  justify-content: flex-start;
+  margin: 1em;
+  align-self: center;
+}
+
+.div--copy {
+  grid-column: 2 / 3;
+  justify-self: end;
+  margin: 1em;
+  font-size: 20px;
+}
