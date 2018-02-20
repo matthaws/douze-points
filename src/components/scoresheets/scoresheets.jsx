@@ -66,18 +66,27 @@ export default class Scoresheets extends React.Component {
           return <span key={idx}>Loading...</span>;
         }
       });
-
-
-
     }
+  }
+
+  newScoresheetHeader() {
+    return (
+      <span
+        className={`span--scoresheet-nav-newsheet`}
+        key={99}
+        onClick={ () => this.setState({ scoresheet: "new"})}
+      >
+        +
+      </span>
+    )
   }
 
   render() {
     return (
       <section className="section--scoresheets_container">
-        <nav className="nav--scoresheets_nav">{this.scoresheetHeaders()}</nav>
+        <nav className="nav--scoresheets_nav">{this.scoresheetHeaders()}{this.newScoresheetHeader()}</nav>
         <section className="section--scoresheet_show">
-          <Scoresheet scoresheet={this.state.scoresheet} />
+          { this.state.scoresheet === "new" ? "new scoresheet form" : <Scoresheet scoresheet={this.state.scoresheet} /> }
         </section>
       </section>
     );
