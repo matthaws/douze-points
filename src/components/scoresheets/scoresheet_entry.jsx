@@ -8,17 +8,12 @@ import "./scoresheet_entry.css";
 //=========================================
 // mapXToProps
 
-const mapStateToProps = (state, ownProps) => {
-  if (ownProps.scoring) {
-    return {
-      scoring: state.scorings[ownProps.scoring.id],
-    };
-  }
-};
+const mapStateToProps = (state, ownProps) => ({
+});
 
 const mapDispatchToProps = dispatch => ({
     createScoring: scoring => dispatch(createScoring(scoring)),
-    updateScoring: scoring => dispatch(updateScoring(scoring))
+    updateScoring: scoring => dispatch(updateScoring(scoring)),
 });
 
 //=========================================
@@ -52,7 +47,6 @@ class ScoresheetEntry extends React.Component {
     }
 
     componentWillReceiveProps(newProps) {
-      debugger
         if (newProps.scoring) {
             let newScoring = newProps.scoring;
             newScoring.entry_id = newProps.entry.id;
@@ -208,4 +202,4 @@ class ScoresheetEntry extends React.Component {
     }
 }
 
-export default connect(null, mapDispatchToProps)(ScoresheetEntry);
+export default connect(mapStateToProps, mapDispatchToProps)(ScoresheetEntry);

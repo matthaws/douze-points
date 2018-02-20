@@ -1,4 +1,5 @@
 import * as ScoringUtil from '../util/scoring_api_util';
+import { fetchScoresheet } from './scoresheet_actions';
 
 export const RECEIVE_SCORING = "RECEIVE_SCORING";
 export const REMOVE_SCORING = "REMOVE_SCORING";
@@ -15,10 +16,12 @@ export const removeScoring = scoringId => ({
 
 export const createScoring = scoring => async dispatch => {
   const newScoring = await ScoringUtil.createScoring(scoring);
-  dispatch(receiveScoring(newScoring));
+  await dispatch(receiveScoring(newScoring));
+  dispatch(fetchScoresheet(newScoring.scoresheet_id));
 };
 
 export const updateScoring = scoring => async dispatch => {
   const updatedScoring = await ScoringUtil.updateScoring(scoring);
-  dispatch(receiveScoring(updatedScoring));
+  await dispatch(receiveScoring(updatedScoring));
+  dispatch(fetchScoresheet(updatedScoring.scoresheet_id));
 };

@@ -35,6 +35,14 @@ export default class Scoresheets extends React.Component {
     if (newProps.scoresheets !== this.props.scoresheets) {
       if (!this.state.scoresheet && newProps.scoresheets[0]) {
         this.setState({ scoresheet: newProps.scoresheets[0] });
+      } else if (this.state.scoresheet) {
+        let currentId = this.state.scoresheet.id || "none";
+        this.props.scoresheets.forEach( (sheet) => {
+          if (sheet.id === currentId) {
+            this.setState({ scoresheet: sheet })
+            return;
+          }
+        })
       }
     }
   }
@@ -59,7 +67,7 @@ export default class Scoresheets extends React.Component {
         }
       });
 
-      
+
 
     }
   }
