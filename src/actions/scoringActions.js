@@ -1,5 +1,5 @@
-import * as ScoringUtil from '../util/scoring_api_util';
-import { fetchScoresheet } from './scoresheet_actions';
+import * as ScoringUtil from "../util/scoring_api_util";
+import { fetchScoresheet } from "./scoresheet_actions";
 
 export const RECEIVE_SCORING = "RECEIVE_SCORING";
 export const REMOVE_SCORING = "REMOVE_SCORING";

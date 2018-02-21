@@ -1,9 +1,8 @@
-import merge from 'lodash/merge';
-import { RECEIVE_SCORESHEET } from '../actions/scoresheet_actions';
-import { RECEIVE_SCORING } from '../actions/scoringActions';
+import merge from "lodash/merge";
+import { RECEIVE_SCORESHEET } from "../actions/scoresheet_actions";
+import { RECEIVE_SCORING } from "../actions/scoringActions";
 
-const defaultState = {
-};
+const defaultState = {};
 
 const scoringsReducer = (state = defaultState, action) => {
   let newState = merge({}, state);
@@ -17,7 +16,6 @@ const scoringsReducer = (state = defaultState, action) => {
     default:
       return newState;
   }
-
 };
 
 export default scoringsReducer;

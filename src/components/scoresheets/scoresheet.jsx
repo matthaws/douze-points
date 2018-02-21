@@ -77,7 +77,6 @@ class Scoresheet extends React.Component {
   }
 
   render() {
-
     let scoresheetEntries = this.createEntries();
 
     return (

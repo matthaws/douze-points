@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Scoresheet from "./scoresheet";
-import NewScoresheetForm from './new_scoresheet';
+import NewScoresheetForm from "./new_scoresheet";
 import "./scoresheets.css";
 
 //=========================================
@@ -13,7 +13,7 @@ export default class Scoresheets extends React.Component {
   };
 
   static defaultProps = {
-    scoresheets: [],
+    scoresheets: []
   };
 
   constructor(props) {
@@ -38,12 +38,12 @@ export default class Scoresheets extends React.Component {
         this.setState({ scoresheet: newProps.scoresheets[0] });
       } else if (this.state.scoresheet) {
         let currentId = this.state.scoresheet.id || "none";
-        this.props.scoresheets.forEach( (sheet) => {
+        this.props.scoresheets.forEach(sheet => {
           if (sheet.id === currentId) {
-            this.setState({ scoresheet: sheet })
+            this.setState({ scoresheet: sheet });
             return;
           }
-        })
+        });
       }
     }
   }
@@ -75,19 +75,26 @@ export default class Scoresheets extends React.Component {
       <span
         className={`span--scoresheet-nav-newsheet`}
         key={99}
-        onClick={ () => this.setState({ scoresheet: "new"})}
+        onClick={() => this.setState({ scoresheet: "new" })}
       >
         +
       </span>
-    )
+    );
   }
 
   render() {
     return (
       <section className="section--scoresheets_container">
-        <nav className="nav--scoresheets_nav">{this.scoresheetHeaders()}{this.newScoresheetHeader()}</nav>
+        <nav className="nav--scoresheets_nav">
+          {this.scoresheetHeaders()}
+          {this.newScoresheetHeader()}
+        </nav>
         <section className="section--scoresheet_show">
-          { this.state.scoresheet === "new" ? <NewScoresheetForm /> : <Scoresheet scoresheet={this.state.scoresheet} /> }
+          {this.state.scoresheet === "new" ? (
+            <NewScoresheetForm />
+          ) : (
+            <Scoresheet scoresheet={this.state.scoresheet} />
+          )}
         </section>
       </section>
     );
