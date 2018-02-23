@@ -8,11 +8,6 @@ import "./scoresheet_entry.css";
 //=========================================
 // mapXToProps
 
-<<<<<<< HEAD
-=======
-const mapStateToProps = (state, ownProps) => ({});
-
->>>>>>> 812d15a0f0819e8cf8391dcff7f5003bf33574b6
 const mapDispatchToProps = dispatch => ({
   createScoring: scoring => dispatch(createScoring(scoring)),
   updateScoring: scoring => dispatch(updateScoring(scoring))
