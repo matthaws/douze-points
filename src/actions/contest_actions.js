@@ -1,13 +1,13 @@
-import * as ContestAPIUtil from '../util/contest_api_util';
-export const RECEIVE_CONTEST = 'RECEIVE_CONTEST';
-export const RECEIVE_CONTESTS = 'RECEIVE_CONTESTS';
+import * as ContestAPIUtil from "../util/contest_api_util";
+export const RECEIVE_CONTEST = "RECEIVE_CONTEST";
+export const RECEIVE_CONTESTS = "RECEIVE_CONTESTS";
 
-export const receiveContest = (payload) => ({
+export const receiveContest = payload => ({
   type: RECEIVE_CONTEST,
   payload
 });
 
-export const receiveContests = (payload) => ({
+export const receiveContests = payload => ({
   type: RECEIVE_CONTESTS,
   payload
 });
