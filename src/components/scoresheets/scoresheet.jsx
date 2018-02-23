@@ -30,6 +30,7 @@ const mapStateToProps = (state, ownProps) => {
       scorings[newScoring.entry_id] = newScoring;
     }
   }) || [];
+
   const countries = state.countries;
   return { scoresheet, entries, scorings, countries };
 };
@@ -52,6 +53,7 @@ class Scoresheet extends React.Component {
   createEntries() {
     if (this.props.scoresheet.id !== "LOADING") {
       let entryComponents = Object.values(this.props.entries);
+
       return entryComponents.map(entry => {
         if (entry) {
           const scoring = this.props.scorings[entry.id];
@@ -75,6 +77,8 @@ class Scoresheet extends React.Component {
   }
 
   render() {
+    let scoresheetEntries = this.createEntries();
+
     return (
       <section className="section--scoresheet-main">
         <p>{this.props.scoresheet.name}</p>
@@ -87,7 +91,7 @@ class Scoresheet extends React.Component {
             </tr>
           </tbody>
         </table>
-        <ul>{this.createEntries()}</ul>
+        <ul>{scoresheetEntries}</ul>
       </section>
     );
   }

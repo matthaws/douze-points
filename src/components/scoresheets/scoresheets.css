@@ -17,3 +17,12 @@
   min-height: 500px;
   border-radius: 4px;
 }
+
+span[class^="span--scoresheet-nav"] {
+  cursor: pointer;
+}
+
+span[class^="span--scoresheet-nav"]:hover {
+  background-color: #b5c9f2;
+  text-decoration: underline;
+}

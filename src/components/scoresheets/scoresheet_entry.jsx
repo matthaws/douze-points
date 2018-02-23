@@ -1,23 +1,22 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { createScoring, updateScoring } from '../../actions/scoringActions';
+import { createScoring, updateScoring } from "../../actions/scoringActions";
 import YouTube from "../video/YouTube";
 import "./scoresheet_entry.css";
 
 //=========================================
-// mapDispatchToProps
+// mapXToProps
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   createScoring: scoring => dispatch(createScoring(scoring)),
-  updateScoring: scoring => dispatch(updateScoring(scoring)),
+  updateScoring: scoring => dispatch(updateScoring(scoring))
 });
 
 //=========================================
 // component
 
 class ScoresheetEntry extends React.Component {
-
   constructor(props) {
     super(props);
     this.defaultScoring = {
@@ -51,7 +50,20 @@ class ScoresheetEntry extends React.Component {
       newScoring.scoresheet_id = this.props.scoresheetId;
       this.setState({ scoring: newScoring });
     } else {
-      this.setState({ scoring: this.defaultScoring });
+      this.setState({
+        scoring: {
+          id: null,
+          bonus_comment: "",
+          bonus_points: "",
+          cheese_score: "",
+          costume_score: "",
+          dance_score: "",
+          score_note: "",
+          song_score: "",
+          entry_id: this.props.entry.id,
+          scoresheet_id: this.props.scoresheetId
+        }
+      });
     }
   }
 
@@ -69,7 +81,7 @@ class ScoresheetEntry extends React.Component {
 
   submitScore() {
     let score = this.state.scoring;
-    Object.keys(score).forEach( key => {
+    Object.keys(score).forEach(key => {
       if (score[key] === "") {
         score[key] = null;
       }
@@ -82,9 +94,8 @@ class ScoresheetEntry extends React.Component {
   }
 
   render() {
-
     const { entry, country } = this.props;
-    debugger
+
     const scoreSection = this.state.renderScoreSection ? (
       <section id={`section--entry_score_${entry.id}`}>
         <section id={`section--entry_video_${entry.id}`}>
@@ -158,7 +169,7 @@ class ScoresheetEntry extends React.Component {
             </tr>
           </tbody>
         </table>
-        <button onClick={ this.submitScore }>Submit Score</button>
+        <button onClick={this.submitScore}>Submit Score</button>
       </section>
     ) : (
       ""
@@ -189,4 +200,4 @@ class ScoresheetEntry extends React.Component {
   }
 }
 
-export default connect(null, mapDispatchToProps)(ScoresheetEntry);
+export default connect(mapDispatchToProps)(ScoresheetEntry);

@@ -7,3 +7,11 @@ export const fetchContest = async year => {
   const payload = await response.json();
   return payload;
 };
+
+export const fetchContests = async () => {
+  const response = await fetch(`${backendUrl}/contests`, {
+    method: "GET"
+  });
+  const payload = await response.json();
+  return payload;
+};
