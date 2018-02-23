@@ -8,9 +8,6 @@ import "./scoresheet_entry.css";
 //=========================================
 // mapXToProps
 
-const mapStateToProps = (state, ownProps) => ({
-});
-
 const mapDispatchToProps = dispatch => ({
     createScoring: scoring => dispatch(createScoring(scoring)),
     updateScoring: scoring => dispatch(updateScoring(scoring)),
@@ -202,4 +199,4 @@ class ScoresheetEntry extends React.Component {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ScoresheetEntry);
+export default connect(mapDispatchToProps)(ScoresheetEntry);

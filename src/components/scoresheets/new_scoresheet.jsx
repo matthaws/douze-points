@@ -51,7 +51,7 @@ class NewScoresheetForm extends React.Component {
   }
 
   submitForm() {
-    debugger
+    
   }
 
   render(){
