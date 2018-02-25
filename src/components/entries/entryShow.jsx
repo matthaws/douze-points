@@ -40,10 +40,10 @@ class EntryShow extends React.Component {
       return (
         <section className="section--entryShow">
           <Link className="Link--backArrow" to={`/entries/${prevEntryId}`}>
-            <img src={BackArrow} />
+            <img alt="back-arrow" src={BackArrow} />
           </Link>
           <article className="article--countryName">
-            <img src={country.flag_url} />
+            <img alt="country-flag" src={country.flag_url} />
             {country.name}, {contest.year}
             <br></br>
             <p className="p--songDetails">
@@ -51,7 +51,7 @@ class EntryShow extends React.Component {
             </p>
           </article>
           <Link className="Link--nextArrow" to={`/entries/${nextEntryId}`}>
-            <img src={NextArrow} />
+            <img alt="next-arrow" src={NextArrow} />
           </Link>
           <aside className="aside--details">
             <h3>Ranking: {entry.final_ranking}</h3>

@@ -30,6 +30,6 @@ export const fetchScoresheets = userId => async dispatch => {
 };
 
 export const createScoresheet = scoresheet => async dispatch => {
-  const scoresheet = await ScoresheetUtil.createScoresheet(scoresheet);
-  dispatch(receiveScoresheet(scoresheet));
+  const newScoresheet = await ScoresheetUtil.createScoresheet(scoresheet);
+  dispatch(receiveScoresheet(newScoresheet));
 };

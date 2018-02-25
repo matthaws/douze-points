@@ -1,4 +1,4 @@
-import { backendUrl, authHeaders } from "./constants";
+import { backendUrl } from "./constants";
 
 export const fetchUser = async userId => {
   const response = await fetch(`${backendUrl}/users/${userId}`, {

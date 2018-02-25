@@ -11,11 +11,11 @@ const authReducer = (state = defaultState, action) => {
     case RECEIVE_CURRENT_USER:
       newState.currentUser = action.payload.user;
       if (action.payload.auth_token) {
-        localStorage.setItem("token", action.payload.auth_token);
+        sessionStorage.setItem("token", action.payload.auth_token);
       }
       return newState;
     case SIGN_OUT_USER:
-      localStorage.removeItem("token");
+      sessionStorage.removeItem("token");
       return { currentUser: null };
     default:
       return newState;

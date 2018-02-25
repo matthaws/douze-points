@@ -1,4 +1,5 @@
 import * as AuthAPIUtil from "../util/auth_api_util";
+import { endSpinner } from "./uiActions";
 
 export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const SIGN_OUT_USER = "SIGN_OUT_USER";
@@ -14,7 +15,8 @@ export const signOutUser = () => ({
 
 export const authenticateUser = socialToken => async dispatch => {
   const payload = await AuthAPIUtil.authenticate(socialToken);
-  dispatch(receiveCurrentUser(payload));
+  await dispatch(receiveCurrentUser(payload));
+  dispatch(endSpinner());
 };
 
 export const fetchCurrentUser = token => async dispatch => {

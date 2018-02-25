@@ -3,10 +3,6 @@ import './footer.css'
 
 
 class Footer extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-
   render() {
     return (
       <main className='main--footer'>
