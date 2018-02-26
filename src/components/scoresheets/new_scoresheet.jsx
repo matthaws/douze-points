@@ -78,8 +78,8 @@ class NewScoresheetForm extends React.Component {
         <br />
         <label>
           Contest Year
-          <select name="contest_id" onChange={e => this.handleSelect(e)}>
-              <option disabled="true" selected="true" key={-1}>Please Select Contest</option>
+          <select name="contest_id" value="" onChange={e => this.handleSelect(e)}>
+              <option disabled="true" value="" key={-1}>Please Select Contest</option>
             {Object.values(this.props.contests).map((contest, idx) => {
               return (
                 <option value={contest.id} key={idx}>
