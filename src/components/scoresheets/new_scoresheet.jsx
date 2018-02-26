@@ -23,12 +23,16 @@ const mapDispatchToProps = dispatch => ({
 
 class NewScoresheetForm extends React.Component {
   static defaultProps = {
-    scoresheet: {}
+    scoresheet: {
+      name: "",
+    }
   };
 
   constructor(props) {
     super(props);
     this.state = { scoresheet: props.scoresheet };
+    this.state.scoresheet.user_id = props.user.id;
+    this.submitForm = this.submitForm.bind(this);
   }
 
   componentDidMount() {
@@ -37,7 +41,7 @@ class NewScoresheetForm extends React.Component {
 
   handleSelect(e) {
     let newForm = this.state.scoresheet;
-    newForm.contest_id = e.value;
+    newForm.contest_id = e.currentTarget.value;
     this.setState({ scoresheet: newForm });
   }
 
@@ -49,7 +53,9 @@ class NewScoresheetForm extends React.Component {
     };
   }
 
-  submitForm() {
+  submitForm(e) {
+    e.preventDefault();
+    this.props.createScoresheet(this.state.scoresheet);
   }
 
   render() {
@@ -60,7 +66,7 @@ class NewScoresheetForm extends React.Component {
           <input
             type="text"
             placeholder="Enter Scoresheet Title"
-            value=""
+            value={this.state.scoresheet.name}
             onChange={this.handleChange("name")}
           />
         </label>
@@ -79,7 +85,7 @@ class NewScoresheetForm extends React.Component {
         </label>
         <br />
         <label>Type</label>
-        <button onClick={() => this.submitForm()}>Create New Scoresheet</button>
+        <button onClick={this.submitForm}>Create New Scoresheet</button>
       </form>
     );
   }

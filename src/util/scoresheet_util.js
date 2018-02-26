@@ -20,24 +20,25 @@ export const fetchScoresheets = async userId => {
 };
 
 export const createScoresheet = async scoresheet => {
-    const response = await fetch(
-        `${backendUrl}/users/${scoresheet.user_id}/scoresheets`,
-        {
-            method: "POST",
-            headers: authHeaders(),
-            body: JSON.stringify({scoresheet})
-        }
-    );
+    const postObject = {
+        method: "POST",
+        headers: authHeaders(),
+        body: JSON.stringify({scoresheet})
+    };
+    postObject.headers['Content-Type'] = 'application/json';
+    const response = await fetch(`${backendUrl}/users/${scoresheet.user_id}/scoresheets`, postObject);
     const newScoresheet = await response.json();
     return newScoresheet;
 };
 
 export const updateScoresheet = async scoresheet => {
-    const response = await fetch(`${backendUrl}scoresheets/${scoresheet.id}`, {
-        method: "PATCH",
-        headers: authHeaders(),
-        body: JSON.stringify({scoresheet})
-    });
+    const postObject = {
+      method: "PATCH",
+      headers: authHeaders(),
+      body: JSON.stringify({scoresheet})
+    };
+    postObject.headers['Content-Type'] = 'application/json';
+    const response = await fetch(`${backendUrl}scoresheets/${scoresheet.id}`, postObject);
     const updatedScoresheet = await response.json();
     return updatedScoresheet;
 };
