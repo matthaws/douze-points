@@ -1,11 +1,9 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {
   fetchScoresheet,
   removeScoresheet
 } from "../../actions/scoresheet_actions";
-import merge from "lodash/merge";
 import ScoresheetEntry from "./scoresheet_entry.jsx";
 import "./scoresheet.css";
 

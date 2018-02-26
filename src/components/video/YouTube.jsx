@@ -11,6 +11,7 @@ class YouTube extends React.Component {
       <iframe
         width={width}
         height={height}
+        title={url}
         src={`https://www.youtube.com/embed/${url}?rel=0&amp;showinfo=0`}
         frameBorder="0"
         allow="autoplay; encrypted-media"

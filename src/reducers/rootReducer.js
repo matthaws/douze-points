@@ -6,6 +6,7 @@ import users from "./usersReducer";
 import entries from "./entries_reducers";
 import countries from "./countriesReducer";
 import scorings from "./scoringsReducer";
+import ui from "./uiReducer";
 
 export default combineReducers({
   auth,
@@ -15,4 +16,5 @@ export default combineReducers({
   entries,
   countries,
   scorings,
+  ui
 });

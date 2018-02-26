@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { createScoring, updateScoring } from "../../actions/scoringActions";
 import YouTube from "../video/YouTube";
@@ -179,7 +178,7 @@ class ScoresheetEntry extends React.Component {
       <ul>
         <section className={`section--entry_parent_${entry.id}`}>
           <li id={`li--entry_country`}>
-            <img src={country.flag_url} />
+            <img alt="country-flag" src={country.flag_url} />
             <p>{country.name}</p>
           </li>
           <li>{entry.song_title}</li>

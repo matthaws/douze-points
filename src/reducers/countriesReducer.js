@@ -9,6 +9,8 @@ const countriesReducer = (state = {}, action) => {
     case RECEIVE_CURRENT_USER:
       if (action.payload.countries) {
         return action.payload.countries;
+      } else {
+        return merge({}, state);
       }
     default:
       return merge({}, state);
