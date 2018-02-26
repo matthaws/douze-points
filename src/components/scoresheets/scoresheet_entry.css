@@ -27,31 +27,3 @@ section[class^='section--entry_parent_'] li {
   align-items: center;
   justify-content: flex-start;
 }
-
-section[id^='section--entry_score_'] {
-  margin-left: 10px;
-}
-
-section[id^='section--entry_score_'] table {
-  display: table;
-  border-collapse: collapse;
-  margin-left: 10px;
-}
-
-section[id^='section--entry_score_'] tr {
-  display: table-row;
-  text-align: center;
-  margin: 0;
-}
-
-section[id^='section--entry_score_'] th {
-  display: table-cell;
-  text-align: center;
-  border: 1px solid black;
-  padding: 4px 10px;
-}
-
-section[id^='section--entry_score_'] td {
-  display: table-cell;
-  text-align: center;
-}

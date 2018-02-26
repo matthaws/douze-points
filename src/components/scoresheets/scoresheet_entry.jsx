@@ -92,6 +92,25 @@ class ScoresheetEntry extends React.Component {
     }
   }
 
+  addRegScores() {
+    return (
+      (parseInt(this.state.scoring.song_score) || 0) +
+      (parseInt(this.state.scoring.dance_score) || 0) +
+      (parseInt(this.state.scoring.costume_score) || 0) +
+      (parseInt(this.state.scoring.cheese_score) || 0)
+    );
+  }
+
+  addBonusScores() {
+    return (
+      (parseInt(this.state.scoring.song_score) || 0) +
+      (parseInt(this.state.scoring.dance_score) || 0) +
+      (parseInt(this.state.scoring.costume_score) || 0) +
+      (parseInt(this.state.scoring.cheese_score) || 0) +
+      (parseInt(this.state.scoring.bonus_points) || 0)
+    );
+  }
+
   render() {
     const { entry, country } = this.props;
 
@@ -100,74 +119,71 @@ class ScoresheetEntry extends React.Component {
         <section id={`section--entry_video_${entry.id}`}>
           <YouTube url={entry.video_url} />
         </section>
-        <table>
-          <tbody>
-            <tr>
-              <th>Song Score</th>
-              <th>Dance Score</th>
-              <th>Costume Score</th>
-              <th>Eurocheese Score</th>
-              <th>Bonus Points</th>
-              <th>Bonus Points Comment</th>
-            </tr>
-            <tr>
-              <td>
-                <input
-                  type="number"
-                  min="0"
-                  max="12"
-                  name="song_score"
-                  onChange={this.handleChange("song_score")}
-                  value={this.state.scoring.song_score || ""}
-                />
-              </td>
-              <td>
-                <input
-                  type="number"
-                  min="0"
-                  max="12"
-                  name="dance_score"
-                  onChange={this.handleChange("dance_score")}
-                  value={this.state.scoring.dance_score || ""}
-                />
-              </td>
-              <td>
-                <input
-                  type="number"
-                  min="0"
-                  max="12"
-                  name="costume_score"
-                  onChange={this.handleChange("costume_score")}
-                  value={this.state.scoring.costume_score || ""}
-                />
-              </td>
-              <td>
-                <input
-                  type="number"
-                  min="0"
-                  max="12"
-                  name="cheese_score"
-                  onChange={this.handleChange("cheese_score")}
-                  value={this.state.scoring.cheese_score || ""}
-                />
-              </td>
-              <td>
-                <input
-                  type="number"
-                  name="bonus_points"
-                  onChange={this.handleChange("bonus_points")}
-                  value={this.state.scoring.bonus_points || ""}
-                />
-              </td>
-              <td>
-                <textarea
-                  onChange={this.handleChange("bonus_comment")}
-                  value={this.state.scoring.bonus_comment || ""}
-                />
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <ul>
+          <li>Song Score</li>
+          <li>Dance Score</li>
+          <li>Costume Score</li>
+          <li>Eurocheese Score</li>
+          <li>Bonus Points</li>
+          <li>Bonus Points Comment</li>
+        </ul>
+        <ul>
+          <li>
+              <input
+                type="number"
+                min="0"
+                max="12"
+                name="song_score"
+                onChange={this.handleChange("song_score")}
+                value={this.state.scoring.song_score || ""}
+              />
+          </li>
+          <li>
+              <input
+                type="number"
+                min="0"
+                max="12"
+                name="dance_score"
+                onChange={this.handleChange("dance_score")}
+                value={this.state.scoring.dance_score || ""}
+              />
+          </li>
+          <li>
+              <input
+                type="number"
+                min="0"
+                max="12"
+                name="costume_score"
+                onChange={this.handleChange("costume_score")}
+                value={this.state.scoring.costume_score || ""}
+              />
+          </li>
+          <li>
+              <input
+                type="number"
+                min="0"
+                max="12"
+                name="cheese_score"
+                onChange={this.handleChange("cheese_score")}
+                value={this.state.scoring.cheese_score || ""}
+              />
+          </li>
+          <li>
+              <input
+                type="number"
+                name="bonus_points"
+                onChange={this.handleChange("bonus_points")}
+                value={this.state.scoring.bonus_points || ""}
+              />
+          </li>
+          <li>
+              <textarea
+                onChange={this.handleChange("bonus_comment")}
+                value={this.state.scoring.bonus_comment || ""}
+              />
+          </li>
+        </ul>
+        <br/>
         <button onClick={this.submitScore}>Submit Score</button>
       </section>
     ) : (
@@ -183,6 +199,8 @@ class ScoresheetEntry extends React.Component {
           </li>
           <li>{entry.song_title}</li>
           <li>{entry.artist}</li>
+          <li>{ this.props.renderBonusPoints ? this.addBonusScores() : this.addRegScores() }
+          </li>
           <li>
             <button
               onClick={() => {
