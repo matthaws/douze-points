@@ -15,9 +15,6 @@ const Splash = () => {
         <p className="eurovision">Eurovision</p>
         <p className="songcontest">Song Contest</p>
       </div>
-      <div className="div--whatisthis">
-
-      </div>
     </section>
   );
 };
