@@ -25,7 +25,7 @@ export default class Scoresheets extends React.Component {
 
   componentDidMount() {
     if (this.props.user) {
-      this.fetchScoresheets(this.props.user.id);
+      this.props.fetchScoresheets(this.props.user.id);
     }
   }
 
