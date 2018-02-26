@@ -44,6 +44,12 @@ const mapDispatchToProps = dispatch => ({
 // component
 
 class Scoresheet extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = { renderBonusPoints: false };
+  }
+
   componentWillReceiveProps(newProps) {
     if (newProps.scoresheet.id !== this.props.scoresheet.id) {
       this.props.fetchScoresheet(newProps.scoresheet.id);
@@ -64,6 +70,7 @@ class Scoresheet extends React.Component {
                 scoring={scoring}
                 country={this.props.countries[entry.country_id]}
                 scoresheetId={this.props.scoresheet.id}
+                renderBonusPoints={this.state.renderBonusPoints}
               />
             </li>
           );
@@ -74,6 +81,10 @@ class Scoresheet extends React.Component {
     } else {
       return <li>Loading...</li>;
     }
+  }
+
+  toggleBonusPoints() {
+    this.setState({ renderBonusPoints: !this.state.renderBonusPoints });
   }
 
   render() {
@@ -88,7 +99,7 @@ class Scoresheet extends React.Component {
               <th>Country</th>
               <th>Song Title</th>
               <th>Song Artist</th>
-              <th>Your Total Score</th>
+              <th><p>Your Total Score</p><br/><label>Add Bonus Points?<input type="checkbox" onChange={ () => this.toggleBonusPoints() }/></label></th>
             </tr>
           </tbody>
         </table>

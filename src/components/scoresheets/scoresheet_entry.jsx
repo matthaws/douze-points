@@ -95,10 +95,20 @@ class ScoresheetEntry extends React.Component {
 
   addRegScores() {
     return (
-      (parseInt(this.state.scoring.song_score)) || 0 +
-      (parseInt(this.state.scoring.dance_score)) || 0 +
-      (parseInt(this.state.scoring.costume_score)) || 0 +
-      (parseInt(this.state.scoring.cheese_score)) || 0
+      (parseInt(this.state.scoring.song_score) || 0) +
+      (parseInt(this.state.scoring.dance_score) || 0) +
+      (parseInt(this.state.scoring.costume_score) || 0) +
+      (parseInt(this.state.scoring.cheese_score) || 0)
+    );
+  }
+
+  addBonusScores() {
+    return (
+      (parseInt(this.state.scoring.song_score) || 0) +
+      (parseInt(this.state.scoring.dance_score) || 0) +
+      (parseInt(this.state.scoring.costume_score) || 0) +
+      (parseInt(this.state.scoring.cheese_score) || 0) +
+      (parseInt(this.state.scoring.bonus_points) || 0)
     );
   }
 
@@ -193,7 +203,7 @@ class ScoresheetEntry extends React.Component {
           </li>
           <li>{entry.song_title}</li>
           <li>{entry.artist}</li>
-          <li>{ this.addRegScores() }
+          <li>{ this.props.renderBonusPoints ? this.addBonusScores() : this.addRegScores() }
           </li>
           <li>
             <button
