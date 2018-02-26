@@ -90,14 +90,13 @@ class Scoresheet extends React.Component {
 
     return (
       <section className="section--scoresheet-main">
-        <p>{this.props.scoresheet.name}</p>
         <table className="table--scoresheet-headers">
           <tbody>
             <tr className="tr--scoresheet-header-row">
               <th>Country</th>
               <th>Song Title</th>
               <th>Song Artist</th>
-              <th><p>Your Total Score</p><br/><label>Add Bonus Points?<input type="checkbox" onChange={ () => this.toggleBonusPoints() }/></label></th>
+              <th><p>Your Total Score</p><label className="label--bonus_points">Add Bonus Points?<input type="checkbox" onChange={ () => this.toggleBonusPoints() }/></label></th>
             </tr>
           </tbody>
         </table>
