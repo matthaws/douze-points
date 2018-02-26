@@ -4,11 +4,18 @@
 
 section[class^='section--entry_parent_'] {
   display: flex;
+  font-size: 24px;
 }
 
 section[class^='section--entry_parent_'] img {
   height: 20px;
   width: auto;
+}
+
+section[id^='section--entry_score'] {
+  display: grid;
+  width: 90%;
+  grid-template-columns: 40% 40%;
 }
 
 #li--entry_country {
@@ -26,4 +33,39 @@ section[class^='section--entry_parent_'] li {
   width: 200px;
   align-items: center;
   justify-content: flex-start;
+}
+
+section[id^='section--entry_score_form'] {
+  max-width: 600px;
+  display: grid;
+  grid-template-columns: 40% 40%;
+  grid-template-rows: auto;
+}
+
+.ul--entry_input li {
+  font-size: 20px;
+  margin: 10px;
+}
+
+.ul--entry_input input, textarea {
+  background-color: transparent;
+  border: none;
+  padding: 4px;
+}
+
+.ul--entry_input input {
+  border-bottom: 1px solid black;
+  text-align: center;
+  width: 40px;
+}
+
+.ul--entry_input textarea {
+  width: 90%;
+  border: 1px solid lightgrey;
+  border-radius: 4px;
+  resize: none;
+}
+
+.ul--entry_input input:focus, textarea:focus {
+  outline: none;
 }
