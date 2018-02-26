@@ -93,6 +93,15 @@ class ScoresheetEntry extends React.Component {
     }
   }
 
+  addRegScores() {
+    return (
+      (parseInt(this.state.scoring.song_score)) || 0 +
+      (parseInt(this.state.scoring.dance_score)) || 0 +
+      (parseInt(this.state.scoring.costume_score)) || 0 +
+      (parseInt(this.state.scoring.cheese_score)) || 0
+    );
+  }
+
   render() {
     const { entry, country } = this.props;
 
@@ -184,6 +193,8 @@ class ScoresheetEntry extends React.Component {
           </li>
           <li>{entry.song_title}</li>
           <li>{entry.artist}</li>
+          <li>{ this.addRegScores() }
+          </li>
           <li>
             <button
               onClick={() => {

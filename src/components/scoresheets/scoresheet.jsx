@@ -88,6 +88,7 @@ class Scoresheet extends React.Component {
               <th>Country</th>
               <th>Song Title</th>
               <th>Song Artist</th>
+              <th>Your Total Score</th>
             </tr>
           </tbody>
         </table>
