@@ -1,5 +1,4 @@
 import React from 'react';
-import SignIn from "../auth/signIn";
 import "./splash.css";
 
 const Splash = () => {
@@ -9,7 +8,6 @@ const Splash = () => {
       <div className="div--splashnav">
         <nav className="nav--splashnav">
           <h1 className="h1--splashnav">DOUZE POINTS!</h1>
-          <SignIn />
         </nav>
       </div>
       <div className="div--splashmsg">

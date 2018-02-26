@@ -54,7 +54,9 @@
 }
 
 .Link--logout {
-  font-size: 25px;
+  font-size: 18px;
+  line-height: 3px;
+  width: 150px;
   text-decoration: none;
   grid-column: 8 / 9;
   align-self: center;

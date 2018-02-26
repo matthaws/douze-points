@@ -1,3 +1,16 @@
 .facebook-button {
-  
+  grid-column: 8 / 9;
+  align-self: center;
+  justify-self: center;
+}
+
+.facebook-button:hover {
+  color: black;
+  background-color:white;
+}
+
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

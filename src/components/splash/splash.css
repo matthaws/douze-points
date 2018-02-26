@@ -12,11 +12,10 @@
 
 .section--splash {
   /* max-width: 1280px; */
-  width: 100%;
-  height: 100%;
   background-image: url("../../assets/sobral-splash.jpg");
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
+  background-position: center;
 }
 
 .nav--splashnav h1 {
