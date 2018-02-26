@@ -9,6 +9,7 @@ table[class^="table--scoresheet-headers"] {
   margin: 10px;
   font-size: 26px;
   padding: 4px;
+  border-bottom: 1px solid lightgrey;
 }
 
 table[class^="table--scoresheet-headers"] th {
