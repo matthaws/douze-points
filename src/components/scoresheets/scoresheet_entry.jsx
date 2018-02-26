@@ -200,4 +200,4 @@ class ScoresheetEntry extends React.Component {
   }
 }
 
-export default connect(mapDispatchToProps)(ScoresheetEntry);
+export default connect(null, mapDispatchToProps)(ScoresheetEntry);
