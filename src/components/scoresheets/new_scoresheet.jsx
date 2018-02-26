@@ -57,6 +57,7 @@ class NewScoresheetForm extends React.Component {
   submitForm(e) {
     e.preventDefault();
     if (this.state.scoresheet.contest_id === "default") {
+      // fix this on creation of errorsReducer
       alert("Must choose contest.");
     } else {
       this.props.createScoresheet(this.state.scoresheet);
