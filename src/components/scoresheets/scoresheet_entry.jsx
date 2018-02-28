@@ -119,72 +119,74 @@ class ScoresheetEntry extends React.Component {
         <section id={`section--entry_video_${entry.id}`}>
           <YouTube url={entry.video_url} />
         </section>
-        <ul>
-          <li>Song Score</li>
-          <li>Dance Score</li>
-          <li>Costume Score</li>
-          <li>Eurocheese Score</li>
-          <li>Bonus Points</li>
-          <li>Bonus Points Comment</li>
-        </ul>
-        <ul>
-          <li>
-              <input
-                type="number"
-                min="0"
-                max="12"
-                name="song_score"
-                onChange={this.handleChange("song_score")}
-                value={this.state.scoring.song_score || ""}
-              />
-          </li>
-          <li>
-              <input
-                type="number"
-                min="0"
-                max="12"
-                name="dance_score"
-                onChange={this.handleChange("dance_score")}
-                value={this.state.scoring.dance_score || ""}
-              />
-          </li>
-          <li>
-              <input
-                type="number"
-                min="0"
-                max="12"
-                name="costume_score"
-                onChange={this.handleChange("costume_score")}
-                value={this.state.scoring.costume_score || ""}
-              />
-          </li>
-          <li>
-              <input
-                type="number"
-                min="0"
-                max="12"
-                name="cheese_score"
-                onChange={this.handleChange("cheese_score")}
-                value={this.state.scoring.cheese_score || ""}
-              />
-          </li>
-          <li>
-              <input
-                type="number"
-                name="bonus_points"
-                onChange={this.handleChange("bonus_points")}
-                value={this.state.scoring.bonus_points || ""}
-              />
-          </li>
-          <li>
-              <textarea
-                onChange={this.handleChange("bonus_comment")}
-                value={this.state.scoring.bonus_comment || ""}
-              />
-          </li>
-        </ul>
-        <br/>
-        <button onClick={this.submitScore}>Submit Score</button>
+        <section id={`section--entry_score_form_${entry.id}`}>
+          <ul className="ul--entry_input">
+            <li>Song Score</li>
+            <li>Dance Score</li>
+            <li>Costume Score</li>
+            <li>Eurocheese Score</li>
+            <li>Bonus Points</li>
+            <li>Bonus Points Comment</li>
+          </ul>
+          <ul className="ul--entry_input">
+            <li>
+                <input
+                  type="number"
+                  min="0"
+                  max="12"
+                  name="song_score"
+                  onChange={this.handleChange("song_score")}
+                  value={this.state.scoring.song_score || ""}
+                />
+            </li>
+            <li>
+                <input
+                  type="number"
+                  min="0"
+                  max="12"
+                  name="dance_score"
+                  onChange={this.handleChange("dance_score")}
+                  value={this.state.scoring.dance_score || ""}
+                />
+            </li>
+            <li>
+                <input
+                  type="number"
+                  min="0"
+                  max="12"
+                  name="costume_score"
+                  onChange={this.handleChange("costume_score")}
+                  value={this.state.scoring.costume_score || ""}
+                />
+            </li>
+            <li>
+                <input
+                  type="number"
+                  min="0"
+                  max="12"
+                  name="cheese_score"
+                  onChange={this.handleChange("cheese_score")}
+                  value={this.state.scoring.cheese_score || ""}
+                />
+            </li>
+            <li>
+                <input
+                  type="number"
+                  name="bonus_points"
+                  onChange={this.handleChange("bonus_points")}
+                  value={this.state.scoring.bonus_points || ""}
+                />
+            </li>
+            <li>
+                <textarea
+                  onChange={this.handleChange("bonus_comment")}
+                  value={this.state.scoring.bonus_comment || ""}
+                />
+            </li>
+          </ul>
+          <br/>
+          <button className="button--score_submit" onClick={this.submitScore}>Submit Score</button>
+        </section>
       </section>
     ) : (
       ""

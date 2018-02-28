@@ -24,6 +24,7 @@ class NewScoresheetForm extends React.Component {
   static defaultProps = {
     scoresheet: {
       name: "",
+      contest_id: "default",
     }
   };
 
@@ -54,7 +55,12 @@ class NewScoresheetForm extends React.Component {
 
   submitForm(e) {
     e.preventDefault();
-    this.props.createScoresheet(this.state.scoresheet);
+    if (this.state.scoresheet.contest_id === "default") {
+      // fix this on creation of errorsReducer
+      alert("Must choose contest.");
+    } else {
+      this.props.createScoresheet(this.state.scoresheet);
+    }
   }
 
   render() {
@@ -72,7 +78,8 @@ class NewScoresheetForm extends React.Component {
         <br />
         <label>
           Contest Year
-          <select name="contest_id" onChange={e => this.handleSelect(e)}>
+          <select name="contest_id" value="" onChange={e => this.handleSelect(e)}>
+              <option disabled="true" value="" key={-1}>Please Select Contest</option>
             {Object.values(this.props.contests).map((contest, idx) => {
               return (
                 <option value={contest.id} key={idx}>
