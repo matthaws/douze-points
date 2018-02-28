@@ -1,4 +1,4 @@
-const backendUrl =
+export const backendUrl =
   process.env.NODE_ENV !== "production"
     ? "http://localhost:3000/"
     : "https://douze-points-api.herokuapp.com/";
