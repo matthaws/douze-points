@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { fetchContest } from "../../actions/contest_actions";
+import { startSpinner, endSpinner } from "../../actions/uiActions";
 import { withRouter, Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import "./contestShow.css";
@@ -15,7 +16,14 @@ class ContestShow extends React.Component {
       this.props.contest.year === "LOADING" ||
       this.props.entries.include(undefined)
     ) {
+      this.props.startSpinner();
       this.props.fetchContest(this.props.year);
+    }
+  }
+
+  componentWillReceiveProps() {
+    if (this.props.isSpinning) {
+      this.props.endSpinner();
     }
   }
 
@@ -71,7 +79,10 @@ ContestShow.propTypes = {
   year: PropTypes.string.isRequired,
   contest: PropTypes.object,
   entries: PropTypes.array,
-  fetchContest: PropTypes.func.isRequired
+  fetchContest: PropTypes.func.isRequired,
+  startSpinner: PropTypes.func.isRequired,
+  endSpinner: PropTypes.func.isRequired,
+  isSpinning: PropTypes.bool.isRequired
 };
 
 ContestShow.defaultProps = {
@@ -86,11 +97,14 @@ const mapStateToProps = (state, ownProps) => {
   const entries = contest.entry_ids.map(id => {
     return state.entries[id];
   });
-  return { year, contest, entries, countries };
+  const isSpinning = state.ui.spinner;
+  return { year, contest, entries, countries, isSpinning };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  fetchContest: year => dispatch(fetchContest(year))
+  fetchContest: year => dispatch(fetchContest(year)),
+  startSpinner: () => dispatch(startSpinner()),
+  endSpinner: () => dispatch(endSpinner())
 });
 
 export default withRouter(
