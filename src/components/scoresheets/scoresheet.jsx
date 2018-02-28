@@ -4,6 +4,7 @@ import {
   fetchScoresheet,
   removeScoresheet
 } from "../../actions/scoresheet_actions";
+import { startSpinner, endSpinner } from "../../actions/uiActions";
 import ScoresheetEntry from "./scoresheet_entry.jsx";
 import "./scoresheet.css";
 
@@ -21,7 +22,7 @@ const mapStateToProps = (state, ownProps) => {
     entries[id] = state.entries[id];
   });
   const scorings = {};
-
+  const isSpinning = state.ui.spinner;
   scoresheet.scoring_ids.forEach(id => {
     if (state.scorings[id]) {
       const newScoring = state.scorings[id];
@@ -30,27 +31,40 @@ const mapStateToProps = (state, ownProps) => {
   }) || [];
 
   const countries = state.countries;
-  return { scoresheet, entries, scorings, countries };
+  return { scoresheet, entries, scorings, countries, isSpinning };
 };
 
 const mapDispatchToProps = dispatch => ({
   fetchScoresheet: scoresheetId => dispatch(fetchScoresheet(scoresheetId)),
-  removeScoresheet: scoresheetId => dispatch(removeScoresheet(scoresheetId))
+  removeScoresheet: scoresheetId => dispatch(removeScoresheet(scoresheetId)),
+  startSpinner: () => dispatch(startSpinner()),
+  endSpinner: () => dispatch(endSpinner())
 });
 
 //=========================================
 // component
 
 class Scoresheet extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = { renderBonusPoints: false };
   }
 
+  componentDidMount() {
+    if (this.props.scoresheet.id === "LOADING") {
+      this.props.startSpinner();
+    }
+  }
+
   componentWillReceiveProps(newProps) {
     if (newProps.scoresheet.id !== this.props.scoresheet.id) {
+      this.props.startSpinner();
       this.props.fetchScoresheet(newProps.scoresheet.id);
+    } else if (
+      this.props.isSpinning &&
+      this.props.scoresheet.id !== "LOADING"
+    ) {
+      this.props.endSpinner();
     }
   }
 
@@ -96,7 +110,13 @@ class Scoresheet extends React.Component {
               <th>Country</th>
               <th>Song Title</th>
               <th>Song Artist</th>
-              <th><p>Your Total Score</p><label className="label--bonus_points">Add Bonus Points?<input type="checkbox" onChange={ () => this.toggleBonusPoints() }/></label></th>
+              <th>
+                <p>Your Total Score</p>
+                <label className="label--bonus_points">
+                  Add Bonus Points?
+                  <input type="checkbox" onChange={ () => this.toggleBonusPoints() }/>
+                </label>
+              </th>
             </tr>
           </tbody>
         </table>
