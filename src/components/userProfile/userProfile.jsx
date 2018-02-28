@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { fetchUser } from "../../actions/userActions";
+import { startSpinner, endSpinner } from "../../actions/uiActions";
 import "./userProfile.css";
 
 class UserProfile extends React.Component {
@@ -26,7 +27,14 @@ class UserProfile extends React.Component {
 
   componentDidMount() {
     if (this.props.user.username === "LOADING...") {
+      this.props.startSpinner();
       this.props.fetchUser(this.props.userId);
+    }
+  }
+
+  componentWillReceiveProps() {
+    if (this.props.isSpinning && this.props.user.username !== "LOADING...") {
+      this.props.endSpinner();
     }
   }
 
@@ -51,14 +59,18 @@ class UserProfile extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   const userId = ownProps.match.params.id;
+  const isSpinning = state.ui.spinner;
   return {
     user: state.users[ownProps.match.params.id],
-    userId
+    userId,
+    isSpinning
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  fetchUser: id => dispatch(fetchUser(id))
+  fetchUser: id => dispatch(fetchUser(id)),
+  startSpinner: () => dispatch(startSpinner()),
+  endSpinner: () => dispatch(endSpinner())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserProfile);

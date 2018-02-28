@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
 import { fetchEntry } from "../../actions/entryActions";
+import { startSpinner, endSpinner } from "../../actions/uiActions";
 import YouTube from "../video/YouTube";
 import BackArrow from "../../assets/001-back.png";
 import NextArrow from "../../assets/002-next.png";
@@ -11,13 +12,22 @@ import "./entryShow.css";
 class EntryShow extends React.Component {
   componentDidMount() {
     if (this.props.entry.song_title === "LOADING") {
+      this.props.startSpinner();
       this.props.fetchEntry(this.props.entryId);
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.entry.song_title === "LOADING") {
+      if (!this.props.isSpinning) {
+        this.props.startSpinner();
+      }
       this.props.fetchEntry(nextProps.entryId);
+    } else if (
+      this.props.isSpinning &&
+      nextProps.entry.song_title !== "LOADING"
+    ) {
+      this.props.endSpinner();
     }
   }
 
@@ -45,7 +55,7 @@ class EntryShow extends React.Component {
           <article className="article--countryName">
             <img alt="country-flag" src={country.flag_url} />
             {country.name}, {contest.year}
-            <br></br>
+            <br />
             <p className="p--songDetails">
               {entry.song_title}, {entry.artist}
             </p>
@@ -70,7 +80,10 @@ EntryShow.propTypes = {
   entryId: PropTypes.string.isRequired,
   entry: PropTypes.object,
   country: PropTypes.object,
-  contest: PropTypes.object
+  contest: PropTypes.object,
+  startSpinner: PropTypes.func.isRequired,
+  endSpinner: PropTypes.func.isRequired,
+  isSpinning: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => {
@@ -85,16 +98,21 @@ const mapStateToProps = (state, ownProps) => {
     flag_url: "/defaultflag"
   };
 
+  const isSpinning = state.ui.spinner;
+
   return {
     entryId,
     entry,
     country,
-    contest
+    contest,
+    isSpinning
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  fetchEntry: id => dispatch(fetchEntry(id))
+  fetchEntry: id => dispatch(fetchEntry(id)),
+  startSpinner: () => dispatch(startSpinner()),
+  endSpinner: () => dispatch(endSpinner())
 });
 
 export default withRouter(
