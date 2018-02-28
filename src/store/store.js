@@ -9,12 +9,14 @@ auth: {
   }
 }
 // All your other state
-const configureStore = (preloadedState = initialState) => (
-  createStore(
-    RootReducer,
-    preloadedState,
-    applyMiddleware(thunk, logger)
-  )
-);
+const middlewares = [thunk];
 
+if (process.env.NODE_ENV !== 'production') {
+  const { logger } = require('redux-logger');
+  middlewares.push(logger);
+}
+
+const configureStore = (preloadedState = {}) => (
+  createStore(rootReducer, preloadedState, applyMiddleware(...middlewares))
+);
 export default configureStore;
