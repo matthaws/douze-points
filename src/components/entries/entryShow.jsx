@@ -33,7 +33,6 @@ class EntryShow extends React.Component {
 
   render() {
     const { entry, country, contest, entryId } = this.props;
-    debugger;
     let prevEntryId = parseInt(entryId) - 1;
     if (contest && !contest.entry_ids.includes(prevEntryId)) {
       prevEntryId = contest.entry_ids[contest.entry_ids.length - 1];
