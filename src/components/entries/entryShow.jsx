@@ -48,9 +48,6 @@ class EntryShow extends React.Component {
     } else {
       return (
         <section className="section--entryShow">
-          <Link className="Link--backArrow" to={`/entries/${prevEntryId}`}>
-            <img alt="back-arrow" src={BackArrow} />
-          </Link>
           <article className="article--countryName">
             <img alt="country-flag" src={country.flag_url} />
             {country.name}, {contest.year}
@@ -59,15 +56,18 @@ class EntryShow extends React.Component {
               {entry.song_title}, {entry.artist}
             </p>
           </article>
-          <Link className="Link--nextArrow" to={`/entries/${nextEntryId}`}>
-            <img alt="next-arrow" src={NextArrow} />
-          </Link>
           <aside className="aside--details">
             <h3>Ranking: {entry.final_ranking}</h3>
             <h3>Score: {entry.final_score}</h3>
           </aside>
           <figure className="figure--YouTube">
-            <YouTube url={entry.video_url} />
+            <Link className="Link--backArrow" to={`/entries/${prevEntryId}`}>
+              <img alt="back-arrow" src={BackArrow} />
+            </Link>
+            <YouTube width={"1280"} height={"720"} url={entry.video_url} />
+            <Link className="Link--nextArrow" to={`/entries/${nextEntryId}`}>
+              <img alt="next-arrow" src={NextArrow} />
+            </Link>
           </figure>
         </section>
       );

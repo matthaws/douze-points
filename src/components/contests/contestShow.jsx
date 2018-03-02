@@ -68,7 +68,6 @@ class ContestShow extends React.Component {
             </Link>
             );
           })}
-          } }
         </ul>
       </main>
     );
