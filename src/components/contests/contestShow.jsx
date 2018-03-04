@@ -9,7 +9,6 @@ import Gold from "../../assets/gold.png";
 import Silver from "../../assets/silver.png";
 import Bronze from "../../assets/bronze.png";
 
-
 class ContestShow extends React.Component {
   componentDidMount() {
     if (
@@ -43,13 +42,19 @@ class ContestShow extends React.Component {
             let medal;
             switch (entry.final_ranking) {
               case 1:
-                medal = <img alt="gold-medal" src={Gold} className="img--medal" />;
+                medal = (
+                  <img alt="gold-medal" src={Gold} className="img--medal" />
+                );
                 break;
               case 2:
-                medal = <img alt="silver-medal" src={Silver} className="img--medal" />;
+                medal = (
+                  <img alt="silver-medal" src={Silver} className="img--medal" />
+                );
                 break;
               case 3:
-                medal = <img alt="bronze-medal" src={Bronze} className="img--medal" />;
+                medal = (
+                  <img alt="bronze-medal" src={Bronze} className="img--medal" />
+                );
                 break;
               default:
                 medal = "";
@@ -57,15 +62,19 @@ class ContestShow extends React.Component {
 
             return (
               <Link to={`/entries/${entry.id}`}>
-              <li className="li--entry">
-                  <img alt="country-flag" src={flag_url} className="img--flag" />
+                <li className="li--entry">
+                  <img
+                    alt="country-flag"
+                    src={flag_url}
+                    className="img--flag"
+                  />
                   <span className="span--entry">
                     {entry.song_title}, {entry.artist}
                   </span>
                   {medal}
                   <span className="span--rank">#{entry.final_ranking}</span>
-              </li>
-            </Link>
+                </li>
+              </Link>
             );
           })}
         </ul>
@@ -89,10 +98,23 @@ ContestShow.defaultProps = {
   contest: { year: "LOADING" }
 };
 
+const findContestYear = (year, contests) => {
+  let match;
+  Object.values(contests).forEach(contest => {
+    if (contest.year === parseInt(year)) {
+      match = contest;
+    }
+  });
+  return match;
+};
+
 const mapStateToProps = (state, ownProps) => {
-  const { countries } = state;
+  const { countries, contests } = state;
   const year = ownProps.match.params.year;
-  const contest = state.contests[year] || { year: "LOADING", entry_ids: [] };
+  const contest = findContestYear(year, contests) || {
+    year: "LOADING",
+    entry_ids: []
+  };
   const entries = contest.entry_ids.map(id => {
     return state.entries[id];
   });
