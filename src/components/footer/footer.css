@@ -4,10 +4,12 @@
   flex-direction: row;
   border-top: 1px solid black;
   box-shadow: -2px -2px 10px lightblue;
-  margin-top: 1em;
+  padding-top: 1em;
   bottom: 0;
   left: 0;
   right: 0;
+  position: absolute;
+
 }
 
 .div--credits {
