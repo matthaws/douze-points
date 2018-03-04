@@ -9,7 +9,7 @@ export const authUrl = `${backendUrl}/auth`;
 export const authHeaders = () => {
   if (sessionStorage.getItem("token")) {
     return {
-      Authorization: sessionStorage.getItem("token")
+      Authorization: `bearer ${sessionStorage.getItem("token")}`
     };
   } else {
     return null;
