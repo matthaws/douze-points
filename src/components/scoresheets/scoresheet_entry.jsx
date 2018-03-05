@@ -33,7 +33,7 @@ class ScoresheetEntry extends React.Component {
 
     const scoring = this.props.scoring || this.defaultScoring;
 
-    this.state = { renderScoreSection: scoring };
+    this.state = { renderScoreSection: false, scoring };
     this.submitScore = this.submitScore.bind(this);
   }
 
