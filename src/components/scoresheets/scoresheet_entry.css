@@ -68,6 +68,7 @@ section[class^='ul--bonus_comment'] p {
 }
 
 .ul--entry_input li {
+  height: 30px;
   font-size: 20px;
   margin: 10px;
 }
@@ -106,10 +107,10 @@ textarea {
   width: 80%;
 }
 
-.div--button-div button:focus {
-  outline: none;
-}
-
 button:hover {
   font-weight: bold;
+}
+
+button:focus {
+  outline: none;
 }

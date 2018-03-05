@@ -125,6 +125,7 @@ class ScoresheetEntry extends React.Component {
             <li>Dance Score</li>
             <li>Costume Score</li>
             <li>Eurocheese Score</li>
+            <hr/>
             <li>Total Score</li>
             <li>Bonus Points</li>
           </ul>
@@ -169,6 +170,7 @@ class ScoresheetEntry extends React.Component {
                   value={this.state.scoring.cheese_score || ""}
                 />
             </li>
+            <hr/>
             <li> { (this.state.scoring.song_score || 0) +
                    (this.state.scoring.dance_score || 0) +
                    (this.state.scoring.costume_score || 0) +
