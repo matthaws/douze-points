@@ -190,7 +190,9 @@ class ScoresheetEntry extends React.Component {
             />
           </section>
           <br/>
-          <button className="button--score_submit" onClick={this.submitScore}>Submit Score</button>
+          <div className='div--button-div'>
+            <button className="button--score_submit" onClick={this.submitScore}>Submit Score</button>
+          </div>
         </section>
       </section>
     ) : (

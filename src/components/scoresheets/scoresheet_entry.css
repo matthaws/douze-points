@@ -20,10 +20,6 @@ section[id^='section--entry_score'] {
   justify-items: center;
 }
 
-button:focus {
-  outline: none;
-}
-
 #li--entry_country {
   display: flex;
   box-sizing: border-box;
@@ -44,13 +40,26 @@ section[class^='section--entry_parent_'] li {
 section[id^='section--entry_score_form'] {
   display: grid;
   width: 100%;
+  height: auto;
   grid-template-columns: 30% 70%;
-  grid-template-rows: 70% 20% 10%;
+  grid-template-rows: 70% 25% 15%;
+  grid-template-areas:
+    "score_name score_num"
+    "bonus bonus"
+    "submit submit";
   justify-items: left;
 }
 
 section[class^='ul--bonus_comment'] {
-  grid-column: 0 / 3;
+  width: 100%;
+  grid-area: bonus;
+  text-align: center;
+}
+
+section[class^='ul--bonus_comment'] p {
+  width: 90%;
+  text-align: left;
+  margin-left: 30px;
 }
 
 .ul--entry_input {
@@ -75,9 +84,9 @@ section[class^='ul--bonus_comment'] {
   width: 40px;
 }
 
-.ul--entry_input textarea {
-  width: 75%;
-  height: 100%;
+textarea {
+  width: 90%;
+  height: 40px;
   border: 1px solid lightgrey;
   border-radius: 4px;
   resize: none;
@@ -85,4 +94,22 @@ section[class^='ul--bonus_comment'] {
 
 .ul--entry_input input:focus, textarea:focus {
   outline: none;
+}
+
+.div--button-div {
+  grid-area: submit;
+  width: 100%;
+  text-align: center;
+}
+
+.div--button-div button {
+  width: 80%;
+}
+
+.div--button-div button:focus {
+  outline: none;
+}
+
+button:hover {
+  font-weight: bold;
 }
