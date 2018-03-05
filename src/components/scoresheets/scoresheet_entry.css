@@ -16,9 +16,12 @@ section[class^='section--entry_parent_'] img {
 
 section[id^='section--entry_score'] {
   display: grid;
-  width: 80%;
-  grid-template-columns: 45% 50%;
+  grid-template-columns: 50% 50%;
   justify-items: center;
+}
+
+button:focus {
+  outline: none;
 }
 
 #li--entry_country {
@@ -40,9 +43,14 @@ section[class^='section--entry_parent_'] li {
 
 section[id^='section--entry_score_form'] {
   display: grid;
-  grid-template-columns: 40% 60%;
-  grid-template-rows: auto;
+  width: 100%;
+  grid-template-columns: 30% 70%;
+  grid-template-rows: 70% 20% 10%;
   justify-items: left;
+}
+
+section[class^='ul--bonus_comment'] {
+  grid-column: 0 / 3;
 }
 
 .ul--entry_input {
@@ -68,7 +76,7 @@ section[id^='section--entry_score_form'] {
 }
 
 .ul--entry_input textarea {
-  width: 100%;
+  width: 75%;
   height: 100%;
   border: 1px solid lightgrey;
   border-radius: 4px;

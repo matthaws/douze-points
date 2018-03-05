@@ -117,6 +117,8 @@ class Scoresheet extends React.Component {
                   <input type="checkbox" onChange={ () => this.toggleBonusPoints() }/>
                 </label>
               </th>
+              <th></th>
+              <th></th>
             </tr>
           </tbody>
         </table>
