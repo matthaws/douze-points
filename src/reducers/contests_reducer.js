@@ -10,7 +10,7 @@ const contestsReducer = (state = {}, action) => {
       return newState;
     case RECEIVE_CONTEST:
       newState = merge({}, newState, {
-        [action.payload.contest.year]: action.payload.contest
+        [action.payload.contest.id]: action.payload.contest
       });
       return newState;
     case RECEIVE_ENTRY:
