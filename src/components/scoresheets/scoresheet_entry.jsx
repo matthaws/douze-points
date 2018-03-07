@@ -125,8 +125,9 @@ class ScoresheetEntry extends React.Component {
             <li>Dance Score</li>
             <li>Costume Score</li>
             <li>Eurocheese Score</li>
+            <hr/>
+            <li>Total Score</li>
             <li>Bonus Points</li>
-            <li>Bonus Points Comment</li>
           </ul>
           <ul className="ul--entry_input">
             <li>
@@ -169,6 +170,11 @@ class ScoresheetEntry extends React.Component {
                   value={this.state.scoring.cheese_score || ""}
                 />
             </li>
+            <hr/>
+            <li> { (this.state.scoring.song_score || 0) +
+                   (this.state.scoring.dance_score || 0) +
+                   (this.state.scoring.costume_score || 0) +
+                   (this.state.scoring.cheese_score || 0) }</li>
             <li>
                 <input
                   type="number"
@@ -177,15 +183,18 @@ class ScoresheetEntry extends React.Component {
                   value={this.state.scoring.bonus_points || ""}
                 />
             </li>
-            <li>
-                <textarea
-                  onChange={this.handleChange("bonus_comment")}
-                  value={this.state.scoring.bonus_comment || ""}
-                />
-            </li>
           </ul>
+          <section className={`ul--bonus_comment_${entry.id}`}>
+            <p>Comment</p>
+            <textarea
+              onChange={this.handleChange("bonus_comment")}
+              value={this.state.scoring.bonus_comment || ""}
+            />
+          </section>
           <br/>
-          <button className="button--score_submit" onClick={this.submitScore}>Submit Score</button>
+          <div className='div--button-div'>
+            <button className="button--score_submit" onClick={this.submitScore}>Submit Score</button>
+          </div>
         </section>
       </section>
     ) : (
@@ -209,11 +218,11 @@ class ScoresheetEntry extends React.Component {
                 this.toggleScoreShow();
               }}
             >
-              Hide/Show Scores
+              { this.state.renderScoreSection ? String.fromCharCode(9650) : String.fromCharCode(9660) }
             </button>
           </li>
         </section>
-        <ul>{scoreSection}</ul>
+        <ul className={`ul--score_section_${entry.id}`}>{scoreSection}</ul>
       </ul>
     );
   }
