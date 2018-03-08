@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchContests } from '../../actions/contest_actions';
-import { fetchEntry } from '../../actions/entryActions';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './contestIndex.css';
@@ -14,9 +13,6 @@ class ContestIndex extends React.Component {
 
   componentDidMount() {
     this.props.fetchContests();
-  }
-
-  componentWillReceiveProps(newProps) {
   }
 
   render() {
@@ -44,7 +40,6 @@ class ContestIndex extends React.Component {
 
 const mapDispatchToProps = dispatch => ({
   fetchContests: () => dispatch(fetchContests()),
-  fetchEntry: (entryId) => dispatch(fetchEntry(entryId)),
 })
 
 const mapStateToProps = state => {
