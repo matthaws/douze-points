@@ -15,13 +15,25 @@ class ContestIndex extends React.Component {
   }
 
   render() {
-    return (
-      <ul>
-        { this.props.contest_ids.map( (key) => {
-          return <li>{this.props.contests[key].year}</li>
-        }) }
-      </ul>
-    )
+    debugger
+    if (this.props.contest_ids.length > 0) {
+      return (
+        <ul>
+          { this.props.contest_ids.map( (key) => {
+            return (
+              <section className="section--contest_list_item">
+                <h1><img src={ this.props.contests[key].host_country.flag_url }/>{this.props.contests[key].year} - { this.props.contests[key].location }</h1>
+                <ul>
+                  <li>Winner: </li>
+                </ul>
+              </section>
+            )
+          }) }
+        </ul>
+      )
+    } else {
+      return null
+    }
   }
 
 }
@@ -30,9 +42,16 @@ const mapDispatchToProps = dispatch => ({
   fetchContests: () => dispatch(fetchContests()),
 })
 
-const mapStateToProps = state => ({
-  contests: state.contests,
-  contest_ids: Object.keys(state.contests),
-});
+const mapStateToProps = state => {
+  let winner_ids = [];
+  for (var obj in state.contests) {
+    winner_ids.push(state.contests[obj].winning_entry_id);
+  }
+  return {
+    contests: state.contests,
+    contest_ids: Object.keys(state.contests),
+    winner_ids
+  }
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContestIndex);

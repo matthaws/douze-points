@@ -8,8 +8,8 @@
   bottom: 0;
   left: 0;
   right: 0;
-  position: absolute;
-
+  /* position: absolute; */
+  background: linear-gradient(to bottom right, #ffffe8, #b5c9f2);
 }
 
 .div--credits {

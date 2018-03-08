@@ -8,6 +8,7 @@
   grid-template-rows: 1fr;
   /* background: white; */
   /* linear-gradient(to bottom right, #FFFFFF, #a0a5af); */
+  background: linear-gradient(to bottom right, #ffffe8, #b5c9f2);
   font-size: 30px;
 }
 

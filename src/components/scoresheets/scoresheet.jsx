@@ -118,7 +118,6 @@ class Scoresheet extends React.Component {
                 </label>
               </th>
               <th></th>
-              <th></th>
             </tr>
           </tbody>
         </table>
