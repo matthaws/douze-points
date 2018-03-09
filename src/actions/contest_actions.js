@@ -1,5 +1,5 @@
 import * as ContestAPIUtil from "../util/contest_api_util";
-import { fetchEntry } from "./entryActions";
+import { receiveEntry } from "./entryActions";
 export const RECEIVE_CONTEST = "RECEIVE_CONTEST";
 export const RECEIVE_CONTESTS = "RECEIVE_CONTESTS";
 
@@ -16,7 +16,11 @@ export const receiveContests = payload => ({
 export const fetchContests = () => async dispatch => {
   const payload = await ContestAPIUtil.fetchContests();
   Object.keys(payload.contests).forEach( contest_id => {
-    dispatch(fetchEntry(payload.contests[contest_id].winning_entry_id));
+    const winning_entry = {
+      entry: payload.contests[contest_id].winning_entry,
+      contest: payload.contests[contest_id],
+    };
+    dispatch(receiveEntry(winning_entry));
   });
   dispatch(receiveContests(payload));
 };
