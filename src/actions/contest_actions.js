@@ -20,7 +20,9 @@ export const fetchContests = () => async dispatch => {
       entry: payload.contests[contest_id].winning_entry,
       contest: payload.contests[contest_id],
     };
-    dispatch(receiveEntry(winning_entry));
+    if (winning_entry.entry && winning_entry.contest) {
+      dispatch(receiveEntry(winning_entry));
+    }
   });
   dispatch(receiveContests(payload));
 };
