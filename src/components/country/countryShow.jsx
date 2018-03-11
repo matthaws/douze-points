@@ -16,7 +16,6 @@ class CountryShow extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    debugger;
     if (!this.props.country.entry_ids && nextProps.country.entry_ids) {
       this.props.endSpinner();
     } else if (!this.props.country.id && nextProps.country.id) {
@@ -56,7 +55,6 @@ CountryShow.defaultProps = {
 const mapStateToProps = (state, ownProps) => {
   const slug = ownProps.match.params.name;
   const country = selectCountryBySlug(slug, Object.values(state.countries));
-  debugger;
   const entries =
     country && country.entry_ids
       ? country.entry_ids.map(id => state.entries[id])

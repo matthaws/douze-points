@@ -7,7 +7,6 @@ import "./entryIndexItem.css";
 
 const EntryIndexItem = ({ entry, country }) => {
   const flag_url = country ? country.flag_url : "";
-  debugger
   let medal;
   switch (entry.final_ranking) {
     case 1:
