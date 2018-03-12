@@ -15,15 +15,6 @@ export const receiveContests = payload => ({
 
 export const fetchContests = () => async dispatch => {
   const payload = await ContestAPIUtil.fetchContests();
-  Object.keys(payload.contests).forEach( contest_id => {
-    const winning_entry = {
-      entry: payload.contests[contest_id].winning_entry,
-      contest: payload.contests[contest_id],
-    };
-    if (winning_entry.entry && winning_entry.contest) {
-      dispatch(receiveEntry(winning_entry));
-    }
-  });
   dispatch(receiveContests(payload));
 };
 
