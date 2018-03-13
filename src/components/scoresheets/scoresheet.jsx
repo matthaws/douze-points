@@ -1,10 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import {
-  fetchScoresheet,
-  removeScoresheet
-} from "../../actions/scoresheet_actions";
-import { startSpinner, endSpinner } from "../../actions/uiActions";
+import { fetchScoresheet, removeScoresheet } from "../../actions/scoresheet_actions";
+import { startSpinner, endSpinner, setSort } from "../../actions/uiActions";
 import ScoresheetEntry from "./scoresheet_entry.jsx";
 import "./scoresheet.css";
 
@@ -30,15 +27,18 @@ const mapStateToProps = (state, ownProps) => {
     }
   }) || [];
 
+  const sortBy = state.ui.sortBy || null;
+
   const countries = state.countries;
-  return { scoresheet, entries, scorings, countries, isSpinning };
+  return { scoresheet, entries, scorings, countries, isSpinning, sortBy };
 };
 
 const mapDispatchToProps = dispatch => ({
   fetchScoresheet: scoresheetId => dispatch(fetchScoresheet(scoresheetId)),
   removeScoresheet: scoresheetId => dispatch(removeScoresheet(scoresheetId)),
   startSpinner: () => dispatch(startSpinner()),
-  endSpinner: () => dispatch(endSpinner())
+  endSpinner: () => dispatch(endSpinner()),
+  setSort: filter => dispatch(setSort(filter)),
 });
 
 //=========================================
@@ -70,6 +70,9 @@ class Scoresheet extends React.Component {
       this.props.scoresheet.id !== "LOADING"
     ) {
       this.props.endSpinner();
+    }
+    if (newProps.sortBy) {
+      this.setState({ sortBy: newProps.sortBy });
     }
   }
 
@@ -167,6 +170,13 @@ class Scoresheet extends React.Component {
     this.setState({ renderBonusPoints: !this.state.renderBonusPoints });
   }
 
+  setSortFilter(filter) {
+    return (e) => {
+      e.preventDefault();
+      this.props.setSort(filter);
+    }
+  }
+
   render() {
     let scoresheetEntries = this.createEntries();
 
@@ -175,11 +185,11 @@ class Scoresheet extends React.Component {
         <table className="table--scoresheet-headers">
           <tbody>
             <tr className="tr--scoresheet-header-row">
-              <th>Country</th>
-              <th>Song Title</th>
-              <th>Song Artist</th>
+              <th>Country<button onClick={ this.setSortFilter("country")}>Sort by</button></th>
+              <th>Song Title<button onClick={ this.setSortFilter("song_title")}>Sort by</button></th>
+              <th>Song Artist<button onClick={ this.setSortFilter("artist")}>Sort by</button></th>
               <th>
-                <p>Your Total Score</p>
+                <p>Your Total Score<button onClick={ this.setSortFilter("total_score")}>Sort by</button></p>
                 <label className="label--bonus_points">
                   Add Bonus Points?
                   <input type="checkbox" onChange={ () => this.toggleBonusPoints() }/>

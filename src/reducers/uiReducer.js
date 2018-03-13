@@ -1,5 +1,5 @@
 import merge from "lodash/merge";
-import { START_SPINNER, END_SPINNER } from "../actions/uiActions";
+import { START_SPINNER, END_SPINNER, SET_SORT_FILTER } from "../actions/uiActions";
 
 const defaultState = {
   spinner: false
@@ -13,6 +13,9 @@ const uiReducer = (state = defaultState, action) => {
       return newState;
     case END_SPINNER:
       newState.spinner = false;
+      return newState;
+    case SET_SORT_FILTER:
+      newState.sortBy = action.sortBy;
       return newState;
     default:
       return newState;
