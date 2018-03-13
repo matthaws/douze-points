@@ -17,8 +17,11 @@ const entriesReducer = (state = {}, action) => {
       newState[entry.id] = entry;
       return newState;
     case RECEIVE_CONTESTS:
-      let winningEntries = Object.keys(action.payload.contests).map( (contest) => {
-        return action.payload.contests[contest].winning_entry;
+      let winningEntries = {};
+      Object.keys(action.payload.contests).forEach( (contest) => {
+        if (action.payload.contests[contest].winning_entry_id) {
+          winningEntries[action.payload.contests[contest].winning_entry_id] = action.payload.contests[contest].winning_entry;
+        }
       });
       newState = merge({}, state, winningEntries);
       return newState;
