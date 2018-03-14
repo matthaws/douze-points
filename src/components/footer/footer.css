@@ -16,7 +16,7 @@
 }
 
 .div--credits {
-  font-family: 'Averia Sans Libre', cursive;
+  /* font-family: 'Averia Sans Libre', cursive; */
   grid-column: 1 / 2;
   justify-content: flex-start;
   margin: 1em;
@@ -28,4 +28,5 @@
   justify-self: end;
   margin: 1em;
   font-size: 20px;
+  font-family: 'Caveat', cursive;
 }

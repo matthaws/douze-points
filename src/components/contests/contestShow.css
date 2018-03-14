@@ -1,10 +1,13 @@
 .main--contestShowPage {
-  font-family: 'Caveat', cursive;
   background-color: white;
-  background: linear-gradient(to bottom right, #ffffe8, #b5c9f2);
+  /* background: linear-gradient(to bottom right, #ffffe8, #b5c9f2); */
 }
 
 .div--contest-title {
+  /* font-family: 'Caveat', cursive; */
+  font-family: 'Lato', sans-serif;
+  /* font-family: 'Nunito', sans-serif; */
+  /* font-family: 'Quicksand', sans-serif; */
   width: 80%;
   font-size: 50px;
   /* margin: 0 auto; */
@@ -31,7 +34,7 @@ margin-bottom: 70px;
   height: 40px;
   width: 80%;
   padding-bottom: 20px;
-  font-family: 'Averia Sans Libre', cursive;
+  /* font-family: 'Averia Sans Libre', cursive; */
   /* align-self: center; */
   font-size: 20px;
   box-shadow: 1px 1px 5px lightblue;

@@ -27,18 +27,28 @@
   to { transform: rotate(360deg); }
 } */
 
+
+
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
   /* background: linear-gradient(to bottom right, #5FBEDE, #002659); */
   /*sample colors*/
-    background: linear-gradient(to bottom right, #ffffe8, #b5c9f2);
+    /* background: linear-gradient(to bottom right, #ffffe8, #b5c9f2); */
   min-height: 100vh;
   height: 100%;
-  font-family: 'Caveat', cursive;
-
-
+  /* font-family: 'Caveat', cursive; */
+  /* font-family: 'Mina', sans-serif; */
+  /* font-family: 'Lato', sans-serif; */
+  font-family: 'Raleway', sans-serif;
+  /* font-family: 'Noto Sans', sans-serif; */
+  /* font-family: 'Nunito', sans-serif; */
+  /* font-family: 'Nanum Gothic', sans-serif; */
+  /* font-family: 'Quicksand', sans-serif; */
+  /* font-weight: 100; */
+  /* font-style: italic; */
+  font-size: 20px
 }
 
 .main {

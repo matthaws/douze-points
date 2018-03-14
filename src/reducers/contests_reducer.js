@@ -1,5 +1,5 @@
 import merge from "lodash/merge";
-import { RECEIVE_CONTEST } from "../actions/contest_actions";
+import { RECEIVE_CONTEST, RECEIVE_CONTESTS } from "../actions/contest_actions";
 import { RECEIVE_ENTRY } from "../actions/entryActions";
 
 const contestsReducer = (state = {}, action) => {
@@ -8,6 +8,13 @@ const contestsReducer = (state = {}, action) => {
     case RECEIVE_CONTEST:
       newState = merge({}, newState, {
         [action.payload.contest.year]: action.payload.contest
+      });
+      return newState;
+    case RECEIVE_CONTESTS:
+      newState = merge({}, newState, {
+        contests: action.payload.map((contest) => {
+          return {[contest.id]: contest}
+        })
       });
       return newState;
     case RECEIVE_ENTRY:

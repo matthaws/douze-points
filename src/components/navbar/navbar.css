@@ -6,9 +6,9 @@
   display: grid;
   grid-template-columns: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%;
   grid-template-rows: 1fr;
-  /* background: white; */
+  background: white;
   /* linear-gradient(to bottom right, #FFFFFF, #a0a5af); */
-  font-size: 30px;
+  /* font-size: 30px; */
 }
 
 .Link--logo {
@@ -19,7 +19,8 @@
   align-self: center;
   text-decoration: none;
   margin-left: 30px;
-  color: black
+  color: black;
+  font-family: 'Caveat', cursive
 }
 
 /* .main--navbar Link {
@@ -54,13 +55,13 @@
 }
 
 .Link--logout {
-  font-size: 25px;
+  font-size: 20px;
   text-decoration: none;
   grid-column: 8 / 9;
   align-self: center;
   justify-self: center;
   border: 1px solid black;
-  border-radius: 12px;
+  border-radius: 7px;
   color: white;
   background-color:black;
   padding: 7px 15px;
