@@ -7,6 +7,7 @@ section[class^='section--entry_parent_'] {
   font-size: 22px;
   position: relative;
   margin: 16px;
+  font-family: 'Averia Sans Libre', cursive;
 }
 
 section[class^='section--entry_parent_'] img {
@@ -39,6 +40,7 @@ section[class^='section--entry_parent_'] li {
 
 section[id^='section--entry_score_form'] {
   display: grid;
+  font-family: 'Averia Sans Libre', cursive;
   width: 100%;
   height: auto;
   grid-template-columns: 30% 70%;

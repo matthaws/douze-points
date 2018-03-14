@@ -9,7 +9,7 @@ import "./scoresheet_entry.css";
 
 const mapDispatchToProps = dispatch => ({
   createScoring: scoring => dispatch(createScoring(scoring)),
-  updateScoring: scoring => dispatch(updateScoring(scoring))
+  updateScoring: scoring => dispatch(updateScoring(scoring)),
 });
 
 //=========================================

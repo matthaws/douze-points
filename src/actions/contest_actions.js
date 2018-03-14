@@ -1,4 +1,5 @@
 import * as ContestAPIUtil from "../util/contest_api_util";
+import { receiveEntry } from "./entryActions";
 export const RECEIVE_CONTEST = "RECEIVE_CONTEST";
 export const RECEIVE_CONTESTS = "RECEIVE_CONTESTS";
 

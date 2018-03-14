@@ -11,6 +11,7 @@ import MyScoresheetsContainer from "./scoresheets/my_scoresheets_container";
 import UserProfile from "./userProfile/userProfile";
 import "./App.css";
 import ContestShow from "./contests/contestShow";
+import ContestIndex from "./contests/contestIndex";
 import EntryShow from "./entries/entryShow";
 import Navbar from "./navbar/navbar";
 import Footer from "./footer/footer";
@@ -52,6 +53,7 @@ class App extends Component {
               component={MyScoresheetsContainer}
             />
             <Route exact path="/users/:id" component={UserProfile} />
+            <Route exact path="/contests" component={ContestIndex} />
             <Route exact path="/contests/:year" component={ContestShow} />
             <Route exact path="/entries/:id" component={EntryShow} />
             <AuthRoute exact path="/" component={Splash} />
