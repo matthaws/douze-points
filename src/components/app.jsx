@@ -13,6 +13,7 @@ import "./App.css";
 import ContestShow from "./contests/contestShow";
 import ContestIndex from "./contests/contestIndex";
 import EntryShow from "./entries/entryShow";
+import CountryShow from "./country/countryShow";
 import Navbar from "./navbar/navbar";
 import Footer from "./footer/footer";
 
@@ -56,6 +57,7 @@ class App extends Component {
             <Route exact path="/contests" component={ContestIndex} />
             <Route exact path="/contests/:year" component={ContestShow} />
             <Route exact path="/entries/:id" component={EntryShow} />
+            <Route exact path="/countries/:name" component={CountryShow} />
             <AuthRoute exact path="/" component={Splash} />
           </Switch>
           <Footer />

@@ -29,9 +29,14 @@
       </noscript>
       <div id="fb-root"></div>
       <script>
+      const appId =
+        location.hostname === "localhost"
+          ? "196365761124034"
+          : "312658112474450"
+
       window.fbAsyncInit = function() {
     window.FB.init({
-      appId: "312658112474450",
+      appId,
       autoLogAppEvents: true,
       xfbml: true,
       version: "v0.1"
