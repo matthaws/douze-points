@@ -1,0 +1,41 @@
+.section--countryShow {
+  display: grid;
+  grid-template-columns: 100px 1fr 1fr 1fr 1fr 1fr 1fr 100px;
+  grid-template-rows: 200px 90px 1fr 1fr;
+  margin-top: 50px;
+  min-height: 100vh;
+}
+
+.h1--country--name {
+  grid-column: 4 / 6;
+  font-size: 50px;
+  padding-top: 60px;
+  font-family: "Averia Sans Libre";
+  position: relative;
+  text-align: center;
+}
+
+.img--country--flag {
+  grid-column: 3 / 4;
+  grid-row-start: 1;
+  height: 200px;
+}
+
+.ul--entry-list {
+  grid-row-start: 2;
+  grid-column: 2 / 8;
+  margin-top: 200px;
+}
+
+.ul--entry-list > li {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ul--entry-list li a {
+  min-width: 900px;
+}
+
+.ul--entry-list li p {
+  font-size: 30px;
+}
