@@ -125,8 +125,8 @@ class Scoresheet extends React.Component {
             (bScoring.dance_score || 0)
           ));
           if (this.state.renderBonusPoints) {
-            aScore += (aScoring === undefined ? 0 : (aScoring.bonus_score || 0));
-            bScore += (bScoring === undefined ? 0 : (bScoring.bonus_score || 0));
+            aScore += (aScoring === undefined ? 0 : (aScoring.bonus_points || 0));
+            bScore += (bScoring === undefined ? 0 : (bScoring.bonus_points || 0));
           }
           return (bScore - aScore);
         });
