@@ -30,7 +30,7 @@
       <div id="fb-root"></div>
       <script>
       const appId =
-        location.hostname === "localhost"
+        process.env.NODE_ENV !== "production"
           ? "196365761124034"
           : "312658112474450"
 
