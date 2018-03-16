@@ -4,6 +4,7 @@ import FacebookLogin from "react-facebook-login";
 import { connect } from "react-redux";
 import { authenticateUser } from "../../actions/authActions";
 import { startSpinner } from "../../actions/uiActions";
+import { appId } from "../../util/constants";
 import "./signin.css";
 
 class signIn extends React.Component {
@@ -26,10 +27,11 @@ class signIn extends React.Component {
   }
 
   render() {
+
     return (
       <div className="login-wrapper">
         <FacebookLogin
-          appId="312658112474450"
+          appId={appId}
           autoLoad={true}
           fields="name,email,picture"
           cssClass="facebook-button"

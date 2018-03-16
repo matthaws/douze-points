@@ -1,13 +1,12 @@
 import React from "react";
+import EntryIndexItem from "../entries/entryIndexItem";
 import { connect } from "react-redux";
 import { fetchContest } from "../../actions/contest_actions";
 import { startSpinner, endSpinner } from "../../actions/uiActions";
 import { withRouter, Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import "./contestShow.css";
-import Gold from "../../assets/gold.png";
-import Silver from "../../assets/silver.png";
-import Bronze from "../../assets/bronze.png";
+
 
 class ContestShow extends React.Component {
   componentDidMount() {
@@ -28,6 +27,7 @@ class ContestShow extends React.Component {
 
   render() {
     const { contest, entries, countries } = this.props;
+<<<<<<< HEAD
     if (countries.length < 1 || entries.includes(undefined) ) {
       return null;
     } else {
@@ -84,6 +84,24 @@ class ContestShow extends React.Component {
         </main>
       );
     }
+=======
+    return (
+      <main className="main--contestShowPage">
+        <div className="div--contest-title">
+          EuroVision Song Contest {contest.year}
+        </div>
+        <ul className="ul--entries">
+          {entries.map(entry => {
+            return (
+              <EntryIndexItem
+              entry={entry}
+              country={countries[entry.country_id]}
+              />)
+          })}
+        </ul>
+      </main>
+    );
+>>>>>>> 5d0c97d8df81065868ee664c18942fac94324058
   }
 }
 
