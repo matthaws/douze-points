@@ -13,6 +13,13 @@ const contestsReducer = (state = {}, action) => {
         [action.payload.contest.id]: action.payload.contest
       });
       return newState;
+    case RECEIVE_CONTESTS:
+      newState = merge({}, newState, {
+        contests: action.payload.map((contest) => {
+          return {[contest.id]: contest}
+        })
+      });
+      return newState;
     case RECEIVE_ENTRY:
       const { contest } = action.payload;
       newState[contest.id] = contest;
