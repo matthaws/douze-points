@@ -11,36 +11,53 @@ import MyScoresheetsContainer from "./scoresheets/my_scoresheets_container";
 import UserProfile from "./userProfile/userProfile";
 import "./App.css";
 import ContestShow from "./contests/contestShow";
+import ContestIndex from "./contests/contestIndex";
 import EntryShow from "./entries/entryShow";
-import Navbar from './navbar/navbar';
-import Footer from './footer/footer';
-
+import CountryShow from "./country/countryShow";
+import Navbar from "./navbar/navbar";
+import Footer from "./footer/footer";
 
 class App extends Component {
   static propTypes = {
     authenticateUser: PropTypes.func.isRequired,
     fetchCurrentUser: PropTypes.func.isRequired,
-    fetchAllCountries: PropTypes.func.isRequired
+    fetchAllCountries: PropTypes.func.isRequired,
+    spinnerOn: PropTypes.bool.isRequired
   };
 
   componentDidMount() {
-    if (localStorage.getItem("token")) {
-      this.props.fetchCurrentUser(localStorage.getItem("token"));
+    if (sessionStorage.getItem("token")) {
+      this.props.fetchCurrentUser(sessionStorage.getItem("token"));
     } else {
       this.props.fetchAllCountries();
     }
   }
 
   render() {
+    const { spinnerOn } = this.props;
+    const spinner = spinnerOn ? (
+      <div className="div--spinnerModal">
+        <div className="div--spinner" />
+      </div>
+    ) : (
+      ""
+    );
     return (
       <BrowserRouter>
         <main className="main">
           <Navbar />
+          {spinner}
           <Switch>
-            <ProtectedRoute exact path="/scoresheets" component={MyScoresheetsContainer} />
+            <ProtectedRoute
+              exact
+              path="/scoresheets"
+              component={MyScoresheetsContainer}
+            />
             <Route exact path="/users/:id" component={UserProfile} />
+            <Route exact path="/contests" component={ContestIndex} />
             <Route exact path="/contests/:year" component={ContestShow} />
             <Route exact path="/entries/:id" component={EntryShow} />
+            <Route exact path="/countries/:name" component={CountryShow} />
             <AuthRoute exact path="/" component={Splash} />
           </Switch>
           <Footer />
@@ -50,10 +67,14 @@ class App extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  spinnerOn: state.ui.spinner
+});
+
 const mapDispatchToProps = dispatch => ({
   authenticateUser: socialToken => dispatch(authenticateUser(socialToken)),
   fetchCurrentUser: token => dispatch(fetchCurrentUser(token)),
   fetchAllCountries: () => dispatch(fetchAllCountries())
 });
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

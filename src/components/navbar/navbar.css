@@ -8,7 +8,7 @@
   grid-template-rows: 1fr;
   background: white;
   /* linear-gradient(to bottom right, #FFFFFF, #a0a5af); */
-  /* font-size: 30px; */
+  
 }
 
 .Link--logo {
@@ -55,7 +55,13 @@
 }
 
 .Link--logout {
+<<<<<<< HEAD
   font-size: 20px;
+=======
+  font-size: 18px;
+  line-height: 3px;
+  width: 150px;
+>>>>>>> b17ee66cfd1d6edb19f1f21dffcb3be887331817
   text-decoration: none;
   grid-column: 8 / 9;
   align-self: center;

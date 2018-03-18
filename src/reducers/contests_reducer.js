@@ -5,9 +5,12 @@ import { RECEIVE_ENTRY } from "../actions/entryActions";
 const contestsReducer = (state = {}, action) => {
   let newState = merge({}, state);
   switch (action.type) {
+    case RECEIVE_CONTESTS:
+      newState = merge({}, action.payload.contests);
+      return newState;
     case RECEIVE_CONTEST:
       newState = merge({}, newState, {
-        [action.payload.contest.year]: action.payload.contest
+        [action.payload.contest.id]: action.payload.contest
       });
       return newState;
     case RECEIVE_CONTESTS:

@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import "./YouTube.css";
 
 class YouTube extends React.Component {
   render() {
@@ -9,8 +10,10 @@ class YouTube extends React.Component {
     }
     return (
       <iframe
+        className="youtube-video"
         width={width}
         height={height}
+        title={url}
         src={`https://www.youtube.com/embed/${url}?rel=0&amp;showinfo=0`}
         frameBorder="0"
         allow="autoplay; encrypted-media"

@@ -1,0 +1,16 @@
+.section--contest_list_item {
+  margin-left: 10px;
+}
+
+.section--contest_list_item img {
+  height: 40px;
+}
+
+.section--contest_list_item h1 {
+  display: flex;
+  font-size: 30px;
+  align-items: center;
+}
+
+a:hover {
+}

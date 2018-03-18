@@ -1,10 +1,11 @@
 import { authUrl, authHeaders } from "./constants";
 
 export const authenticate = async socialToken => {
+  const encodedToken = btoa(socialToken);
   const response = await fetch(authUrl, {
     method: "POST",
     headers: {
-      Authorization: `${socialToken}`
+      Authorization: `Basic ${encodedToken}`
     }
   });
   const payload = await response.json();

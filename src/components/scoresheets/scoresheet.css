@@ -1,5 +1,5 @@
 span[class^="span--scoresheet-nav"] {
-  border: 1px solid black;
+  border: 1px solid lightgrey;
   border-bottom: 1px solid red;
   padding: 10px 30px;
   border-radius: 4px 4px 0px 0px;
@@ -7,9 +7,21 @@ span[class^="span--scoresheet-nav"] {
 
 table[class^="table--scoresheet-headers"] {
   margin: 10px;
+  font-size: 26px;
+  padding: 4px;
+  border-bottom: 1px solid lightgrey;
 }
 
 table[class^="table--scoresheet-headers"] th {
-  width: 215px;
+  width: 230px;
   text-align: left;
+}
+
+.label--bonus_points {
+  font-size: 14px;
+  margin-left: 20px;
+}
+
+.label--bonus_points input {
+  margin-left: 10px;
 }

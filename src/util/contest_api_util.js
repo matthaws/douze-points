@@ -10,8 +10,8 @@ export const fetchContest = async year => {
 
 export const fetchContests = async () => {
   const response = await fetch(`${backendUrl}/contests`, {
-    method: 'GET'
-  })
-  const payload = await response.json()
-  return payload
-}
+    method: "GET"
+  });
+  const payload = await response.json();
+  return payload;
+};

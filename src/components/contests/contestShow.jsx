@@ -1,82 +1,106 @@
 import React from "react";
+import EntryIndexItem from "../entries/entryIndexItem";
 import { connect } from "react-redux";
 import { fetchContest } from "../../actions/contest_actions";
-import { withRouter } from "react-router-dom";
+import { startSpinner, endSpinner } from "../../actions/uiActions";
+import { withRouter, Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import "./contestShow.css";
-import Navbar from '../navbar/navbar'
-import Gold from '../../assets/gold.png'
-import Silver from '../../assets/silver.png'
-import Bronze from '../../assets/bronze.png'
-// import '../navbar/navbar.css'
+
 
 class ContestShow extends React.Component {
   componentDidMount() {
     if (
       this.props.contest.year === "LOADING" ||
-      this.props.entries.include(undefined)
+      this.props.entries.includes(undefined)
     ) {
+      this.props.startSpinner();
       this.props.fetchContest(this.props.year);
+    }
+  }
+
+  componentWillReceiveProps() {
+    if (this.props.isSpinning) {
+      this.props.endSpinner();
     }
   }
 
   render() {
     const { contest, entries, countries } = this.props;
-    return (
-      <main className='main--contestShowPage'>
-        <div className='div--contest-title'>EuroVision Song Contest {contest.year}</div>
-        <ul className='ul--entries'>
-          {entries.map(entry => {
-            const flag_url = countries[entry.country_id]
-              ? countries[entry.country_id].flag_url
-              : "";
+    if (countries.length < 1 || entries.includes(undefined) ) {
+      return null;
+    } else {
+      return (
+        <main className="main--contestShowPage">
+          <div className="div--contest-title">
+            EuroVision Song Contest {contest.year}
+          </div>
+          <ul className="ul--entries">
+            {entries.map(entry => {
+              const flag_url = countries[entry.country_id]
+                ? countries[entry.country_id].flag_url
+                : "";
 
-              if (entry.final_ranking === 1) {
-                return (
-
-                <li className='li--entry'>
-                  <img src={flag_url} className='img--flag'/>
-                  <span className='span--entry'>{entry.song_title}, {entry.artist}</span>
-                  <img src={Gold} className='img--medal'/>
-                  <span className='span--rank'>#{entry.final_ranking}</span>
-                </li>
-
-                )
-
-              } else if (entry.final_ranking === 2) {
-                return (
-                <li className='li--entry'>
-                  <img src={flag_url} className='img--flag'/>
-                  <span className='span--entry'>{entry.song_title}, {entry.artist}</span>
-                  <img src={Silver} className='img--medal'/>
-                    <span className='span--rank'>#{entry.final_ranking}</span>
-                  </li>
-                )
-
-              } else if (entry.final_ranking === 3) {
-                return (
-                <li className='li--entry'>
-                  <img src={flag_url} className='img--flag'/>
-                  <span className='span--entry'>{entry.song_title}, {entry.artist}</span>
-                  <img src={Bronze} className='img--medal'/>
-                    <span className='span--rank'>#{entry.final_ranking}</span>
-                  </li>
-                )
-
-              } else {
-                return (
-                <li className='li--entry'>
-                  <img src={flag_url} className='img--flag'/>
-                  <span className='span--entry'>{entry.song_title}, {entry.artist}</span>
-                    <span className='span--rank'>#{entry.final_ranking}</span>
-                  </li>
-                )
+              let medal;
+              switch (entry.final_ranking) {
+                case 1:
+                  medal = (
+                    <img alt="gold-medal" src={Gold} className="img--medal" />
+                  );
+                  break;
+                case 2:
+                  medal = (
+                    <img alt="silver-medal" src={Silver} className="img--medal" />
+                  );
+                  break;
+                case 3:
+                  medal = (
+                    <img alt="bronze-medal" src={Bronze} className="img--medal" />
+                  );
+                  break;
+                default:
+                  medal = "";
               }
 
+              return (
+                <Link to={`/entries/${entry.id}`}>
+                  <li className="li--entry">
+                    <img
+                      alt="country-flag"
+                      src={flag_url}
+                      className="img--flag"
+                    />
+                    <span className="span--entry">
+                      {entry.song_title}, {entry.artist}
+                    </span>
+                    {medal}
+                    <span className="span--rank">#{entry.final_ranking}</span>
+                  </li>
+                </Link>
+              );
+            })}
+          </ul>
+        </main>
+      );
+    }
+
+    return (
+      <main className="main--contestShowPage">
+        <div className="div--contest-title">
+          EuroVision Song Contest {contest.year}
+        </div>
+        <ul className="ul--entries">
+          {entries.map(entry => {
+            return (
+              <EntryIndexItem
+              entry={entry}
+              country={countries[entry.country_id]}
+              />)
           })}
         </ul>
       </main>
     );
+
   }
 }
 
@@ -84,7 +108,10 @@ ContestShow.propTypes = {
   year: PropTypes.string.isRequired,
   contest: PropTypes.object,
   entries: PropTypes.array,
-  fetchContest: PropTypes.func.isRequired
+  fetchContest: PropTypes.func.isRequired,
+  startSpinner: PropTypes.func.isRequired,
+  endSpinner: PropTypes.func.isRequired,
+  isSpinning: PropTypes.bool.isRequired
 };
 
 ContestShow.defaultProps = {
@@ -92,18 +119,34 @@ ContestShow.defaultProps = {
   contest: { year: "LOADING" }
 };
 
+const findContestYear = (year, contests) => {
+  let match;
+  Object.values(contests).forEach(contest => {
+    if (contest.year === parseInt(year)) {
+      match = contest;
+    }
+  });
+  return match;
+};
+
 const mapStateToProps = (state, ownProps) => {
-  const { countries } = state;
+  const { countries, contests } = state;
   const year = ownProps.match.params.year;
-  const contest = state.contests[year] || { year: "LOADING", entry_ids: [] };
+  const contest = findContestYear(year, contests) || {
+    year: "LOADING",
+    entry_ids: []
+  };
   const entries = contest.entry_ids.map(id => {
     return state.entries[id];
   });
-  return { year, contest, entries, countries };
+  const isSpinning = state.ui.spinner;
+  return { year, contest, entries, countries, isSpinning };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  fetchContest: year => dispatch(fetchContest(year))
+  fetchContest: year => dispatch(fetchContest(year)),
+  startSpinner: () => dispatch(startSpinner()),
+  endSpinner: () => dispatch(endSpinner())
 });
 
 export default withRouter(

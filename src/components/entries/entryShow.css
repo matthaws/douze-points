@@ -1,0 +1,43 @@
+.section--entryShow {
+  display: grid;
+  grid-template-columns: 100px 1fr 1fr 1fr 1fr 1fr 1fr 100px;
+  grid-template-rows: 200px 90px 1fr 1fr;
+  margin-top: 50px;
+}
+
+.article--countryName {
+  grid-column: 4 / 6;
+  font-size: 50px;
+  font-family: "Averia Sans Libre";
+  position: relative;
+  text-align: center;
+}
+
+.figure--YouTube {
+  grid-row-start: 3;
+  grid-column: 1 / 9;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+.p--songDetails {
+  font-size: 30px;
+}
+
+.aside--details {
+  display: flex;
+  flex-direction: row;
+  grid-column: 4 / 6;
+  text-align: center;
+  grid-row-start: 2;
+  font-size: 30px;
+  justify-content: space-between;
+}
+
+.article--countryName > img {
+  width: auto;
+  height: 175px;
+  position: absolute;
+  left: -190px;
+}
