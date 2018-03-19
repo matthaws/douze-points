@@ -6,6 +6,9 @@ import { startSpinner, endSpinner } from "../../actions/uiActions";
 import { withRouter, Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import "./contestShow.css";
+import Gold from "../../assets/gold.png";
+import Silver from "../../assets/silver.png";
+import Bronze from "../../assets/bronze.png";
 
 
 class ContestShow extends React.Component {
@@ -27,7 +30,6 @@ class ContestShow extends React.Component {
 
   render() {
     const { contest, entries, countries } = this.props;
-<<<<<<< HEAD
     if (countries.length < 1 || entries.includes(undefined) ) {
       return null;
     } else {
@@ -84,7 +86,6 @@ class ContestShow extends React.Component {
         </main>
       );
     }
-=======
     return (
       <main className="main--contestShowPage">
         <div className="div--contest-title">
@@ -101,7 +102,6 @@ class ContestShow extends React.Component {
         </ul>
       </main>
     );
->>>>>>> 5d0c97d8df81065868ee664c18942fac94324058
   }
 }
 
