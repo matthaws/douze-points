@@ -9,15 +9,17 @@
   left: 0;
   right: 0;
   /* position: absolute; */
-  background: linear-gradient(to bottom right, #ffffe8, #b5c9f2);
+  /* background: linear-gradient(to bottom right, #ffffe8, #b5c9f2); */
 }
 
 .div--credits {
-  font-family: 'Averia Sans Libre', cursive;
+  /* font-family: 'Averia Sans Libre', cursive; */
   grid-column: 1 / 2;
   justify-content: flex-start;
   margin: 1em;
   align-self: center;
+  font-size: 20px;
+
 }
 
 .div--copy {
@@ -25,4 +27,5 @@
   justify-self: end;
   margin: 1em;
   font-size: 20px;
+  font-family: 'Caveat', cursive;
 }

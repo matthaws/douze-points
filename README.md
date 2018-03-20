@@ -36,8 +36,6 @@ The goal for version 1 of "Douze Points" will be to fully implement the followin
 
 #### Front-end Mobile
 * React Native
-<<<<<<< HEAD
-=======
 
 ### Design Documents
 
