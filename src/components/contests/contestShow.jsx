@@ -6,9 +6,6 @@ import { startSpinner, endSpinner } from "../../actions/uiActions";
 import { withRouter, Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import "./contestShow.css";
-import Gold from "../../assets/gold.png";
-import Silver from "../../assets/silver.png";
-import Bronze from "../../assets/bronze.png";
 
 
 class ContestShow extends React.Component {
@@ -30,62 +27,7 @@ class ContestShow extends React.Component {
 
   render() {
     const { contest, entries, countries } = this.props;
-    if (countries.length < 1 || entries.includes(undefined) ) {
-      return null;
-    } else {
-      return (
-        <main className="main--contestShowPage">
-          <div className="div--contest-title">
-            EuroVision Song Contest {contest.year}
-          </div>
-          <ul className="ul--entries">
-            {entries.map(entry => {
-              const flag_url = countries[entry.country_id]
-                ? countries[entry.country_id].flag_url
-                : "";
 
-              let medal;
-              switch (entry.final_ranking) {
-                case 1:
-                  medal = (
-                    <img alt="gold-medal" src={Gold} className="img--medal" />
-                  );
-                  break;
-                case 2:
-                  medal = (
-                    <img alt="silver-medal" src={Silver} className="img--medal" />
-                  );
-                  break;
-                case 3:
-                  medal = (
-                    <img alt="bronze-medal" src={Bronze} className="img--medal" />
-                  );
-                  break;
-                default:
-                  medal = "";
-              }
-
-              return (
-                <Link to={`/entries/${entry.id}`}>
-                  <li className="li--entry">
-                    <img
-                      alt="country-flag"
-                      src={flag_url}
-                      className="img--flag"
-                    />
-                    <span className="span--entry">
-                      {entry.song_title}, {entry.artist}
-                    </span>
-                    {medal}
-                    <span className="span--rank">#{entry.final_ranking}</span>
-                  </li>
-                </Link>
-              );
-            })}
-          </ul>
-        </main>
-      );
-    }
     return (
       <main className="main--contestShowPage">
         <div className="div--contest-title">
@@ -93,13 +35,6 @@ class ContestShow extends React.Component {
         </div>
         <ul className="ul--entries">
           {entries.map(entry => {
-<<<<<<< HEAD
-            return (
-              <EntryIndexItem
-              entry={entry}
-              country={countries[entry.country_id]}
-              />);
-=======
             if (entry) {
               return (
                 <EntryIndexItem
@@ -107,7 +42,6 @@ class ContestShow extends React.Component {
                 country={countries[entry.country_id]}
                 />)
             }
->>>>>>> 2d0cbfbc9066e3c4e74d8a5f62d568c372bfb248
           })}
         </ul>
       </main>
