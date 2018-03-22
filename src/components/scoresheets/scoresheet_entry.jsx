@@ -1,10 +1,10 @@
-import React from "react";
-import { connect } from "react-redux";
-import { createScoring, updateScoring } from "../../actions/scoringActions";
-import YouTube from "../video/YouTube";
-import "./scoresheet_entry.css";
+import React from 'react';
+import { connect } from 'react-redux';
+import { createScoring, updateScoring } from '../../actions/scoringActions';
+import YouTube from '../video/YouTube';
+import './scoresheet_entry.css';
 
-//=========================================
+//= ========================================
 // mapXToProps
 
 const mapDispatchToProps = dispatch => ({
@@ -12,7 +12,7 @@ const mapDispatchToProps = dispatch => ({
   updateScoring: scoring => dispatch(updateScoring(scoring)),
 });
 
-//=========================================
+//= ========================================
 // component
 
 class ScoresheetEntry extends React.Component {
@@ -20,15 +20,15 @@ class ScoresheetEntry extends React.Component {
     super(props);
     this.defaultScoring = {
       id: null,
-      bonus_comment: "",
-      bonus_points: "",
-      cheese_score: "",
-      costume_score: "",
-      dance_score: "",
-      score_note: "",
-      song_score: "",
+      bonus_comment: '',
+      bonus_points: '',
+      cheese_score: '',
+      costume_score: '',
+      dance_score: '',
+      score_note: '',
+      song_score: '',
       entry_id: this.props.entry.id,
-      scoresheet_id: this.props.scoresheetId
+      scoresheet_id: this.props.scoresheetId,
     };
 
     const scoring = this.props.scoring || this.defaultScoring;
@@ -38,13 +38,13 @@ class ScoresheetEntry extends React.Component {
   }
 
   toggleScoreShow() {
-    const newValue = this.state.renderScoreSection ? false : true;
+    const newValue = !this.state.renderScoreSection;
     this.setState({ renderScoreSection: newValue });
   }
 
   componentWillReceiveProps(newProps) {
     if (newProps.scoring) {
-      let newScoring = newProps.scoring;
+      const newScoring = newProps.scoring;
       newScoring.entry_id = newProps.entry.id;
       newScoring.scoresheet_id = this.props.scoresheetId;
       this.setState({ scoring: newScoring });
@@ -52,24 +52,24 @@ class ScoresheetEntry extends React.Component {
       this.setState({
         scoring: {
           id: null,
-          bonus_comment: "",
-          bonus_points: "",
-          cheese_score: "",
-          costume_score: "",
-          dance_score: "",
-          score_note: "",
-          song_score: "",
+          bonus_comment: '',
+          bonus_points: '',
+          cheese_score: '',
+          costume_score: '',
+          dance_score: '',
+          score_note: '',
+          song_score: '',
           entry_id: this.props.entry.id,
-          scoresheet_id: this.props.scoresheetId
-        }
+          scoresheet_id: this.props.scoresheetId,
+        },
       });
     }
   }
 
   handleChange(field) {
-    return e => {
-      let newScore = this.state.scoring;
-      if (field === "bonus_comment" || field === "score_note") {
+    return (e) => {
+      const newScore = this.state.scoring;
+      if (field === 'bonus_comment' || field === 'score_note') {
         newScore[field] = e.target.value;
       } else {
         newScore[field] = parseInt(e.target.value);
@@ -79,9 +79,9 @@ class ScoresheetEntry extends React.Component {
   }
 
   submitScore() {
-    let score = this.state.scoring;
-    Object.keys(score).forEach(key => {
-      if (score[key] === "") {
+    const score = this.state.scoring;
+    Object.keys(score).forEach((key) => {
+      if (score[key] === '') {
         score[key] = null;
       }
     });
@@ -125,100 +125,106 @@ class ScoresheetEntry extends React.Component {
             <li>Dance Score</li>
             <li>Costume Score</li>
             <li>Eurocheese Score</li>
-            <hr/>
+            <hr />
             <li>Total Score</li>
             <li>Bonus Points</li>
           </ul>
           <ul className="ul--entry_input">
             <li>
-                <input
-                  type="number"
-                  min="0"
-                  max="12"
-                  name="song_score"
-                  onChange={this.handleChange("song_score")}
-                  value={this.state.scoring.song_score || ""}
-                />
+              <input
+                type="number"
+                min="0"
+                max="12"
+                name="song_score"
+                onChange={this.handleChange('song_score')}
+                value={this.state.scoring.song_score || ''}
+              />
             </li>
             <li>
-                <input
-                  type="number"
-                  min="0"
-                  max="12"
-                  name="dance_score"
-                  onChange={this.handleChange("dance_score")}
-                  value={this.state.scoring.dance_score || ""}
-                />
+              <input
+                type="number"
+                min="0"
+                max="12"
+                name="dance_score"
+                onChange={this.handleChange('dance_score')}
+                value={this.state.scoring.dance_score || ''}
+              />
             </li>
             <li>
-                <input
-                  type="number"
-                  min="0"
-                  max="12"
-                  name="costume_score"
-                  onChange={this.handleChange("costume_score")}
-                  value={this.state.scoring.costume_score || ""}
-                />
+              <input
+                type="number"
+                min="0"
+                max="12"
+                name="costume_score"
+                onChange={this.handleChange('costume_score')}
+                value={this.state.scoring.costume_score || ''}
+              />
             </li>
             <li>
-                <input
-                  type="number"
-                  min="0"
-                  max="12"
-                  name="cheese_score"
-                  onChange={this.handleChange("cheese_score")}
-                  value={this.state.scoring.cheese_score || ""}
-                />
+              <input
+                type="number"
+                min="0"
+                max="12"
+                name="cheese_score"
+                onChange={this.handleChange('cheese_score')}
+                value={this.state.scoring.cheese_score || ''}
+              />
             </li>
-            <hr/>
-            <li> { (this.state.scoring.song_score || 0) +
-                   (this.state.scoring.dance_score || 0) +
-                   (this.state.scoring.costume_score || 0) +
-                   (this.state.scoring.cheese_score || 0) }</li>
+            <hr />
+            <li id="li__total_score">
+              {' '}
+              {(this.state.scoring.song_score || 0) +
+                (this.state.scoring.dance_score || 0) +
+                (this.state.scoring.costume_score || 0) +
+                (this.state.scoring.cheese_score || 0)}
+            </li>
             <li>
-                <input
-                  type="number"
-                  name="bonus_points"
-                  onChange={this.handleChange("bonus_points")}
-                  value={this.state.scoring.bonus_points || ""}
-                />
+              <input
+                type="number"
+                name="bonus_points"
+                onChange={this.handleChange('bonus_points')}
+                value={this.state.scoring.bonus_points || ''}
+              />
             </li>
           </ul>
           <section className={`ul--bonus_comment_${entry.id}`}>
             <p>Comment</p>
             <textarea
-              onChange={this.handleChange("bonus_comment")}
-              value={this.state.scoring.bonus_comment || ""}
+              onChange={this.handleChange('bonus_comment')}
+              value={this.state.scoring.bonus_comment || ''}
             />
           </section>
-          <br/>
-          <div className='div--button-div'>
-            <button className="button--score_submit" onClick={this.submitScore}>Submit Score</button>
+          <br />
+          <div className="div--button-div">
+            <button className="button--score_submit" onClick={this.submitScore}>
+              Submit Score
+            </button>
           </div>
         </section>
       </section>
     ) : (
-      ""
+      ''
     );
 
     return (
       <ul>
         <section className={`section--entry_parent_${entry.id}`}>
-          <li id={`li--entry_country`}>
+          <li id="li--entry_country">
             <img alt="country-flag" src={country.flag_url} />
             <p>{country.name}</p>
           </li>
           <li>{entry.song_title}</li>
           <li>{entry.artist}</li>
-          <li>{ this.props.renderBonusPoints ? this.addBonusScores() : this.addRegScores() }
-          </li>
+          <li>{this.props.renderBonusPoints ? this.addBonusScores() : this.addRegScores()}</li>
           <li>
             <button
               onClick={() => {
                 this.toggleScoreShow();
               }}
             >
-              { this.state.renderScoreSection ? String.fromCharCode(9650) : String.fromCharCode(9660) }
+              {this.state.renderScoreSection
+                ? String.fromCharCode(9650)
+                : String.fromCharCode(9660)}
             </button>
           </li>
         </section>

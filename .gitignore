@@ -16,6 +16,8 @@
 .env.test.local
 .env.production.local
 .jshintrc
+.gitignore
+.eslintrc.json
 
 npm-debug.log*
 yarn-debug.log*

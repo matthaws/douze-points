@@ -97,7 +97,7 @@ class ContestShow extends React.Component {
               <EntryIndexItem
               entry={entry}
               country={countries[entry.country_id]}
-              />)
+              />);
           })}
         </ul>
       </main>
