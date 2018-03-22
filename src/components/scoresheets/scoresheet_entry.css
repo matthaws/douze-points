@@ -4,10 +4,10 @@
 
 section[class^='section--entry_parent_'] {
   display: flex;
-  font-size: 22px;
+  font-size: 18px;
   position: relative;
   margin: 16px;
-  font-family: 'Averia Sans Libre', cursive;
+  font-family: 'Raleway', sans-serif;
 }
 
 section[class^='section--entry_parent_'] img {
@@ -17,6 +17,7 @@ section[class^='section--entry_parent_'] img {
 
 section[id^='section--entry_score'] {
   display: grid;
+  max-width: 1400px;
   grid-template-columns: 50% 50%;
   justify-items: center;
 }
@@ -38,18 +39,20 @@ section[class^='section--entry_parent_'] li {
   justify-content: flex-start;
 }
 
+section[class^='section--entry_parent_'] p {
+  text-align: right;
+}
+
 section[id^='section--entry_score_form'] {
   display: grid;
-  font-family: 'Averia Sans Libre', cursive;
   width: 100%;
   height: auto;
-  grid-template-columns: 30% 70%;
+  grid-template-columns: 40% 10%;
   grid-template-rows: 70% 25% 15%;
   grid-template-areas:
     "score_name score_num"
     "bonus bonus"
     "submit submit";
-  justify-items: left;
 }
 
 section[class^='ul--bonus_comment'] {
@@ -71,7 +74,8 @@ section[class^='ul--bonus_comment'] p {
 
 .ul--entry_input li {
   height: 30px;
-  font-size: 20px;
+  line-height: 30px;
+  font-size: 16px;
   margin: 10px;
 }
 
@@ -84,6 +88,7 @@ section[class^='ul--bonus_comment'] p {
 .ul--entry_input input {
   border-bottom: 1px solid black;
   text-align: center;
+  font-size: 14px;
   width: 40px;
 }
 
@@ -115,4 +120,9 @@ button:hover {
 
 button:focus {
   outline: none;
+}
+
+#li__total_score {
+  font-size: 20px;
+  margin-left: 20px;
 }
