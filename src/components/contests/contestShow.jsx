@@ -93,11 +93,21 @@ class ContestShow extends React.Component {
         </div>
         <ul className="ul--entries">
           {entries.map(entry => {
+<<<<<<< HEAD
             return (
               <EntryIndexItem
               entry={entry}
               country={countries[entry.country_id]}
               />);
+=======
+            if (entry) {
+              return (
+                <EntryIndexItem
+                entry={entry}
+                country={countries[entry.country_id]}
+                />)
+            }
+>>>>>>> 2d0cbfbc9066e3c4e74d8a5f62d568c372bfb248
           })}
         </ul>
       </main>
