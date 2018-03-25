@@ -1,5 +1,6 @@
 import React from "react";
 import EntryIndexItem from "../entries/entryIndexItem";
+import EntryQuickView from "../entries/entryQuickView";
 import { connect } from "react-redux";
 import { fetchContest } from "../../actions/contest_actions";
 import { startSpinner, endSpinner } from "../../actions/uiActions";
@@ -7,8 +8,13 @@ import { withRouter, Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import "./contestShow.css";
 
-
 class ContestShow extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { entry: null };
+    this.switchQuickView = this.switchQuickView.bind(this);
+  }
+
   componentDidMount() {
     if (
       this.props.contest.year === "LOADING" ||
@@ -25,25 +31,37 @@ class ContestShow extends React.Component {
     }
   }
 
+  switchQuickView(index) {
+    this.setState({ entry: this.props.entries[index] });
+  }
+
   render() {
     const { contest, entries, countries } = this.props;
-
     return (
       <main className="main--contestShowPage">
-        <div className="div--contest-title">
-          EuroVision Song Contest {contest.year}
+        <div className="left-side-show">
+          <div className="div--contest-title">
+            EuroVision Song Contest {contest.year}
+          </div>
+          <ul className="ul--entries">
+            {entries.map((entry, idx) => {
+              if (entry) {
+                return (
+                  <EntryIndexItem
+                    entry={entry}
+                    switchQuickView={() => this.switchQuickView(idx)}
+                    country={countries[entry.country_id]}
+                  />
+                );
+              }
+            })}
+          </ul>
         </div>
-        <ul className="ul--entries">
-          {entries.map(entry => {
-            if (entry) {
-              return (
-                <EntryIndexItem
-                entry={entry}
-                country={countries[entry.country_id]}
-                />)
-            }
-          })}
-        </ul>
+        {this.state.entry ? (
+          <EntryQuickView entry={this.state.entry} countries={countries} />
+        ) : (
+          null
+        )}
       </main>
     );
   }

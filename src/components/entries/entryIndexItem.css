@@ -10,6 +10,7 @@
   box-shadow: 1px 1px 5px lightblue;
   grid-area: entry;
   margin-bottom: 20px;
+  cursor: pointer;
   /* margin-left: 15px */
 }
 
@@ -18,7 +19,6 @@
   align-self: center;
 
 }
-
 
 .img--flag {
   max-width: 50px;

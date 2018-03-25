@@ -5,7 +5,7 @@ import Silver from "../../assets/silver.png";
 import Bronze from "../../assets/bronze.png";
 import "./entryIndexItem.css";
 
-const EntryIndexItem = ({ entry, country }) => {
+const EntryIndexItem = ({ entry, country, switchQuickView }) => {
   const flag_url = country ? country.flag_url : "";
   let medal;
   switch (entry.final_ranking) {
@@ -23,8 +23,7 @@ const EntryIndexItem = ({ entry, country }) => {
   }
 
   return (
-    <Link to={`/entries/${entry.id}`}>
-      <li className="li--entry">
+      <li key={entry.id} onClick={switchQuickView} className="li--entry">
         <img alt="country-flag" src={flag_url} className="img--flag" />
         <span className="span--entry">
           {entry.song_title}, {entry.artist}
@@ -32,7 +31,6 @@ const EntryIndexItem = ({ entry, country }) => {
         {medal}
         <span className="span--rank">#{entry.final_ranking}</span>
       </li>
-    </Link>
   );
 };
 
