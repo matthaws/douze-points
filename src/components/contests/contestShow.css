@@ -7,11 +7,16 @@ a {
   background-color: white;
   display: flex;
   padding: 20px;
-  /* background: linear-gradient(to bottom right, #ffffe8, #b5c9f2); */
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
-.left-side-show {
-  width: 50%;
+.left-side-show-full {
+  max-width: 90%;
+}
+
+.left-side-show-half {
+  width: 52%;
 }
 
 .div--contest-title {
@@ -35,4 +40,5 @@ a {
   align-items: center;
   margin: 10px auto;
   margin-bottom: 70px;
+  transition: width 2s;
 }

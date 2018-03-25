@@ -6,6 +6,7 @@ import { fetchContest } from "../../actions/contest_actions";
 import { startSpinner, endSpinner } from "../../actions/uiActions";
 import { withRouter, Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import Sticky from "react-stickynode";
 import "./contestShow.css";
 
 class ContestShow extends React.Component {
@@ -37,9 +38,10 @@ class ContestShow extends React.Component {
 
   render() {
     const { contest, entries, countries } = this.props;
+    const space = this.state.entry ? "half" : "full"
     return (
       <main className="main--contestShowPage">
-        <div className="left-side-show">
+        <div className={`left-side-show-${space}`}>
           <div className="div--contest-title">
             EuroVision Song Contest {contest.year}
           </div>
@@ -58,7 +60,7 @@ class ContestShow extends React.Component {
           </ul>
         </div>
         {this.state.entry ? (
-          <EntryQuickView entry={this.state.entry} countries={countries} />
+            <EntryQuickView entry={this.state.entry} countries={countries} />
         ) : (
           null
         )}

@@ -1,25 +1,31 @@
 import React from "react";
 import PropTypes from "prop-types";
 import YouTube from "../video/YouTube";
-import "./entryQuickView.css"
+import Sticky from "react-stickynode";
+import { Link } from "react-router-dom";
+import "./entryQuickView.css";
 
 const EntryQuickView = ({ entry, countries }) => {
   if (entry) {
-    let country = countries[entry.country_id]
+    let country = countries[entry.country_id];
     return (
       <aside id="pop-out">
         <div id="quick-view">
-        <img src={country.flag_url} />
-        <header>
-          {entry.song_title}, {entry.artist}
-          <br></br>
-          {country.name}
-        </header>
+          <Sticky>
+            <img src={country.flag_url} />
+            <header>
+              <Link to={`/entries/${entry.id}`}>
+                {entry.song_title}, {entry.artist}
+                <br />
+                {country.name}
+              </Link>
+            </header>
 
-        <YouTube url={entry.video_url} />
-      </div>
+            <YouTube url={entry.video_url} />
+          </Sticky>
+        </div>
       </aside>
-    )
+    );
   } else {
     return "";
   }
