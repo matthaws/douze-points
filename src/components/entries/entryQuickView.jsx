@@ -15,7 +15,7 @@ const EntryQuickView = ({ entry, countries, closeQuickView }) => {
             <header>
               <img src={country.flag_url} />
               <p className="p--closeX" onClick={closeQuickView}>
-                X
+                {String.fromCharCode(215)}
               </p>
               <Link to={`/entries/${entry.id}`}>
                 {entry.song_title}, {entry.artist}

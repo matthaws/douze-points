@@ -13,6 +13,7 @@ a {
 
 .left-side-show-full {
   max-width: 90%;
+  margin: 0 auto;
 }
 
 .left-side-show-half {

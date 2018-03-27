@@ -12,7 +12,7 @@
 
 .p--closeX {
   text-align: left;
-  width: 30vw;
-  margin: 0 auto;
+  padding-left: 1em;
   cursor: pointer;
+  font-size: 2em;
 }
