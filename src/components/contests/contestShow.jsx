@@ -14,6 +14,7 @@ class ContestShow extends React.Component {
     super(props);
     this.state = { entry: null };
     this.switchQuickView = this.switchQuickView.bind(this);
+    this.closeQuickView = this.closeQuickView.bind(this);
   }
 
   componentDidMount() {
@@ -36,9 +37,13 @@ class ContestShow extends React.Component {
     this.setState({ entry: this.props.entries[index] });
   }
 
+  closeQuickView() {
+    this.setState({ entry: null });
+  }
+
   render() {
     const { contest, entries, countries } = this.props;
-    const space = this.state.entry ? "half" : "full"
+    const space = this.state.entry ? "half" : "full";
     return (
       <main className="main--contestShowPage">
         <div className={`left-side-show-${space}`}>
@@ -60,10 +65,12 @@ class ContestShow extends React.Component {
           </ul>
         </div>
         {this.state.entry ? (
-            <EntryQuickView entry={this.state.entry} countries={countries} />
-        ) : (
-          null
-        )}
+          <EntryQuickView
+            entry={this.state.entry}
+            countries={countries}
+            closeQuickView={this.closeQuickView}
+          />
+        ) : null}
       </main>
     );
   }

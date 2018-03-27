@@ -5,15 +5,18 @@ import Sticky from "react-stickynode";
 import { Link } from "react-router-dom";
 import "./entryQuickView.css";
 
-const EntryQuickView = ({ entry, countries }) => {
+const EntryQuickView = ({ entry, countries, closeQuickView }) => {
   if (entry) {
     let country = countries[entry.country_id];
     return (
       <aside id="pop-out">
         <div id="quick-view">
           <Sticky>
-            <img src={country.flag_url} />
             <header>
+              <img src={country.flag_url} />
+              <p className="p--closeX" onClick={closeQuickView}>
+                X
+              </p>
               <Link to={`/entries/${entry.id}`}>
                 {entry.song_title}, {entry.artist}
                 <br />

@@ -9,3 +9,10 @@
   flex-direction: column;
   text-align: center;
 }
+
+.p--closeX {
+  text-align: left;
+  width: 30vw;
+  margin: 0 auto;
+  cursor: pointer;
+}
