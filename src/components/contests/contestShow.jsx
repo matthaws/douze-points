@@ -101,6 +101,14 @@ const findContestYear = (year, contests) => {
   return match;
 };
 
+const sort_by_year = (a, b) => {
+  if (parseInt(a.final_ranking) < parseInt(b.final_ranking)) {
+    return -1;
+  } else {
+    return 1;
+  }
+}
+
 const mapStateToProps = (state, ownProps) => {
   const { countries, contests } = state;
   const year = ownProps.match.params.year;
@@ -110,7 +118,8 @@ const mapStateToProps = (state, ownProps) => {
   };
   const entries = contest.entry_ids.map(id => {
     return state.entries[id];
-  });
+  }).sort(sort_by_year);
+
   const isSpinning = state.ui.spinner;
   return { year, contest, entries, countries, isSpinning };
 };
