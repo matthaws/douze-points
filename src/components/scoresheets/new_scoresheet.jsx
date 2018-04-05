@@ -8,7 +8,13 @@ import "./new_scoresheet.css";
 // mapToProps
 
 const mapStateToProps = (state, ownProps) => ({
-  contests: state.contests,
+  contests: Object.values(state.contests).sort( (a, b) => {
+    if (a.year < b.year) {
+      return 1;
+    } else {
+      return -1;
+    }
+  }),
   user: state.auth.currentUser
 });
 
@@ -65,22 +71,31 @@ class NewScoresheetForm extends React.Component {
 
   render() {
     return (
-      <form>
-        <label>
-          Title
+      <form className="form--new_scoresheet">
+        <div className="form--new_scoresheet_title">
+          <label htmlFor="scoresheet_title">
+            Title
+          </label>
           <input
             type="text"
+            name="scoresheet_title"
             placeholder="Enter Scoresheet Title"
             value={this.state.scoresheet.name}
             onChange={this.handleChange("name")}
-          />
-        </label>
+            />
+        </div>
         <br />
-        <label>
-          Contest Year
-          <select name="contest_id" value="" onChange={e => this.handleSelect(e)}>
-              <option disabled="true" value="" key={-1}>Please Select Contest</option>
-            {Object.values(this.props.contests).map((contest, idx) => {
+        <div className="form--new_scoresheet_contest_year">
+          <label htmlFor="contest_id">
+            Contest Year
+          </label>
+          <select
+            name="contest_id"
+            value=""
+            onChange={e => this.handleSelect(e)}
+          >
+            <option disabled="true" value="" key={-1}>Please Select Contest</option>
+            { this.props.contests.map((contest, idx) => {
               return (
                 <option value={contest.id} key={idx}>
                   {contest.year}
@@ -88,9 +103,12 @@ class NewScoresheetForm extends React.Component {
               );
             })}
           </select>
-        </label>
+        </div>
         <br />
-        <label>Type</label>
+        <div className="form--new_scoresheet_type">
+          <label>Type</label>
+          <p>Placeholder</p>
+        </div>
         <button onClick={this.submitForm}>Create New Scoresheet</button>
       </form>
     );

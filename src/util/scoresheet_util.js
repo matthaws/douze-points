@@ -48,7 +48,5 @@ export const deleteScoresheet = async scoresheetId => {
         method: "DELETE",
         headers: authHeaders()
     });
-    // not sure if below is necessary
-    const responseJSON = await response.json();
-    return responseJSON;
+    return response;
 };

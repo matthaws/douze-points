@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchScoresheet, removeScoresheet } from '../../actions/scoresheet_actions';
+import { fetchScoresheet, deleteScoresheet } from '../../actions/scoresheet_actions';
 import { startSpinner, endSpinner, setSort } from '../../actions/uiActions';
 import ScoresheetEntry from './scoresheet_entry.jsx';
 import './scoresheet.css';
@@ -37,7 +37,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => ({
   fetchScoresheet: scoresheetId => dispatch(fetchScoresheet(scoresheetId)),
-  removeScoresheet: scoresheetId => dispatch(removeScoresheet(scoresheetId)),
+  deleteScoresheet: scoresheetId => dispatch(deleteScoresheet(scoresheetId)),
   startSpinner: () => dispatch(startSpinner()),
   endSpinner: () => dispatch(endSpinner()),
   setSort: filter => dispatch(setSort(filter)),
@@ -141,6 +141,11 @@ class Scoresheet extends React.Component {
     }
   }
 
+  deleteScoresheet(e) {
+    e.preventDefault();
+    this.props.deleteScoresheet(this.props.scoresheet.id);
+  }
+
   createEntries() {
     if (this.props.scoresheet.id !== 'LOADING') {
       let entryComponents = Object.values(this.props.entries);
@@ -232,6 +237,9 @@ class Scoresheet extends React.Component {
           </tbody>
         </table>
         <ul>{scoresheetEntries}</ul>
+        <div>
+          <button onClick={ e => this.deleteScoresheet(e) }>Delete this scoresheet</button>
+        </div>
       </section>
     );
   }
