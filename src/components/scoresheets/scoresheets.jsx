@@ -39,10 +39,14 @@ export default class Scoresheets extends React.Component {
     if (this.props.scoresheet_ids.length > 0) {
       return this.props.scoresheet_ids.map((scoresheet_id, idx) => {
         let scoresheet = this.props.scoresheets[scoresheet_id];
+        let selectedSheet = null;
         if (scoresheet) {
+          if (this.props.displayId && (scoresheet.id === this.props.displayId)) {
+            selectedSheet = "span--selected-scoresheet-nav";
+          }
           return (
             <span
-              className={`span--scoresheet-nav-${scoresheet.id}`}
+              className={`span--scoresheet-nav-${scoresheet.id} ${selectedSheet}`}
               key={scoresheet.id}
               onClick={() => {
                 this.props.setDisplayScoresheet(scoresheet.id);

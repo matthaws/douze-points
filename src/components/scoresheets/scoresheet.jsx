@@ -240,7 +240,10 @@ class Scoresheet extends React.Component {
         <ul>{scoresheetEntries}</ul>
         <div>
           { this.props.scoresheet.id !== "LOADING"
-            ? <button onClick={ e => this.deleteScoresheet(e) }>Delete this scoresheet</button>
+            ? <button
+                id="button--delete-scoresheet"
+                onClick={ e => this.deleteScoresheet(e) }>
+                Delete this scoresheet</button>
             : null }
         </div>
       </section>

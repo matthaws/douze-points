@@ -215,7 +215,11 @@ class ScoresheetEntry extends React.Component {
           </li>
           <li>{entry.song_title}</li>
           <li>{entry.artist}</li>
-          <li>{this.props.renderBonusPoints ? this.addBonusScores() : this.addRegScores()}</li>
+          <li
+            id="li--entry-score"
+          >
+            {this.props.renderBonusPoints ? this.addBonusScores() : this.addRegScores()}
+          </li>
           <li>
             <button
               onClick={() => {
