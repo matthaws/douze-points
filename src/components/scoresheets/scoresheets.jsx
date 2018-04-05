@@ -9,11 +9,11 @@ import "./scoresheets.css";
 
 export default class Scoresheets extends React.Component {
   static propTypes = {
-    scoresheets: PropTypes.array.isRequired
+    scoresheets: PropTypes.object.isRequired
   };
 
   static defaultProps = {
-    scoresheets: []
+    scoresheets: {}
   };
 
   constructor(props) {
@@ -33,31 +33,19 @@ export default class Scoresheets extends React.Component {
     if (!this.props.user && newProps.user) {
       newProps.fetchScoresheets(newProps.user.id);
     }
-    if (newProps.scoresheets !== this.props.scoresheets) {
-      if (!this.state.scoresheet && newProps.scoresheets[0]) {
-        this.setState({ scoresheet: newProps.scoresheets[0] });
-      } else if (this.state.scoresheet) {
-        let currentId = this.state.scoresheet.id || "none";
-        this.props.scoresheets.forEach(sheet => {
-          if (sheet.id === currentId) {
-            this.setState({ scoresheet: sheet });
-            return;
-          }
-        });
-      }
-    }
   }
 
   scoresheetHeaders() {
-    if (this.props.scoresheets.length > 0) {
-      return this.props.scoresheets.map((scoresheet, idx) => {
+    if (this.props.scoresheet_ids.length > 0) {
+      return this.props.scoresheet_ids.map((scoresheet_id, idx) => {
+        let scoresheet = this.props.scoresheets[scoresheet_id];
         if (scoresheet) {
           return (
             <span
               className={`span--scoresheet-nav-${scoresheet.id}`}
               key={scoresheet.id}
               onClick={() => {
-                this.setState({ scoresheet: scoresheet });
+                this.props.setDisplayScoresheet(scoresheet.id);
               }}
             >
               {scoresheet.name}
@@ -75,7 +63,7 @@ export default class Scoresheets extends React.Component {
       <span
         className={`span--scoresheet-nav-newsheet`}
         key={99}
-        onClick={() => this.setState({ scoresheet: "new" })}
+        onClick={() => this.props.setDisplayScoresheet("new")}
       >
         +
       </span>
@@ -90,10 +78,10 @@ export default class Scoresheets extends React.Component {
           {this.newScoresheetHeader()}
         </nav>
         <section className="section--scoresheet_show">
-          {this.state.scoresheet === "new" ? (
-            <NewScoresheetForm />
+          {this.props.displayId === "new" ? (
+            <NewScoresheetForm scoresheets={this.props.scoresheets} />
           ) : (
-            <Scoresheet scoresheet={this.state.scoresheet} />
+            <Scoresheet scoresheet={this.props.scoresheets[this.props.displayId]} />
           )}
         </section>
       </section>

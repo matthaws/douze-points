@@ -5,21 +5,30 @@ import {
   fetchScoresheets,
   removeScoresheet
 } from "../../actions/scoresheet_actions";
+import { setDisplayScoresheet } from '../../actions/uiActions';
 
-const mapStateToProps = state => {
-  const scoresheets = state.auth.currentUser
-    ? state.auth.currentUser.scoresheet_ids
-    : [];
+const mapStateToProps = (state) => {
+  // let scoresheets = state.auth.currentUser
+  //   ? state.auth.currentUser.scoresheet_ids
+  //   : [];
+  // scoresheets = scoresheets.map(id => state.scoresheets[id]);
+  let defaultId = (state.auth.currentUser &&
+    state.auth.currentUser.scoresheet_ids &&
+    state.auth.currentUser.scoresheet_ids[0])
+    ? state.auth.currentUser.scoresheet_ids[0]
+    : null;
+
   return {
-    scoresheets: scoresheets.map(id => {
-      return state.scoresheets[id];
-    }),
-    user: state.auth.currentUser
+    scoresheets: state.scoresheets,
+    scoresheet_ids: state.auth.currentUser ? state.auth.currentUser.scoresheet_ids : [],
+    user: state.auth.currentUser,
+    displayId: state.ui.displayId || (defaultId),
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  fetchScoresheets: userId => dispatch(fetchScoresheets(userId))
+  fetchScoresheets: userId => dispatch(fetchScoresheets(userId)),
+  setDisplayScoresheet: displayId => dispatch(setDisplayScoresheet(displayId)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Scoresheets);

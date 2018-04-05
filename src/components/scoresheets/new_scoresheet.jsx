@@ -72,7 +72,7 @@ class NewScoresheetForm extends React.Component {
 
   render() {
     return (
-      <form className="form--new_scoresheet">
+      <form className="form--new_scoresheet" onSubmit={this.submitForm}>
         <div className="form--new_scoresheet_title">
           <label htmlFor="scoresheet_title">
             Title
@@ -112,7 +112,7 @@ class NewScoresheetForm extends React.Component {
           <label>Type</label>
           <p>Placeholder</p>
         </div>
-        <button onClick={this.submitForm}>Create New Scoresheet</button>
+        <button>Create New Scoresheet</button>
       </form>
     );
   }

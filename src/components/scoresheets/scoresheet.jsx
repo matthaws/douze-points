@@ -64,7 +64,6 @@ class Scoresheet extends React.Component {
 
   componentWillReceiveProps(newProps) {
     if (newProps.scoresheet.id !== this.props.scoresheet.id) {
-      this.props.startSpinner();
       this.props.fetchScoresheet(newProps.scoresheet.id);
     } else if (this.props.isSpinning && this.props.scoresheet.id !== 'LOADING') {
       this.props.endSpinner();
@@ -238,7 +237,9 @@ class Scoresheet extends React.Component {
         </table>
         <ul>{scoresheetEntries}</ul>
         <div>
-          <button onClick={ e => this.deleteScoresheet(e) }>Delete this scoresheet</button>
+          { this.props.scoresheet.id !== "LOADING"
+            ? <button onClick={ e => this.deleteScoresheet(e) }>Delete this scoresheet</button>
+            : null }
         </div>
       </section>
     );
