@@ -79,7 +79,7 @@ export default class Scoresheets extends React.Component {
         </nav>
         <section className="section--scoresheet_show">
           {this.props.displayId === "new" ? (
-            <NewScoresheetForm scoresheets={this.props.scoresheets} />
+            <NewScoresheetForm scoresheets={this.props.scoresheets} setDisplayScoresheet={this.props.setDisplayScoresheet} />
           ) : (
             <Scoresheet scoresheet={this.props.scoresheets[this.props.displayId]} />
           )}

@@ -8,10 +8,6 @@ import {
 import { setDisplayScoresheet } from '../../actions/uiActions';
 
 const mapStateToProps = (state) => {
-  // let scoresheets = state.auth.currentUser
-  //   ? state.auth.currentUser.scoresheet_ids
-  //   : [];
-  // scoresheets = scoresheets.map(id => state.scoresheets[id]);
   let defaultId = (state.auth.currentUser &&
     state.auth.currentUser.scoresheet_ids &&
     state.auth.currentUser.scoresheet_ids[0])

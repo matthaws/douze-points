@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchScoresheet, deleteScoresheet } from '../../actions/scoresheet_actions';
-import { startSpinner, endSpinner, setSort } from '../../actions/uiActions';
+import { startSpinner, endSpinner, setSort, setDisplayScoresheet } from '../../actions/uiActions';
 import ScoresheetEntry from './scoresheet_entry.jsx';
 import './scoresheet.css';
 
@@ -41,6 +41,7 @@ const mapDispatchToProps = dispatch => ({
   startSpinner: () => dispatch(startSpinner()),
   endSpinner: () => dispatch(endSpinner()),
   setSort: filter => dispatch(setSort(filter)),
+  setDisplayScoresheet: displayId => dispatch(setDisplayScoresheet(displayId)),
 });
 
 // =========================================
@@ -143,6 +144,7 @@ class Scoresheet extends React.Component {
   deleteScoresheet(e) {
     e.preventDefault();
     this.props.deleteScoresheet(this.props.scoresheet.id);
+    this.props.setDisplayScoresheet(null);
   }
 
   createEntries() {

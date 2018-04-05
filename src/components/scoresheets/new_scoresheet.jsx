@@ -20,7 +20,7 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = dispatch => ({
   createScoresheet: scoresheet => dispatch(createScoresheet(scoresheet)),
-  fetchContests: () => dispatch(fetchContests())
+  fetchContests: () => dispatch(fetchContests()),
 });
 
 //=========================================
@@ -67,6 +67,7 @@ class NewScoresheetForm extends React.Component {
       alert("Must choose contest.");
     } else {
       this.props.createScoresheet(this.state.scoresheet);
+      this.props.setDisplayScoresheet(null);
     }
   }
 
