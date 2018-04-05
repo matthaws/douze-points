@@ -39,6 +39,7 @@ class NewScoresheetForm extends React.Component {
     this.state = { scoresheet: props.scoresheet };
     this.state.scoresheet.user_id = props.user.id;
     this.submitForm = this.submitForm.bind(this);
+    this.handleSelect = this.handleSelect.bind(this);
   }
 
   componentDidMount() {
@@ -91,13 +92,15 @@ class NewScoresheetForm extends React.Component {
           </label>
           <select
             name="contest_id"
-            value=""
-            onChange={e => this.handleSelect(e)}
+            value={parseInt(this.state.scoresheet.contest_id) || ""}
+            onChange={this.handleSelect}
           >
             <option disabled="true" value="" key={-1}>Please Select Contest</option>
             { this.props.contests.map((contest, idx) => {
               return (
-                <option value={contest.id} key={idx}>
+                <option
+                  value={contest.id}
+                  key={idx}>
                   {contest.year}
                 </option>
               );

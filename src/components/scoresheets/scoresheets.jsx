@@ -30,7 +30,6 @@ export default class Scoresheets extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    debugger
     if (!this.props.user && newProps.user) {
       newProps.fetchScoresheets(newProps.user.id);
     }
