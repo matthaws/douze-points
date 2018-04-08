@@ -101,7 +101,7 @@ class NewScoresheetForm extends React.Component {
               return (
                 <option
                   value={contest.id}
-                  key={idx}>
+                  key={contest.id}>
                   {contest.year}
                 </option>
               );

@@ -9,9 +9,9 @@
 .nav--scoresheets_nav {
   display: flex;
   flex-direction: column;
-  margin: 10px;
+  margin: 0px 10px;
   margin-bottom: 0;
-  padding: 10px;
+  padding: 0 10px;
   font-size: 20px;
 }
 
