@@ -59,7 +59,7 @@ class EntryQuickscore extends React.Component {
               value={ this.state.scoresheet_id }
               onChange={ (e) => { this.setState({ scoresheet_id: e.target.value }) }}
               >
-              <option disabled="true" value="" key={-1}>Please Select Contest</option>
+              <option disabled="true" value="" key={-1}>Please Select Scoresheet</option>
               { this.scoresheets.map( sheet => (
                 <option
                   value={sheet.id}

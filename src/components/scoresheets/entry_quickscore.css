@@ -8,6 +8,7 @@
 
 .label--scoresheet_select select {
   font-size: 12px;
+  border-radius: 0px;
 }
 
 .tr--quickscore_headers {
