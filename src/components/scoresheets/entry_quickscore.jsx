@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import './entry_quickscore.css';
 import { createScoring, updateScoring } from '../../actions/scoringActions';
 
 class EntryQuickscore extends React.Component {
@@ -50,11 +51,9 @@ class EntryQuickscore extends React.Component {
   render() {
     return (
       <div className="div--entry_quickscore_container">
-        <p>Quickscore</p>
         <hr />
         <form onSubmit={ this.submitScoring }>
-          <button onClick={this.submitScoring}>Submit</button>
-          <label>Choose Scoresheet:
+          <label className="label--scoresheet_select"><p>Choose Scoresheet:</p>
             <select
               name="scoresheet_id"
               value={ this.state.scoresheet_id }
@@ -72,65 +71,68 @@ class EntryQuickscore extends React.Component {
               }
             </select>
           </label>
-          <table>
-            <tr>
-              <th>Song Score</th>
-              <th>Dance Score</th>
-              <th>Costume Score</th>
-              <th>Eurocheese Score</th>
-              <th>Bonus Points</th>
-            </tr>
-            <tr>
-              <td>
-                <input
-                  type="number"
-                  min="0"
-                  max="12"
-                  name="song_score"
-                  onChange={this.handleChange('song_score')}
-                  value={this.state.song_score || ''}
-                />
-              </td>
-              <td>
-                <input
-                  type="number"
-                  min="0"
-                  max="12"
-                  name="dance_score"
-                  onChange={this.handleChange('dance_score')}
-                  value={this.state.dance_score || ''}
-                />
-              </td>
-              <td>
-                <input
-                  type="number"
-                  min="0"
-                  max="12"
-                  name="costume_score"
-                  onChange={this.handleChange('costume_score')}
-                  value={this.state.costume_score || ''}
-                />
-              </td>
-              <td>
-                <input
-                  type="number"
-                  min="0"
-                  max="12"
-                  name="cheese_score"
-                  onChange={this.handleChange('cheese_score')}
-                  value={this.state.cheese_score || ''}
-                />
-              </td>
-              <td>
-                <input
-                  type="number"
-                  name="bonus_points"
-                  onChange={this.handleChange('bonus_points')}
-                  value={this.state.bonus_points || ''}
-                />
-              </td>
-            </tr>
+          <table className="table--quickscore_table">
+            <tbody>
+              <tr className="tr--quickscore_headers">
+                <th>Song Score</th>
+                <th>Dance Score</th>
+                <th>Costume Score</th>
+                <th>Eurocheese Score</th>
+                <th>Bonus Points</th>
+              </tr>
+              <tr className="tr--quickscore_inputs">
+                <td>
+                  <input
+                    type="number"
+                    min="0"
+                    max="12"
+                    name="song_score"
+                    onChange={this.handleChange('song_score')}
+                    value={this.state.song_score || ''}
+                  />
+                </td>
+                <td>
+                  <input
+                    type="number"
+                    min="0"
+                    max="12"
+                    name="dance_score"
+                    onChange={this.handleChange('dance_score')}
+                    value={this.state.dance_score || ''}
+                  />
+                </td>
+                <td>
+                  <input
+                    type="number"
+                    min="0"
+                    max="12"
+                    name="costume_score"
+                    onChange={this.handleChange('costume_score')}
+                    value={this.state.costume_score || ''}
+                  />
+                </td>
+                <td>
+                  <input
+                    type="number"
+                    min="0"
+                    max="12"
+                    name="cheese_score"
+                    onChange={this.handleChange('cheese_score')}
+                    value={this.state.cheese_score || ''}
+                  />
+                </td>
+                <td>
+                  <input
+                    type="number"
+                    name="bonus_points"
+                    onChange={this.handleChange('bonus_points')}
+                    value={this.state.bonus_points || ''}
+                  />
+                </td>
+              </tr>
+            </tbody>
           </table>
+          <button onClick={this.submitScoring}>Submit</button>
         </form>
       </div>
     )

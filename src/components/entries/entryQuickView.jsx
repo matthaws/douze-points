@@ -13,9 +13,9 @@ const EntryQuickView = ({ entry, countries, closeQuickView, scoresheets }) => {
     return (
       <aside id="pop-out">
         <div id="quick-view">
+          <img src={country.flag_url} />
           <Sticky>
             <header>
-              <img src={country.flag_url} />
               <p className="p--closeX" onClick={closeQuickView}>
                 {String.fromCharCode(215)}
               </p>

@@ -61,6 +61,7 @@ class ContestShow extends React.Component {
                     entry={entry}
                     switchQuickView={() => this.switchQuickView(idx)}
                     country={countries[entry.country_id]}
+                    key={entry.id}
                   />
                 );
               }

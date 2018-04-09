@@ -1,0 +1,40 @@
+.table--quickscore_table {
+  width: 80%;
+}
+
+.label--scoresheet_select {
+  padding: 10px;
+}
+
+.label--scoresheet_select select {
+  font-size: 12px;
+}
+
+.tr--quickscore_headers {
+  font-size: 12px;
+}
+
+.tr--quickscore_headers th, .tr--quickscore_inputs td {
+  width: 10%;
+}
+
+.tr--quickscore_inputs input {
+  background-color: transparent;
+  border: none;
+  padding: 4px;
+  border-bottom: 1px solid black;
+  text-align: center;
+  font-size: 14px;
+  width: 40px;
+}
+
+.tr--quickscore_inputs input:focus {
+  outline: none;
+}
+
+.table--quickscore_table {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
