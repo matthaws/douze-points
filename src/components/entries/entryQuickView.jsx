@@ -1,19 +1,21 @@
 import React from "react";
 import PropTypes from "prop-types";
-import YouTube from "../video/YouTube";
 import Sticky from "react-stickynode";
 import { Link } from "react-router-dom";
 import "./entryQuickView.css";
+import YouTube from "../video/YouTube";
+import EntryQuickscore from '../scoresheets/entry_quickscore';
 
-const EntryQuickView = ({ entry, countries, closeQuickView }) => {
+
+const EntryQuickView = ({ entry, countries, closeQuickView, scoresheets }) => {
   if (entry) {
     let country = countries[entry.country_id];
     return (
       <aside id="pop-out">
         <div id="quick-view">
+          <img src={country.flag_url} />
           <Sticky>
             <header>
-              <img src={country.flag_url} />
               <p className="p--closeX" onClick={closeQuickView}>
                 {String.fromCharCode(215)}
               </p>
@@ -25,6 +27,11 @@ const EntryQuickView = ({ entry, countries, closeQuickView }) => {
             </header>
 
             <YouTube url={entry.video_url} />
+
+            <EntryQuickscore
+              scoresheets={ scoresheets }
+              entry={ entry }
+            />
           </Sticky>
         </div>
       </aside>

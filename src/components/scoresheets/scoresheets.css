@@ -1,16 +1,18 @@
 .section--scoresheets_container {
-  display: grid;
+  display: flex;
   min-height: 600px;
-  margin: 30px;
+  margin: 10px 0px;
   padding: 10px;
   margin-bottom: 40px;
 }
 
 .nav--scoresheets_nav {
-  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  margin: 0px 10px;
   margin-bottom: 0;
-  padding: 10px;
-  font-size: 28px;
+  padding: 0 10px;
+  font-size: 20px;
 }
 
 .section--scoresheet_show {
@@ -20,8 +22,13 @@
   border-radius: 4px;
 }
 
+.span--selected-scoresheet-nav {
+  font-weight: bold;
+}
+
 span[class^="span--scoresheet-nav"] {
   cursor: pointer;
+  max-width: 200px;
 }
 
 span[class^="span--scoresheet-nav"]:hover {

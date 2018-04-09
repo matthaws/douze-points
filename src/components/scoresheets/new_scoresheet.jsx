@@ -8,13 +8,19 @@ import "./new_scoresheet.css";
 // mapToProps
 
 const mapStateToProps = (state, ownProps) => ({
-  contests: state.contests,
+  contests: Object.values(state.contests).sort( (a, b) => {
+    if (a.year < b.year) {
+      return 1;
+    } else {
+      return -1;
+    }
+  }),
   user: state.auth.currentUser
 });
 
 const mapDispatchToProps = dispatch => ({
   createScoresheet: scoresheet => dispatch(createScoresheet(scoresheet)),
-  fetchContests: () => dispatch(fetchContests())
+  fetchContests: () => dispatch(fetchContests()),
 });
 
 //=========================================
@@ -33,6 +39,7 @@ class NewScoresheetForm extends React.Component {
     this.state = { scoresheet: props.scoresheet };
     this.state.scoresheet.user_id = props.user.id;
     this.submitForm = this.submitForm.bind(this);
+    this.handleSelect = this.handleSelect.bind(this);
   }
 
   componentDidMount() {
@@ -60,38 +67,53 @@ class NewScoresheetForm extends React.Component {
       alert("Must choose contest.");
     } else {
       this.props.createScoresheet(this.state.scoresheet);
+      this.props.setDisplayScoresheet(null);
     }
   }
 
   render() {
     return (
-      <form>
-        <label>
-          Title
+      <form className="form--new_scoresheet" onSubmit={this.submitForm}>
+        <div className="form--new_scoresheet_title">
+          <label htmlFor="scoresheet_title">
+            Title
+          </label>
           <input
             type="text"
+            name="scoresheet_title"
             placeholder="Enter Scoresheet Title"
             value={this.state.scoresheet.name}
             onChange={this.handleChange("name")}
-          />
-        </label>
+            />
+        </div>
         <br />
-        <label>
-          Contest Year
-          <select name="contest_id" value="" onChange={e => this.handleSelect(e)}>
-              <option disabled="true" value="" key={-1}>Please Select Contest</option>
-            {Object.values(this.props.contests).map((contest, idx) => {
+        <div className="form--new_scoresheet_contest_year">
+          <label htmlFor="contest_id">
+            Contest Year
+          </label>
+          <select
+            name="contest_id"
+            value={parseInt(this.state.scoresheet.contest_id) || ""}
+            onChange={this.handleSelect}
+          >
+            <option disabled="true" value="" key={-1}>Please Select Contest</option>
+            { this.props.contests.map((contest, idx) => {
               return (
-                <option value={contest.id} key={idx}>
+                <option
+                  value={contest.id}
+                  key={contest.id}>
                   {contest.year}
                 </option>
               );
             })}
           </select>
-        </label>
+        </div>
         <br />
-        <label>Type</label>
-        <button onClick={this.submitForm}>Create New Scoresheet</button>
+        <div className="form--new_scoresheet_type">
+          <label>Type</label>
+          <p>Placeholder</p>
+        </div>
+        <button>Create New Scoresheet</button>
       </form>
     );
   }

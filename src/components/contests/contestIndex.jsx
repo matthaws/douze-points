@@ -54,10 +54,22 @@ const mapStateToProps = state => {
     }
   }
 
+  // get contest ids
+  let contest_ids = Object.keys(state.contests);
+
+  // sort contest IDs according to year of contest in state;
+  contest_ids = contest_ids.sort( (a, b) => {
+    if (state.contests[a].year < state.contests[b].year) {
+      return 1;
+    } else {
+      return -1;
+    }
+  });
+
   return {
     contests: state.contests,
     entries: state.entries,
-    contest_ids: Object.keys(state.contests),
+    contest_ids,
     winner_ids,
     winners
   }

@@ -33,3 +33,8 @@ export const createScoresheet = scoresheet => async dispatch => {
   const newScoresheet = await ScoresheetUtil.createScoresheet(scoresheet);
   dispatch(receiveScoresheet(newScoresheet));
 };
+
+export const deleteScoresheet = scoresheetId => async dispatch => {
+  await ScoresheetUtil.deleteScoresheet(scoresheetId);
+  dispatch(removeScoresheet(scoresheetId));
+};

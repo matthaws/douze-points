@@ -1,0 +1,30 @@
+.form--new_scoresheet {
+  width: 400px;
+  margin: 5px;
+  padding: 5px;
+}
+
+div[class^="form--"] {
+  width: 100%;
+  padding: 10px 0px;
+  margin: 5px 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+div[class^="form--"] input, select {
+  padding: 10px;
+  font: inherit;
+  border: none;
+  border-bottom: 1px solid lightgrey;
+  background-color: inherit;
+}
+
+div[class^="form--"] input:focus, select:focus {
+  outline: none;
+}
+
+div[class^="form--"] select {
+  height: 50px;
+}

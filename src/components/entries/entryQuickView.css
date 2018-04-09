@@ -10,6 +10,11 @@
   text-align: center;
 }
 
+#quick-view img {
+  max-width: 50px;
+  max-height: 50px;
+}
+
 .p--closeX {
   text-align: left;
   padding-left: 1em;

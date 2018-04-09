@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchScoresheet, removeScoresheet } from '../../actions/scoresheet_actions';
-import { startSpinner, endSpinner, setSort } from '../../actions/uiActions';
+import { fetchScoresheet, deleteScoresheet } from '../../actions/scoresheet_actions';
+import { startSpinner, endSpinner, setSort, setDisplayScoresheet } from '../../actions/uiActions';
 import ScoresheetEntry from './scoresheet_entry.jsx';
 import './scoresheet.css';
 
@@ -37,10 +37,11 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => ({
   fetchScoresheet: scoresheetId => dispatch(fetchScoresheet(scoresheetId)),
-  removeScoresheet: scoresheetId => dispatch(removeScoresheet(scoresheetId)),
+  deleteScoresheet: scoresheetId => dispatch(deleteScoresheet(scoresheetId)),
   startSpinner: () => dispatch(startSpinner()),
   endSpinner: () => dispatch(endSpinner()),
   setSort: filter => dispatch(setSort(filter)),
+  setDisplayScoresheet: displayId => dispatch(setDisplayScoresheet(displayId)),
 });
 
 // =========================================
@@ -64,7 +65,6 @@ class Scoresheet extends React.Component {
 
   componentWillReceiveProps(newProps) {
     if (newProps.scoresheet.id !== this.props.scoresheet.id) {
-      this.props.startSpinner();
       this.props.fetchScoresheet(newProps.scoresheet.id);
     } else if (this.props.isSpinning && this.props.scoresheet.id !== 'LOADING') {
       this.props.endSpinner();
@@ -139,6 +139,12 @@ class Scoresheet extends React.Component {
       default:
         return entryComponents;
     }
+  }
+
+  deleteScoresheet(e) {
+    e.preventDefault();
+    this.props.deleteScoresheet(this.props.scoresheet.id);
+    this.props.setDisplayScoresheet(null);
   }
 
   createEntries() {
@@ -232,6 +238,14 @@ class Scoresheet extends React.Component {
           </tbody>
         </table>
         <ul>{scoresheetEntries}</ul>
+        <div>
+          { this.props.scoresheet.id !== "LOADING"
+            ? <button
+                id="button--delete-scoresheet"
+                onClick={ e => this.deleteScoresheet(e) }>
+                Delete this scoresheet</button>
+            : null }
+        </div>
       </section>
     );
   }

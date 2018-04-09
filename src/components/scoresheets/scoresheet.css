@@ -1,8 +1,16 @@
 span[class^="span--scoresheet-nav"] {
   border: 1px solid lightgrey;
-  border-bottom: 1px solid red;
+  border-bottom: none;
   padding: 10px 30px;
+}
+
+span[class^="span--scoresheet-nav"]:first-child {
   border-radius: 4px 4px 0px 0px;
+}
+
+span[class^="span--scoresheet-nav"]:last-child {
+  border-bottom: 1px solid lightgrey;
+  border-radius: 0px 0px 4px 4px;
 }
 
 table[class^="table--scoresheet-headers"] {
@@ -33,4 +41,8 @@ table[class^="table--scoresheet-headers"] div {
 
 .label--bonus_points input {
   margin-left: 10px;
+}
+
+#button--delete-scoresheet {
+  margin: 10px 20px;
 }
