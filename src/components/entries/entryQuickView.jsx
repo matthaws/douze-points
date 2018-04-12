@@ -7,7 +7,7 @@ import YouTube from "../video/YouTube";
 import EntryQuickscore from '../scoresheets/entry_quickscore';
 
 
-const EntryQuickView = ({ entry, countries, closeQuickView, scoresheets }) => {
+const EntryQuickView = ({ entry, countries, closeQuickView, scoresheets, currentUser }) => {
   if (entry) {
     let country = countries[entry.country_id];
     return (
@@ -28,10 +28,11 @@ const EntryQuickView = ({ entry, countries, closeQuickView, scoresheets }) => {
 
             <YouTube url={entry.video_url} />
 
-            <EntryQuickscore
+            { currentUser
+              ? <EntryQuickscore
               scoresheets={ scoresheets }
               entry={ entry }
-            />
+              /> : <p>Log In or Sign Up to score!</p> }
           </Sticky>
         </div>
       </aside>

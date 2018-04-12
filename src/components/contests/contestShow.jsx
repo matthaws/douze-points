@@ -49,10 +49,10 @@ class ContestShow extends React.Component {
     const space = this.state.entry ? "half" : "full";
     return (
       <main className="main--contestShowPage">
+        <div className="div--contest-title">
+          <p>EuroVision Song Contest {contest.year}</p>
+        </div>
         <div className={`left-side-show-${space}`}>
-          <div className="div--contest-title">
-            EuroVision Song Contest {contest.year}
-          </div>
           <ul className="ul--entries">
             {entries.map((entry, idx) => {
               if (entry) {
@@ -74,6 +74,7 @@ class ContestShow extends React.Component {
             scoresheets={this.props.scoresheets}
             countries={countries}
             closeQuickView={this.closeQuickView}
+            currentUser={this.props.currentUser}
           />
         ) : null}
       </main>
