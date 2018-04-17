@@ -1,5 +1,7 @@
 # DOUZE POINTS
 
+![Douze Points Splash](https://github.com/matthaws/douze-points/blob/master/docs/Screen%20Shot%202018-04-17%20at%209.02.18%20AM.png)
+
 ### OVERVIEW
 
 "Douze Points" will be a social app for Eurovision fans to rate their favorite entries, compare their rankings to the contest outcome, and view how their friends rated the same performances. It is being developed as a joint effort between [Matt Haws](www.github.com/matthaws), [Brendan Hamill](www.github.com/bhammy), and [Ian Del Duca](www.github.com/LlanddewiLovesYou). The concept grew out of a long-running tradition that Brendan started. Each year he'd gather friends to watch the Eurovision Song Contest and rate the entries based on his custom scoring metric: up to 12 points each for Song, Dance, Costume, and "Eurocheese", and additional the option to add an arbitrary number of bonus points. This highly unscientic and unbalanced way of scoring accomplished its job in that it was a lot of fun, prompting a lot of converation and hilarious arguments about the relative quality of the entries. 
@@ -14,9 +16,21 @@ The features currently being implemented:
 
 * Users can view this year's contest and all entries with embedded YouTube links. (DONE).
 
+
+![Contest Show page](https://github.com/matthaws/douze-points/blob/master/docs/Screen%20Shot%202018-04-13%20at%203.14.29%20PM.png)
+
+
 * Data from previous years are scraped from the web and added to our database so users can rate entries from throughout the contest's history. (DONE BACK TO 2010, more years forthcoming)
 
+
+![Entry Show page](https://github.com/matthaws/douze-points/blob/master/docs/Screen%20Shot%202018-04-17%20at%209.04.26%20AM.png)
+
+
 * Users can create a scoresheet for a given year and rate each entry according to the Douze Points metric. They can sort their scoresheet and view each entry video without leaving the scoresheet page. (DONE).
+
+
+![Scoresheet page](https://github.com/matthaws/douze-points/blob/master/docs/Screen%20Shot%202018-04-17%20at%209.03.43%20AM.png)
+
 
 * Users can comment on entries, contests, other user's scoresheets. (IN PROGRESS)
 
