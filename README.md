@@ -2,40 +2,35 @@
 
 ### OVERVIEW
 
-"Douze Points" will be a social app for Eurovision fans to rate their favorite entries, compare their rankings to the contest outcome, and view how their friends rated the same performances.
+"Douze Points" will be a social app for Eurovision fans to rate their favorite entries, compare their rankings to the contest outcome, and view how their friends rated the same performances. It is being developed as a joint effort between [Matt Haws](www.github.com/matthaws), [Brendan Hamill](www.github.com/bhammy), and [Ian Del Duca](www.github.com/LlanddewiLovesYou). The concept grew out of a long-running tradition that Brendan started. Each year he'd gather friends to watch the Eurovision Song Contest and rate the entries based on his custom scoring metric: up to 12 points each for Song, Dance, Costume, and "Eurocheese", and additional the option to add an arbitrary number of bonus points. This highly unscientic and unbalanced way of scoring accomplished its job in that it was a lot of fun, prompting a lot of converation and hilarious arguments about the relative quality of the entries. 
+
+Upgrading this tradition to the digital age and turning it into a web app that all could use was the next logical step. Read more about how this all got started [on my blog](http://matthaws.com/the-blog/posts/eurovision-app-part-one).
 
 ### MVPs
 
-The goal for version 1 of "Douze Points" will be to fully implement the following key features:
+The features currently being implemented: 
 
-* Users will be able to create an account and login (using their Facebook or Google account if they prefer) and create a profile including profile picture.
+* Users can log in with their Facebook account. (DONE)
 
-* Users can view the details of this year's entries, with embedded video of the entry's music video as they become available. They will be able to give initial (pre-season) scoring based on the announced entry.
+* Users can view this year's contest and all entries with embedded YouTube links. (DONE).
 
-* Users can view other user profiles and see a list of all the preliminary scores they've given the 2018 entries.
+* Data from previous years are scraped from the web and added to our database so users can rate entries from throughout the contest's history. (DONE BACK TO 2010, more years forthcoming)
 
-* A "live scoring" sheet will be available to users to fill out during the actual contest in May. Users will be able to compare their pre-season scores with their scores for the live final event. They will also be able to see a comparison between their rankings and the final, actual rankings in the contest.
+* Users can create a scoresheet for a given year and rate each entry according to the Douze Points metric. They can sort their scoresheet and view each entry video without leaving the scoresheet page. (DONE).
 
-* Users can comment on each other's rankings. ?
+* Users can comment on entries, contests, other user's scoresheets. (IN PROGRESS)
+
+* Users can compare their scoresheet for a given year with another user's scoresheet for the same year. "What? How could Brendan only give this song a 6 in costume, that hat is AMAZING!" (IN PROGRESS) 
+
+* Users can update their profile with a bio and pick favorite entries for each category, which will appear on their profile page. (NOT STARTED YET) 
+
+* Splash page with details and info on how to use the site. (NOT STARTED YET)
 
 ### Technologies Used
 
-"Douze Points" will be built in separate pieces - a Rails backend API and a totally separate front-end React application. This is so that in phase 2 we can easily develop of a React Native mobile application that makes use of the same backend API.
+"Douze Points" is built with React with Redux deployed to the web via Surge. It is served on the backed by a separate Rails JSON API, [found here](www.github.com/matthaws/douze-points-api) deployed on Heroku. A mobile version of the app is being planned which will use React Native. 
 
-#### Backend
-* Postgresql database
-* Ruby/Rails in API only mode
-* Jbuilder for JSON responses
-* Devise gem for auth and Facebook/Google integration
-
-#### Front-end Web
-* React/Redux
-* CSS Grid and TBD method of CSS integration
-* Prettier for style consistency and linting
-* TBD alternative to JQuery for Ajax calls.
-
-#### Front-end Mobile
-* React Native
+For authentication, it uses the OAuth2 protocal to authenticate with Facebook and then JSON Web Tokens to persist the user being "logged in". More info on my implemenation of auth is [also on my blog](http://matthaws.com/the-blog/posts/eurovision-app-part-two).
 
 ### Design Documents
 
