@@ -42,6 +42,10 @@ For authentication, it uses the OAuth2 protocal to authenticate with Facebook an
 
 ![Contest Show page](https://github.com/matthaws/douze-points/blob/master/docs/Screen%20Shot%202018-04-13%20at%203.14.29%20PM.png)
 
+---
+
 ![Entry Show page](https://github.com/matthaws/douze-points/blob/master/docs/Screen%20Shot%202018-04-17%20at%209.04.26%20AM.png)
+
+---
 
 ![Scoresheet page](https://github.com/matthaws/douze-points/blob/master/docs/Screen%20Shot%202018-04-17%20at%209.03.43%20AM.png)
